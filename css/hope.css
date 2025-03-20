@@ -4,6 +4,30 @@
     display: inline-block;
     background-color: rgba(0, 0, 0, 0);
 }
+@font-face {
+    font-family: "book";
+    src: url('../fonts/FuturaPTBook.otf') format('embedded-opentype'), /* Internet Explorer */
+    url('../fonts/FuturaPTBook.otf') format('woff2'),             /* Super Modern Browsers */
+    url('../fonts/FuturaPTBook.otf') format('woff'),              /* Pretty Modern Browsers */
+    url('../fonts/FuturaPTBook.otf') format('truetype'),          /* Safari, Android, iOS */
+    url('../fonts/FuturaPTBook.otf') format('svg');
+}
+@font-face {
+    font-family: "light";
+    src: url('../fonts/FuturaPTLight.otf') format('embedded-opentype'), /* Internet Explorer */
+    url('../fonts/FuturaPTLight.otf') format('woff2'),             /* Super Modern Browsers */
+    url('../fonts/FuturaPTLight.otf') format('woff'),              /* Pretty Modern Browsers */
+    url('../fonts/FuturaPTLight.otf') format('truetype'),          /* Safari, Android, iOS */
+    url('../fonts/FuturaPTLight.otf') format('svg');
+}
+@font-face {
+    font-family: "md";
+    src: url('../fonts/futuramdbt_bold.otf') format('embedded-opentype'), /* Internet Explorer */
+    url('../fonts/futuramdbt_bold.otf') format('woff2'),             /* Super Modern Browsers */
+    url('../fonts/futuramdbt_bold.otf') format('woff'),              /* Pretty Modern Browsers */
+    url('../fonts/futuramdbt_bold.otf') format('truetype'),          /* Safari, Android, iOS */
+    url('../fonts/futuramdbt_bold.otf') format('svg');
+}
 
 #innerbox{
     margin-top: 90px;
@@ -27,13 +51,13 @@
     font-size: xxx-large;
     color: #333;
     margin: 20px;
-    font-family: "Futura Md BT";
+    font-family: "md";
 }
 .companytext{
     font-size: 50px;
     color: rgb(128, 109, 0);
     margin: 0;
-    font-family: "Futura Md BT";
+    font-family: "md";
 }
 #nametright {
     position: fixed;
@@ -45,24 +69,24 @@
     font-size: 30px;
     color: rgb(128, 109, 0);
     margin: 0;
-    font-family: "Futura PT light", serif;
+    font-family: "light", serif;
 }
 .contactext{
     font-size: 30px;
     color: rgb(128, 109, 0);
     margin: 0;
-    font-family: "Futura PT light", serif;
+    font-family: "light", serif;
 }
 .teamtext{
     font-size: 30px;
     color: rgb(128, 109, 0);
     margin: 0;
-    font-family: "Futura PT light", serif;
+    font-family: "light", serif;
 }
 .hover:hover {
     color: rgb(128, 109, 0);
     text-decoration: none;
-    font-family: "Futura PT Book", serif;
+    font-family: "book", serif;
 }
 #menutleft {
     position: fixed;
@@ -85,7 +109,7 @@
     color: rgb(255, 255, 255);
     margin: 0;
     text-align: center;
-    font-family: "Futura Md BT";
+    font-family: "md";
     text-shadow: black 0px 0px 13px;
 }
 
