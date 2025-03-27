@@ -51,7 +51,7 @@ body {
   align-items: flex-end;
   flex-direction: row;
 
-   border: 1px solid gold;
+   /*border: 1px solid gold;*/
   height: 100%;
   width: 100%;
 
@@ -249,7 +249,9 @@ h2{
   color: gray;
   text-decoration: none;
   font-weight: bold;
+  cursor: pointer;
 }
+
 
 .clicked{
   background-color: transparent;
@@ -580,6 +582,7 @@ p:hover {
 
 
 .empty2 {
+  display: none;
   height: 1px;
   width:30px;
   border-radius: 15px;
