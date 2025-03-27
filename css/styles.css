@@ -142,9 +142,10 @@ body {
   width: 99px;
   text-align: center;
   text-decoration: none;
-  border: 0.001px solid gold;
-  background: #000000;
+  border: 0.001px solid rgba(255, 215, 0, 0.53);
+  background: rgba(0, 0, 0, 0.36);
   color: gold;
+  backdrop-filter: blur(10px);
 }
 .link:hover {
   color: black;
