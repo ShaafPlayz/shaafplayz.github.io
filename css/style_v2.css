@@ -208,8 +208,8 @@ body {
 
 .hero-buttons {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .hero-button {
@@ -223,15 +223,15 @@ body {
 }
 
 .hire-button {
-    background: rgb(31, 31, 31);
-    color: #ffffff;
+    background: #ffbb00;
+    color: #000000;
     border-radius: 0px;
     border: 1px solid rgba(255, 255, 255, 0);
 }
 
 .hire-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(255, 234, 0, 0.531);
 }
 
 .cv-button {
@@ -241,9 +241,10 @@ body {
 }
 
 .cv-button:hover {
-    background: rgba(6, 243, 255, 0);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(6, 244, 255, 0.2);
+    background: rgb(255, 255, 255);
+    color: #000000;
+    /* transform: translateY(-3px); */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.596);
 }
 
 .hero-boxes {
@@ -339,7 +340,7 @@ body {
 /* About Section */
 .about {
     padding: 2rem 0;
-    background-color: #00000000;
+    background-color: #0000004d;
     backdrop-filter: blur(10px);
     position: relative;
 }
@@ -547,7 +548,7 @@ body {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
     gap: 2rem;
     padding: 0 20px;
 }
@@ -575,6 +576,7 @@ body {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    overflow: hidden;
     background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
@@ -582,9 +584,12 @@ body {
     color: rgb(255, 255, 255);
     font-size: 1.2rem;
 }
+.project-image img{
+    overflow: hidden;
+}
 
 .project-image::before {
-    content: 'Click to view project';
+    /* content: 'Click to view project'; */
     position: absolute;
     top: 35%;
     left: 50%;
@@ -790,6 +795,12 @@ body {
 .footer-section h3 {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
+    color: #ffffff; 
+}
+.footer-section p {
+    font-size: 1rem;
+    font-weight: 300;
+    
 }
 
 .social-links {
@@ -1005,6 +1016,6 @@ body {
 
 @media (min-width: 769px) {
     .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
     }
 }

@@ -18,11 +18,11 @@
     <!-- Header Section -->
     <header class="header">
         <nav class="nav-container" style="align-items: flex-start">
-            <div class="logo" data-alt-text="Shaaf Yousaf"><span>Shaaf's Portfolio</span></div>
+            <div class="logo" data-alt-text="Shaaf Yousaf"><span>Welcome to Shaaf's Portfolio</span></div>
             <ul class="nav-links">
-                <!-- <li><a href="#about-boxes">About</a></li> -->
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#footer">Contact</a></li>
+                <li><a href="#aboutsection">About</a></li>
+                <li><a href="#projectsection">Projects</a></li>
+                <li><a href="#footer">Links</a></li>
             </ul>
         </nav>
     </header>
@@ -33,17 +33,17 @@
             <div class="hero-text">
                 <h1>A Junior Developer & Designer</h1>
                 <h1></h1>
-                <p>Hi, I am Shaaf Yousaf,an undergraduate student at the University of Toronto</p>
+                <!-- <p>Hi, I am Shaaf Yousaf,an undergraduate student at the University of Toronto</p> -->
                 <div class="hero-buttons">
-                    <a href="#contact" class="hero-button hire-button">Hire Me</a>
-                    <a href="#" class="hero-button cv-button">Download CV ➪</a>
+                    <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="hero-button hire-button">Hire Me</a>
+                    <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" class="hero-button cv-button">Download CV ➪</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="aboutsection">
         <div class="about-container">
             <h2 class="about-title">OVERVIEW</h2>
            
@@ -61,46 +61,43 @@
                     <p>    I am a currently pursuing a Honors Bachelors in Computer Science from the University of Toronto. </p>
                     <p>    I have apassion for web development and design. 
                          I create experiences that are both functional and beautiful. I also dable with training machine learning models.</p>
+
+                         <div class="social-links">
+                            <a href="https://github.com/ShaafPlayz" target="_blank" class="social-box-link">
+                                <div class="social-box-content">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </div>
+                            </a>
+                            <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="social-box-link">
+                                <div class="social-box-content">
+                                    <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn</span>
+                                </div>
+                            </a>
+                            <a href="https://drive.google.com/file/d/1fex-y7cQ5nDl3tTRKRzx0cr0foUuy36K/view" target="_blank" class="social-box-link">
+                                <div class="social-box-content">
+                                    <i class="fa-solid fa-palette"></i>
+                                    <span>Graphics Portfolio</span>
+                                </div>
+                            </a>
+                            
+                        </div>
                 </div>
-                <div class="about-box social-box">
-                    <div class="social-links">
-                        <a href="https://github.com/shaafplayz" target="_blank" class="social-box-link">
-                            <div class="social-box-content">
-                                <i class="fab fa-github"></i>
-                                <span>GitHub</span>
-                            </div>
-                        </a>
-                        <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="social-box-link">
-                            <div class="social-box-content">
-                                <i class="fab fa-linkedin"></i>
-                                <span>LinkedIn</span>
-                            </div>
-                        </a>
-                        <a href="mailto:shaafyousaf@gmail.com" class="social-box-link">
-                            <div class="social-box-content">
-                                <i class="fas fa-envelope"></i>
-                                <span>Email</span>
-                            </div>
-                        </a>
-                        <a href="https://twitter.com/shaafplayz" target="_blank" class="social-box-link">
-                            <div class="social-box-content">
-                                <i class="fab fa-twitter"></i>
-                                <span>Twitter</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                <!-- <div class="about-box social-box">
+                    
+                </div> -->
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects">
+    <section class="projects" id="projectsection">
         <h2>Projects</h2>
         <div class="projects-grid">
-            <a href="https://github.com/shaafplayz/portfolio" class="project-card">
+            <a href="https://github.com/ShaafPlayz/Game-In-Assembly" class="project-card">
                 <div class="project-image">
-                    <img src="resources/portfolio.png" alt="Portfolio Project">
+                    <img src="images/image.png" alt="Portfolio Project">
                 </div>
                 <div class="project-title">Halo: Pixel Edition</div>
                 <div class="project-category">GAME</div>
@@ -109,21 +106,9 @@
                     <span class="tech-item">MARS MIPS Simulator</span>
                 </div>
             </a>
-            <a href="https://github.com/shaafplayz/portfolio" class="project-card">
+            <a href="https://github.com/Toyakki/ImagEHR" class="project-card">
                 <div class="project-image">
-                    <img src="resources/portfolio.png" alt="Portfolio Project">
-                </div>
-                <div class="project-title">Planetze Android App</div>
-                <div class="project-category">Android App</div>
-                <div class="tech-stack">
-                    <span class="tech-item">Java</span>
-                    <span class="tech-item">XML</span>
-                    <span class="tech-item">Andriod Studio</span>
-                </div>
-            </a>
-            <a href="https://github.com/shaafplayz/portfolio" class="project-card">
-                <div class="project-image">
-                    <img src="resources/portfolio.png" alt="Portfolio Project">
+                    <img src="images/imagEHR logo.png" alt="Portfolio Project">
                 </div>
                 <div class="project-title">imagEHR: A Healthcare Analysis Tool</div>
                 <div class="project-category">Web App</div>
@@ -134,6 +119,40 @@
                     <span class="tech-item">Cohere LLM</span>
                 </div>
             </a>
+            <a href="https://github.com/KrishnaManamohan/B07FinalProject" class="project-card">
+                <div class="project-image">
+                    <img src="images/pla2.jpeg" alt="Portfolio Project">
+                </div>
+                <div class="project-title">Carbon Tracking Android App</div>
+                <div class="project-category">Android App</div>
+                <div class="tech-stack">
+                    <span class="tech-item">Java</span>
+                    <span class="tech-item">XML</span>
+                    <span class="tech-item">Andriod Studio</span>
+                </div>
+            </a>
+            <a href="https://github.com/ShaafPlayz/System-Monitoring-Tool-Unix" class="project-card">
+                <div class="project-image">
+                    <img src="images/hawkeye.png" alt="Portfolio Project">
+                </div>
+                <div class="project-title">Hawkeye: A System Monitoring Tool</div>
+                <div class="project-category">Command Line Tool</div>
+                <div class="tech-stack">
+                    <span class="tech-item">C</span>
+                    <span class="tech-item">UNIX</span>
+                </div>
+            </a>
+            <a href="https://hopetohelp.ca" class="project-card">
+                <div class="project-image">
+                    <img src="images/hope.png" alt="Portfolio Project">
+                </div>
+                <div class="project-title">Hope to Help</div>
+                <div class="project-category" style="background-color: #ff0000;">(Work in Progress)</div>
+                <div class="tech-stack">
+                    <span class="tech-item">HTML/CSS/JS</span>
+                    <span class="tech-item">Github Pages</span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -142,18 +161,19 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Personal</h3>
-                    <p></p>
-                    <p></p>
-                    <p></p>
+                    <h3>Made with ❤️ by Shaaf</h3>
+                    
+                    <p>I love Designing and Developing.</p>
                     
                 </div>
                 <div class="footer-section">
                     <h3>Links</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        
+                    <div class="social-links" style="justify-content: flex-start;">
+                        <a href="https://github.com/ShaafPlayz" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/shaafyousaf" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/shaafyousaf/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@ShaafStudio" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://devpost.com/ShaafDev?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav" target="_blank"><i class="fab fa-dev"></i></a>
                     </div>
                 </div>
             </div>
