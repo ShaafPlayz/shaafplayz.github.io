@@ -1,39 +1,54 @@
 .sectionONE{
-    background-color: #c10404;
-    height: 80vh;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-
-.container{
-    width: webkit-fill-available;
-    height: 2000px;
-    margin: 0 auto;
-    padding: 20px;
+    height: 90vh;
+    position: relative;
+    width: 80%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-items: center;
+    /*height: 2000px;*/
 }
-.header{
-    backdrop-filter: blur(10px);
-    position: fixed;
+.header {
+    z-index: 995;
+    position: relative;
+    top: 0;
+    height: 50%;
+    width: 100%;
+
+    align-content: center;
+    background-color: rgba(255, 132, 0, 0.62);
+    backdrop-filter: blur(5px);
+}
+.main-image{
     z-index: 1000;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.bck-image{
+    z-index: 990;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.innerHeader{
+    /*backdrop-filter: blur(10px);*/
+    /*background-color: rgba(0, 0, 0, 0.79);*/
+    border-radius: 10px;
+    height: 100%;
+    width: 97%;
+    /*max-width: 1000px;*/
     display: flex;
+    margin: 0 auto;
     flex-direction: row;
     align-items: center;
-    justify-items: flex-start;
-    margin: 0.5%;
-    width: 10%;
-    height: 90px;
-    background-color: rgba(255, 0, 0, 0.75);
-    border-radius: 15px;
+    justify-content: space-evenly;
 }
+
 .logotext{
-    padding-left: 5%;
+
+}
+.logoContainer{
+    width: 60px;
 }
 .header h1{
     font-size: 25px;
