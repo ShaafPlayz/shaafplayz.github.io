@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
         </style>
     
     <link rel="stylesheet" href="css/style_v2.css">
@@ -18,7 +18,7 @@
     <!-- Header Section -->
     <header class="header">
         <nav class="nav-container" style="align-items: flex-start">
-            <div class="logo" data-alt-text="Shaaf Yousaf"><span>ePortfolio</span></div>
+            <div class="logo" data-alt-text="Shaaf Yousaf"><span>Shaaf's Portfolio</span></div>
             <ul class="nav-links">
                 <!-- <li><a href="#about-boxes">About</a></li> -->
                 <li><a href="#projects">Projects</a></li>
@@ -29,79 +29,111 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content" style="text-align: left;">
-            <h1>Welcome,</h1>
-            <div style="display: flex; flex-direction: row; gap: 10px;">
-                <h1>I'm</h1>
-                <h1 class="animated-text" style="font-weight: 700;">Shaaf Yousaf</h1>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>A Junior Developer & Designer</h1>
+                <h1></h1>
+                <p>Hi, I am Shaaf Yousaf,an undergraduate student at the University of Toronto</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="hero-button hire-button">Hire Me</a>
+                    <a href="#" class="hero-button cv-button">Download CV ➪</a>
+                </div>
             </div>
-            <p>A Full Stack Developer & Designer</p>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-boxes">
-                    <a href="#education" class="about-box education-box">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Education</h3>
-                        <p>University of Toronto Computer Science Student</p>
-                    </a>
-                    <a href="#skills" class="about-box skills-box">
-                        <i class="fas fa-code"></i>
-                        <h3>Skills</h3>
-                        <p>Full Stack Development & Design Expertise</p>
-                    </a>
-                    <a href="#" class="about-box resume-box">
-                        <i class="fas fa-file-download"></i>
-                        <h3>Resume</h3>
-                        <p>Download my professional resume</p>
-                    </a>
-                </div>
-                <!-- <div class="about-text">
-                    <p>I am a University Of Toronto Computer Science Student</p>
-                    <p>With a strong foundation in web development and a keen eye for design, I create experiences that are both functional and beautiful.</p>
-                </div> -->
+        <div class="about-container">
+            <h2 class="about-title">OVERVIEW</h2>
+           
                 
+            <div class="about-content">
+                <div class="about-box bio-box">
+                    <div class="profile-picture">
+                        <div class="profile-image-container">
+                            <img src="resources/pic.png" alt="Shaaf Yousaf" class="profile-image">
+                            <div class="profile-border"></div>
+                        </div>
+                    </div>
+                    <h3>Hello there, Obi Wan Kenobi!</h3>
+                    <p>I have been creating experiences for the past 10 years using technology. I have worked with educational companies to reach thousands of people.
+                    <p>    I am a currently pursuing a Honors Bachelors in Computer Science from the University of Toronto. </p>
+                    <p>    I have apassion for web development and design. 
+                         I create experiences that are both functional and beautiful. I also dable with training machine learning models.</p>
+                </div>
+                <div class="about-box social-box">
+                    <div class="social-links">
+                        <a href="https://github.com/shaafplayz" target="_blank" class="social-box-link">
+                            <div class="social-box-content">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="social-box-link">
+                            <div class="social-box-content">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </div>
+                        </a>
+                        <a href="mailto:shaafyousaf@gmail.com" class="social-box-link">
+                            <div class="social-box-content">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com/shaafplayz" target="_blank" class="social-box-link">
+                            <div class="social-box-content">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="projects-grid">
-                <a href="project1.html" class="project-card">
-                    <div class="project-image">Project 1 Image</div>
-                    <div class="project-title">Halo: Pixel Edition</div>
-                    <div class="tech-stack">
-                        <span class="tech-item">Assembly</span>
-                        <span class="tech-item">C</span>
-                        <span class="tech-item">UNIX</span>
-                    </div>
-                </a>
-                <a href="project2.html" class="project-card">
-                    <div class="project-image">Project 2 Image</div>
-                    <div class="project-title">Project 2</div>
-                    <div class="tech-stack">
-                        <span class="tech-item">HTML</span>
-                        <span class="tech-item">CSS</span>
-                        <span class="tech-item">JavaScript</span>
-                    </div>
-                </a>
-                <a href="project3.html" class="project-card">
-                    <div class="project-image">Project 3 Image</div>
-                    <div class="project-title">Project 3</div>
-                    <div class="tech-stack">
-                        <span class="tech-item">Python</span>
-                        <span class="tech-item">Django</span>
-                        <span class="tech-item">SQL</span>
-                    </div>
-                </a>
-            </div>
+    <section class="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <a href="https://github.com/shaafplayz/portfolio" class="project-card">
+                <div class="project-image">
+                    <img src="resources/portfolio.png" alt="Portfolio Project">
+                </div>
+                <div class="project-title">Halo: Pixel Edition</div>
+                <div class="project-category">GAME</div>
+                <div class="tech-stack">
+                    <span class="tech-item">Assembly</span>
+                    <span class="tech-item">MARS MIPS Simulator</span>
+                </div>
+            </a>
+            <a href="https://github.com/shaafplayz/portfolio" class="project-card">
+                <div class="project-image">
+                    <img src="resources/portfolio.png" alt="Portfolio Project">
+                </div>
+                <div class="project-title">Planetze Android App</div>
+                <div class="project-category">Android App</div>
+                <div class="tech-stack">
+                    <span class="tech-item">Java</span>
+                    <span class="tech-item">XML</span>
+                    <span class="tech-item">Andriod Studio</span>
+                </div>
+            </a>
+            <a href="https://github.com/shaafplayz/portfolio" class="project-card">
+                <div class="project-image">
+                    <img src="resources/portfolio.png" alt="Portfolio Project">
+                </div>
+                <div class="project-title">imagEHR: A Healthcare Analysis Tool</div>
+                <div class="project-category">Web App</div>
+                <div class="tech-stack">
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">Html/CSS/JS</span>
+                    <span class="tech-item">PyTorch</span>
+                    <span class="tech-item">Cohere LLM</span>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -111,8 +143,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Personal</h3>
-                    <p>Resume: </p>
-                    <p>Phone: (123) 456-7890</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    
                 </div>
                 <div class="footer-section">
                     <h3>Links</h3>
@@ -142,8 +176,8 @@
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    color: 0x6f4ff,
-    backgroundColor: 0x0
+    color: 0xffd500,
+    backgroundColor: 0x221400
     })
     </script>
 </body>
