@@ -131,7 +131,8 @@ body {
     font-size: 4.5rem;
     line-height: 0.8;
     margin-bottom: 1rem;
-    color: #ffffff;
+    mix-blend-mode: exclusion;
+    color: #ffffffca;
 }
 
 .name-container {
