@@ -250,9 +250,10 @@ body {
 }
 
 .hire-button {
-    background: #ffbb00;
+    background: rgb(255, 217, 0);
     color: #000000;
-    border-radius: 0px;
+    
+    border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0);
 }
 
@@ -262,8 +263,8 @@ body {
 }
 
 .cv-button {
-    background: rgba(6, 243, 255, 0);
-    color: #ffffff;
+    background: #000000;
+    color: rgba(255, 215, 0, 0.82);
     border: 2px solid rgba(6, 243, 255, 0);
 }
 
