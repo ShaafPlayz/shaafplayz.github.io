@@ -116,7 +116,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #ffd500;
+    color: rgba(255, 215, 0, 0.82);
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -230,7 +230,7 @@ body {
 
 .hero-text p {
     font-size: 1.5rem;
-    opacity: 0.9;
+    color: rgb(255, 255, 255);
 }
 
 .hero-buttons {
