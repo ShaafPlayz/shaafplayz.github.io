@@ -2,229 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="resources/logo1.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shaaf Yousaf</title>
+    <title>Welcome - Shaaf Yousaf</title>
+    <link rel="icon" href="resources/logo1.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Hubot+Sans:ital,wght@0,200..900;1,200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
-        </style>
-    
-    <link rel="stylesheet" href="css/style_v2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Exo 2', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+
+        .welcome-container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        .sub-text {
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 2rem auto;
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ff8c00);
+            animation: loading 2s ease forwards 1.5s;
+        }
+
+        @keyframes loading {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-<!-- This code actually looks cool -->
- <!-- My last website was a mess -->
-  <!-- Check out the code for this and the last site on my github if you are here lol -->
-<video autoplay loop muted playsinline id="myVideo" >
-    <source src="resources/Test1.webm" type="video/webm">
-</video>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <nav class="nav-container" style="align-items: flex-start">
-            <div class="logoimg">
-                <img src="resources/logo.png">
-            </div>
-            <!-- <div class="logo" data-alt-text="OVERVIEW"><span>Home</span></div> -->
-            <ul class="nav-links">
-                <li><a href="#aboutsection" rel="noopener noreferrer">About</a></li>
-                <li><a href="#projectsection"rel="noopener noreferrer">Experience</a></li>
-                <li><a href="#footer" rel="noopener noreferrer">Links</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <p style="font-weight: 500;mix-blend-mode: exclusion;">WELCOME TO SHAAF'S</p>
-                <h1 style="margin-bottom: 0.5rem;">ePORTFOLIO</h1>
-                <h1 style="margin-bottom: 0.5rem;color: rgba(255, 215, 0, 0.82); font-size: 1.7rem;">A JUNIOR DEVELOPER & DESIGNER</h1>
-                <!-- <p style="font-weight: 900;font-size: 0.9rem;">& a University Of Toronto Student</p> -->
-                
-                <div class="hero-buttons">
-                    <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="hero-button hire-button" target="_blank" rel="noopener noreferrer">Email Me</a>
-                    <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" class="hero-button cv-button" target="_blank" rel="noopener noreferrer">My Resume ➪</a>
-                </div>
-            </div>
+    <div class="welcome-container">
+        <img src="resources/logo.png" alt="Logo" class="logo">
+        <h1 class="welcome-text">SHAAF YOUSAF</h1>
+        <p class="sub-text">Jumping to Lightspeed...</p>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
         </div>
-    </section>
-    
+    </div>
 
-    <!-- About Section -->
-    <section class="about" id="aboutsection">
-        <div class="about-container">
-            <h2 class="about-title">OVERVIEW</h2>
-           
-                
-            <div class="about-content">
-                <div class="about-box bio-box">
-                    <div class="profile-picture">
-                        <div class="profile-image-container">
-                            <img src="resources/pic.png" alt="Shaaf Yousaf" class="profile-image">
-                            <div class="profile-border"></div>
-                        </div>
-                        <h3 style="margin-left: 2rem;">I am Shaaf Yousaf</h3>
-                    </div>
-                    <p>    I'm currently a Computer Science student at the University of Toronto, where I am exploring new ways to turn ideas into working software. </p>
-                    <p>I've spent the last decade creating experiences with technology. My work in the educational industry has helped thousands of people with learning opportunities.</p>
-                    <p>    I have a passion for web development and design. 
-                         I create experiences that are both functional and beautiful. I also dable with training machine learning models.</p>
-
-                         <div class="social-links">
-                            <a href="https://github.com/ShaafPlayz" target="_blank" class="social-box-link">
-                                <div class="social-box-content">
-                                    <i class="fab fa-github"></i>
-                                    <span>GitHub</span>
-                                </div>
-                            </a>
-                            <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="social-box-link">
-                                <div class="social-box-content">
-                                    <i class="fab fa-linkedin"></i>
-                                    <span>LinkedIn</span>
-                                </div>
-                            </a>
-                            <a href="https://drive.google.com/file/d/1fex-y7cQ5nDl3tTRKRzx0cr0foUuy36K/view" target="_blank" class="social-box-link">
-                                <div class="social-box-content">
-                                    <i class="fa-solid fa-palette"></i>
-                                    <span>Graphics Portfolio</span>
-                                </div>
-                            </a>
-                            
-                        </div>
-                </div>
-                <!-- <div class="about-box social-box">
-                    
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projectsection">
-        <h2>Experience</h2>
-        <div class="projects-grid" style="max-width: 1100px;">
-            <a href="https://github.com/ShaafPlayz/Halo-Pixel-Edition" class="project-card" target="_blank" rel="noopener noreferrer">
-                <div class="project-image">
-                    <img src="images/gffe.png" alt="Portfolio Project">
-                </div>
-                <div class="project-title">Halo: Pixel Edition</div>
-                <div class="project-category">GAME</div>
-                <div class="tech-stack">
-                    <span class="tech-item">Assembly</span>
-                    <span class="tech-item">MARS MIPS Simulator</span>
-                </div>
-            </a>
-            <a href="https://github.com/Toyakki/ImagEHR" class="project-card" target="_blank" rel="noopener noreferrer">
-                <div class="project-image">
-                    <img src="images/imagEHR logo.png" alt="Portfolio Project">
-                </div>
-                <div class="project-title">imagEHR: A Healthcare Analysis Tool</div>
-                <div class="project-category">Web App</div>
-                <div class="tech-stack">
-                    <span class="tech-item">Python</span>
-                    <span class="tech-item">Html/CSS/JS</span>
-                    <span class="tech-item">PyTorch</span>
-                    <span class="tech-item">Cohere LLM</span>
-                </div>
-            </a>
-            <a href="https://github.com/KrishnaManamohan/B07FinalProject" class="project-card" target="_blank" rel="noopener noreferrer">
-                <div class="project-image">
-                    <img src="images/pla2.jpeg" alt="Portfolio Project">
-                </div>
-                <div class="project-title">Carbon Tracking Android App</div>
-                <div class="project-category">Android App</div>
-                <div class="tech-stack">
-                    <span class="tech-item">Java</span>
-                    <span class="tech-item">XML</span>
-                    <span class="tech-item">Andriod Studio</span>
-                </div>
-            </a>
-            <a href="https://github.com/ShaafPlayz/System-Monitoring-Tool-Unix" class="project-card" target="_blank" rel="noopener noreferrer">
-                <div class="project-image">
-                    <img src="images/hawkeye.png" alt="Portfolio Project">
-                </div>
-                <div class="project-title">Hawkeye: A System Monitoring Tool</div>
-                <div class="project-category">Command Line Tool</div>
-                <div class="tech-stack">
-                    <span class="tech-item">C</span>
-                    <span class="tech-item">UNIX</span>
-                </div>
-            </a>
-            <a href="https://github.com/ShaafPlayz/weather-web-app" class="project-card" target="_blank" rel="noopener noreferrer">
-                <div class="project-image">
-                    <img src="resources/webweather.png" alt="Portfolio Project">
-                </div>
-                <div class="project-title">Weather Web App</div>
-                <div class="project-category">Web App</div>
-                <div class="tech-stack">
-                    <span class="tech-item">JavaScript</span>
-                    <span class="tech-item">HTML/CSS</span>
-                    <span class="tech-item">WeatherAPI</span>
-                </div>
-            </a>
-            <a href="https://hopetohelp.ca" class="project-card" target="_blank" rel="noopener noreferrer">
-                <div class="project-image">
-                    <img src="images/hope.png" alt="Portfolio Project">
-                </div>
-                <div class="project-title">Hope to Help</div>
-                <div class="project-category" style="background-color: #ff0000;">(Work in Progress)</div>
-                <div class="tech-stack">
-                    <span class="tech-item">JavaScript</span>
-                    <span class="tech-item">HTML/CSS</span>
-                    <span class="tech-item">Github Pages</span>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Made with ❤️ by Shaaf</h3>
-                    
-                    <p>I love Designing and Developing.</p>
-                    
-                </div>
-                <div class="footer-section">
-                    <h3>Links</h3>
-                    <div class="social-links" style="justify-content: flex-start;">
-                        <a href="https://github.com/ShaafPlayz" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/shaafyousaf" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/shaafyousaf/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@ShaafStudio" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://devpost.com/ShaafDev?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav" target="_blank"><i class="fab fa-dev"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Last Updated: 4th May 2025</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="scripts/main.js"></script>
-    <!-- <script src="scripts/p5.min.js"></script>
-    <script src="scripts/vanta.topology.min.js"></script>
     <script>
-    VANTA.TOPOLOGY({
-    el: "body",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0xffd500,
-    backgroundColor: 0x221400
-    })
-    </script> -->
+        // Add fade-out class and redirect after animation completes
+        setTimeout(() => {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000); // Wait for fade-out animation to complete
+        }, 3500); // Start fade-out after loading bar completes
+    </script>
 </body>
-</html>
+</html> 
