@@ -60,87 +60,206 @@
     <section class="about" id="aboutsection">
         <div class="about-container">
             <h2 class="about-title">OVERVIEW</h2>
-           
-                
-            <div class="about-content">                
-                <div class="about-box bio-box" style="gap: 0">
-                    <div class="profile-picture">
-                        <div class="profile-image-container">
-                            <img src="resources/pic.png" alt="Shaaf Yousaf" class="profile-image">
-                            <div class="profile-border"></div>
-                        </div>
-                        <div style="margin-left: 2rem;">
-                            <h3 style="margin: 0; color: rgba(255, 215, 0, 0.9); font-size: 1.8rem;">Shaaf Yousaf</h3>
-                            <p style="margin: 0.5rem 0; color: rgba(255, 255, 255, 0.7); font-size: 1rem;">Full Stack Developer • ML Engineer • UofT Student</p>
-                        </div>
+            
+            <div class="about-content">
+                <!-- Profile Header Card -->
+                <div class="profile-header-card">
+                    <div class="profile-avatar">
+                        <img src="resources/pic.png" alt="Shaaf Yousaf">
+                        <div class="status-indicator"></div>
                     </div>
-                    
-                    <div style="margin: 2rem 0;">
-                        <h4 style="color: rgba(255, 215, 0, 0.9); margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">
-                            <i class="fas fa-user-circle" style="margin-right: 0.5rem;"></i>
-                            Introduction
-                        </h4>
-                        <p style="line-height: 1.6; margin-bottom: 1.5rem;">
-                            Hi there! I'm a passionate developer studying at University of Toronto, focused on creating innovative solutions using cutting-edge technologies. I specialize in transforming complex ideas into elegant, efficient solutions through code.
-                        </p>
-                    </div>
-
-
-                    <div style="margin: 0rem 0;">
-                        <h4 style="color: rgba(255, 215, 0, 0.9); margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">
-                            <i class="fas fa-bullseye" style="margin-right: 0.5rem;"></i>
-                            Current Focus
-                        </h4>
-                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
-                            <div style="display: flex; align-items: center; padding: 0.5rem;">
-                                <i class="fas fa-robot" style="color: rgba(255, 215, 0, 0.8); margin-right: 0.8rem; min-width: 20px;"></i>
-                                <span>Building AI-powered applications and machine learning models</span>
-                            </div>
-                            <div style="display: flex; align-items: center; padding: 0.5rem;">
-                                <i class="fas fa-cloud" style="color: rgba(255, 215, 0, 0.8); margin-right: 0.8rem; min-width: 20px;"></i>
-                                <span>Exploring advanced web technologies and cloud computing</span>
-                            </div>
-                            <div style="display: flex; align-items: center; padding: 0.5rem;">
-                                <i class="fas fa-handshake" style="color: rgba(255, 215, 0, 0.8); margin-right: 0.8rem; min-width: 20px;"></i>
-                                <span>Looking to collaborate on innovative projects in ML/AI and web development</span>
-                            </div>
-                            <div style="display: flex; align-items: center; padding: 0.5rem;">
-                                <i class="fas fa-comments" style="color: rgba(255, 215, 0, 0.8); margin-right: 0.8rem; min-width: 20px;"></i>
-                                <span>Ask me about Python, JavaScript, machine learning, or game development</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin: 2rem 0 0 0;">
-                        <h4 style="color: rgba(255, 215, 0, 0.9); margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center;">
-                            <i class="fas fa-link" style="margin-right: 0.5rem;"></i>
-                            Connect With Me
-                        </h4>
-                        <div class="social-links">
-                            <a href="https://github.com/ShaafPlayz" target="_blank" class="social-box-link">
-                                <div class="social-box-content">
-                                    <i class="fab fa-github"></i>
-                                    <span>GitHub</span>
-                                </div>
-                            </a>
-                            <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="social-box-link">
-                                <div class="social-box-content">
-                                    <i class="fab fa-linkedin"></i>
-                                    <span>LinkedIn</span>
-                                </div>
-                            </a>
-                            <a href="https://drive.google.com/file/d/1fex-y7cQ5nDl3tTRKRzx0cr0foUuy36K/view" target="_blank" class="social-box-link">
-                                <div class="social-box-content">
-                                    <i class="fa-solid fa-palette"></i>
-                                    <span>Graphics Portfolio</span>
-                                </div>
-                            </a>
+                    <div class="profile-info">
+                        <h3 class="profile-name">Shaaf Yousaf</h3>
+                        <div class="profile-roles">
+                            <span class="role-tag">Software Engineer</span>
+                            <span class="role-tag">Full Stack Developer</span>
+                            <span class="role-tag">ML Engineer</span>
                             
                         </div>
+                        <div class="profile-location">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Univeristy Of Toronto, HBSc Computer Science</span>
+                        </div>
+                        <div class="profile-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Toronto, Canada</span>
+                        </div>
+                    </div>
                 </div>
-                <!-- <div class="about-box social-box">
+
+                <!-- Quick Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>3+</h4>
+                            <span>Years of Coding</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>11+</h4>
+                            <span>Years of Digital Artist</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>3 MVP</h4>
+                            <span>Ready for Publishing</span>
+                        </div>
+                    </div>
                     
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>24/7</h4>
+                            <span>Code Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Technologies -->
+                <div class="skills-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-tools"></i>
+                        Skills & Technologies
+                    </h3>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Frontend</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag frontend">JavaScript</span>
+                                <span class="skill-tag frontend">React</span>
+                                <span class="skill-tag frontend">HTML/CSS</span>
+                                <span class="skill-tag frontend">Tailwind</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Backend</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag backend">Python</span>
+                                <span class="skill-tag backend">Flask</span>
+                                <span class="skill-tag backend">Node.js</span>
+                                <span class="skill-tag backend">Java</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>AI/ML</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag ai">TensorFlow</span>
+                                <span class="skill-tag ai">PyTorch</span>
+                                <span class="skill-tag ai">OpenAI</span>
+                                <span class="skill-tag ai">Cohere</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag tools">Git</span>
+                                <span class="skill-tag tools">Docker</span>
+                                <span class="skill-tag tools">VS Code</span>
+                                <span class="skill-tag tools">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Focus Cards -->
+                <!-- <div class="focus-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-target"></i>
+                        Current Focus
+                    </h3>
+                    <div class="focus-grid">
+                        <div class="focus-card">
+                            <div class="focus-icon ai-gradient">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="focus-content">
+                                <h4>AI Development</h4>
+                                <span>Building intelligent applications with LLMs and ML models</span>
+                            </div>
+                        </div>
+                        <div class="focus-card">
+                            <div class="focus-icon web-gradient">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="focus-content">
+                                <h4>Web Technologies</h4>
+                                <span>Exploring modern frameworks and cloud computing</span>
+                            </div>
+                        </div>
+                        <div class="focus-card">
+                            <div class="focus-icon collab-gradient">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="focus-content">
+                                <h4>Collaboration</h4>
+                                <span>Open to innovative projects in ML/AI and web dev</span>
+                            </div>
+                        </div>
+                    </div>
                 </div> -->
+
+                <!-- Connect Section -->
+                <div class="connect-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-network-wired"></i>
+                        Let's Connect
+                    </h3>
+                    <div class="connect-grid">
+                        <a href="https://github.com/ShaafPlayz" target="_blank" class="connect-card github">
+                            <div class="connect-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="connect-info">
+                                <h4>GitHub</h4>
+                                <span>@ShaafPlayz</span>
+                            </div>
+                            <i class="fas fa-external-link-alt connect-arrow"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="connect-card linkedin">
+                            <div class="connect-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="connect-info">
+                                <h4>LinkedIn</h4>
+                                <span>Professional Network</span>
+                            </div>
+                            <i class="fas fa-external-link-alt connect-arrow"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1fex-y7cQ5nDl3tTRKRzx0cr0foUuy36K/view" target="_blank" class="connect-card portfolio">
+                            <div class="connect-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="connect-info">
+                                <h4>Design Portfolio</h4>
+                                <span>Graphics, 3D Models & UI/UX</span>
+                            </div>
+                            <i class="fas fa-external-link-alt connect-arrow"></i>
+                        </a>
+                        <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="connect-card email">
+                            <div class="connect-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="connect-info">
+                                <h4>Email</h4>
+                                <span>Get in touch</span>
+                            </div>
+                            <i class="fas fa-external-link-alt connect-arrow"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

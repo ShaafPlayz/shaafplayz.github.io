@@ -399,7 +399,6 @@ body {
 .about-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
 }
 
 .about-box {
@@ -867,6 +866,381 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* Modern About Section Styles */
+.profile-header-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    backdrop-filter: blur(10px);
+    margin-bottom: 1.2rem;
+}
+
+.profile-avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+    background: #00ff88;
+    border: 2px solid #000;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 1.6rem;
+    color: rgba(255, 215, 0, 0.9);
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.profile-roles {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.role-tag {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    color: rgba(255, 215, 0, 0.9);
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.profile-location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.stat-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: rgba(255, 215, 0, 0.9);
+}
+
+.stat-content h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 0 0.1rem 0;
+}
+
+.stat-content span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.1rem;
+    color: rgba(255, 215, 0, 0.9);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.skills-section, .focus-section, .connect-section {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    backdrop-filter: blur(10px);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.skill-category h4 {
+    color: rgba(255, 215, 0, 0.9);
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skill-tag {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: 1px solid;
+    transition: all 0.3s ease;
+}
+
+.skill-tag.frontend {
+    background: rgba(97, 218, 251, 0.1);
+    color: #61dafb;
+    border-color: rgba(97, 218, 251, 0.3);
+}
+
+.skill-tag.backend {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.skill-tag.ai {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.skill-tag.tools {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9c27b0;
+    border-color: rgba(156, 39, 176, 0.3);
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+.focus-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.focus-card:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+.focus-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.ai-gradient {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.web-gradient {
+    background: linear-gradient(135deg, #00d2d3, #54a0ff);
+}
+
+.collab-gradient {
+    background: linear-gradient(135deg, #5f27cd, #a55eea);
+}
+
+.focus-content h4 {
+    color: #fff;
+    margin: 0 0 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+.focus-content span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+.connect-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.connect-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.connect-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.connect-card:hover::before {
+    left: 100%;
+}
+
+.connect-card:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+.connect-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.connect-card.github .connect-icon {
+    background: linear-gradient(135deg, #333, #000);
+}
+
+.connect-card.linkedin .connect-icon {
+    background: linear-gradient(135deg, #0077b5, #004182);
+}
+
+.connect-card.portfolio .connect-icon {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.connect-card.email .connect-icon {
+    background: linear-gradient(135deg, #00d2d3, #54a0ff);
+}
+
+.connect-info {
+    flex: 1;
+}
+
+.connect-info h4 {
+    color: #fff;
+    margin: 0 0 0.2rem 0;
+    font-size: 0.9rem;
+}
+
+.connect-info span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+}
+
+.connect-arrow {
+    color: rgba(255, 215, 0, 0.7);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.connect-card:hover .connect-arrow {
+    color: rgba(255, 215, 0, 1);
+    transform: translateX(3px);
+}
+
+/* Mouse Follower Styles */
+.dot, .border-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 215, 0, 0.8);
+    z-index: 1000;
+}
+
+.border-dot {
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    width: 28px;
+    height: 28px;
+    transition: width 0.3s, height 0.3s;
+    z-index: 999;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {
@@ -976,9 +1350,6 @@ body {
         padding: 0 1rem;
     }
 
-    .skill-category {
-        padding: 1.5rem;
-    }
 
     .skill-category h3 {
         font-size: 1.3rem;
@@ -1058,5 +1429,57 @@ body {
 @media (min-width: 769px) {
     .projects-grid {
         grid-template-columns: repeat(3, minmax(200px, 1fr));
+    }
+}
+
+/* Responsive Design for New About Section */
+@media (max-width: 768px) {
+    .profile-header-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .focus-grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+    
+    .connect-grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+    
+    .section-title {
+        font-size: 1rem;
+    }
+    
+    .stat-card {
+        padding: 0.8rem;
+        gap: 0.6rem;
+    }
+    
+    .focus-card {
+        padding: 0.8rem;
+    }
+    
+    .connect-card {
+        padding: 0.8rem;
     }
 }
