@@ -1037,28 +1037,28 @@ body {
     transition: all 0.3s ease;
 }
 
-.skill-tag.frontend {
+.skill-tag.language {
     background: rgba(97, 218, 251, 0.1);
     color: #61dafb;
     border-color: rgba(97, 218, 251, 0.3);
 }
 
-.skill-tag.backend {
+.skill-tag.framework {
     background: rgba(76, 175, 80, 0.1);
     color: #4caf50;
     border-color: rgba(76, 175, 80, 0.3);
+}
+
+.skill-tag.database {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9c27b0;
+    border-color: rgba(156, 39, 176, 0.3);
 }
 
 .skill-tag.ai {
     background: rgba(255, 193, 7, 0.1);
     color: #ffc107;
     border-color: rgba(255, 193, 7, 0.3);
-}
-
-.skill-tag.tools {
-    background: rgba(156, 39, 176, 0.1);
-    color: #9c27b0;
-    border-color: rgba(156, 39, 176, 0.3);
 }
 
 .skill-tag:hover {
