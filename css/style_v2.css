@@ -1485,3 +1485,373 @@ body {
         padding: 0.8rem;
     }
 }
+
+/* Certifications & Research Section */
+.certifications {
+    background-color: #000000;
+    color: white;
+    padding: 1rem 0 0.8rem;
+    margin: 1.5rem;
+    border-radius: 40px;
+    z-index: 5000;
+}
+
+.certifications h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 215, 0, 0.9);
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.certifications h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.8));
+    border-radius: 2px;
+}
+
+.cert-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+}
+
+.cert-category {
+    margin-bottom: 0.8rem;
+}
+
+.cert-category h3 {
+    font-size: 1.1rem;
+    color: rgba(255, 215, 0, 0.9);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+}
+
+/* Google Colab Cards */
+.colab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.colab-card {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.colab-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.colab-card:hover::before {
+    left: 100%;
+}
+
+.colab-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 215, 0, 0.12);
+    border-color: rgba(255, 215, 0, 0.6);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+}
+
+.colab-icon {
+    font-size: 1.3rem;
+    color: #4285f4;
+    margin-right: 0.7rem;
+    min-width: 35px;
+}
+
+.colab-content {
+    flex: 1;
+}
+
+.colab-content h4 {
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.colab-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+}
+
+.colab-tag {
+    background: rgba(66, 133, 244, 0.25);
+    color: #4285f4;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.colab-card .fas.fa-external-link-alt {
+    color: rgba(255, 215, 0, 0.9);
+    margin-left: 0.6rem;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.colab-card:hover .fas.fa-external-link-alt {
+    transform: scale(1.1);
+}
+
+/* Certifications Grid */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.cert-card {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.cert-card:hover::before {
+    left: 100%;
+}
+
+.cert-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cert-card.duke {
+    border-left: 3px solid #003366;
+}
+
+.cert-card.codecademy {
+    border-left: 3px solid #1557ff;
+}
+
+.cert-icon {
+    font-size: 1.2rem;
+    color: rgba(255, 215, 0, 0.9);
+    margin-right: 0.7rem;
+    min-width: 28px;
+}
+
+.cert-content h4 {
+    color: #ffffff;
+    margin-bottom: 0.15rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.cert-issuer {
+    color: rgba(255, 215, 0, 0.9);
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.cert-type {
+    background: rgba(255, 215, 0, 0.25);
+    color: rgba(255, 215, 0, 0.95);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+/* Awards Section */
+.award-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 0.8rem;
+}
+
+.award-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.08));
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.award-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.award-card:hover::before {
+    left: 100%;
+}
+
+.award-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.12));
+}
+
+.award-icon {
+    font-size: 1.8rem;
+    color: #4285f4;
+    margin-right: 0.8rem;
+}
+
+.award-content {
+    flex: 1;
+}
+
+.award-content h4 {
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.award-event {
+    color: rgba(255, 215, 0, 0.95);
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+    font-weight: 700;
+}
+
+.award-organizer {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+}
+
+.award-type {
+    background: rgba(255, 215, 0, 0.25);
+    color: rgba(255, 215, 0, 0.95);
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.award-medal {
+    font-size: 1.3rem;
+    color: rgba(255, 215, 0, 0.9);
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Responsive Design for Certifications */
+@media (max-width: 768px) {
+    .certifications {
+        padding: 0.8rem 0 0.6rem;
+        margin: 1rem;
+        border-radius: 20px;
+    }
+    
+    .certifications h2 {
+        font-size: 1.4rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .cert-container {
+        padding: 0 0.8rem;
+    }
+    
+    .colab-grid,
+    .cert-grid,
+    .award-grid {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+    
+    .colab-card,
+    .cert-card {
+        padding: 0.6rem;
+        border-radius: 10px;
+    }
+    
+    .award-card {
+        padding: 0.8rem;
+        border-radius: 12px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cert-category h3 {
+        font-size: 0.95rem;
+    }
+    
+    .award-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .award-medal {
+        position: static;
+        margin-top: 0.5rem;
+    }
+}
