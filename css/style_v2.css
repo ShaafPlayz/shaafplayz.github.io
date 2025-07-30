@@ -870,7 +870,7 @@ body {
 
 /* Modern About Section Styles */
 .profile-header-card {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgb(0, 0, 0);
     border: 1px solid rgba(255, 215, 0, 0.3);
     border-radius: 15px;
     padding: 1.2rem;
@@ -956,7 +956,7 @@ body {
 }
 
 .stat-card {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgb(0, 0, 0);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1rem;
@@ -968,7 +968,6 @@ body {
 
 .stat-card:hover {
     border-color: rgba(255, 215, 0, 0.5);
-    transform: translateY(-2px);
 }
 
 .stat-icon {
@@ -1132,7 +1131,7 @@ body {
 }
 
 .connect-card {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1rem;
@@ -1162,7 +1161,6 @@ body {
 
 .connect-card:hover {
     border-color: rgba(255, 215, 0, 0.5);
-    transform: translateY(-3px);
 }
 
 .connect-icon {
@@ -1631,7 +1629,8 @@ body {
 /* Certifications Grid */
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(3, 1fr)); */
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.6rem;
     margin-bottom: 0.8rem;
 }
@@ -1749,6 +1748,7 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
     background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.12));
+    cursor: pointer;
 }
 
 .award-icon {
