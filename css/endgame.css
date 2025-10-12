@@ -71,6 +71,7 @@ body {
     left: 3rem;
     top: 7rem;
     transition: 2s;
+    color: white;
 }
 
 .welcomeT2:hover {
@@ -88,15 +89,15 @@ body {
     transition: 2s;
     /* text-shadow: #000000 0px 0 1rem; */
     mix-blend-mode: exclusion;
-    background-color: white;
-    color: black;
-    padding: 1rem;
+    /* background-color: white; */
+    /* color: black; */
+    /* padding: 1rem; */
 }
 .welcomeP:hover {
-    font-weight: 500;
+    font-weight: 300;
     transition: 0.3s;
-    mix-blend-mode: unset;
-    color: black;
+    /* mix-blend-mode: unset; */
+    /* color: black; */
 
 }
 
@@ -120,11 +121,16 @@ body {
 }
 
 .selection:hover {
-    font-size: 1.8rem;
+    font-size: 1.55rem;
     font-weight: 700;
     mix-blend-mode: unset;
     color: rgba(255, 215, 0, 0.82);
     text-shadow: rgba(255, 215, 0, 0.82) 0px 0 11px;
+    transition: 0.5s;
+}
+
+.selection:hover:before {
+    /* content: "◗"; */
     transition: 0.5s;
 }
 
@@ -162,6 +168,7 @@ body {
 }
 
 .logoimg {
+    z-index: 1000;
     width: 3.2rem;
     height: 2.5rem;
     display: flex;
@@ -172,7 +179,7 @@ body {
     position: absolute;
     right: 3rem;
     top: 3rem;
-    mix-blend-mode: luminosity;
+    mix-blend-mode: exclusion;
 }
 
 .logoimg img {
@@ -1369,4 +1376,47 @@ body {
     height: 28px;
     transition: width 0.3s, height 0.3s;
     z-index: 999;
+}
+
+
+.popup {
+    position: fixed;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: rgba(255, 255, 255, 0.305);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    backdrop-filter: blur(20px);
+    gap: 1rem;
+}
+.popup h1 {
+    color: black;
+    font-weight: 700;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.popup h1:hover {
+    color: rgb(155, 132, 0);
+    font-weight: 700;
+    transition: 0.5s;
+}
+.popup h2 {
+    position: absolute;
+
+    top: 3rem;
+    left: 4rem;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    transition: 0.5s;
+    cursor: pointer;
+    
+}
+
+.popup h2:hover {
+    color: rgb(196, 0, 0);
+    font-weight: 900;
+    transition: 0.5s;
+    
 }

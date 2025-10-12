@@ -20,9 +20,9 @@
 <!-- This code actually looks cool -->
 <!-- My last website was a mess -->
 <!-- Check out the code for this and the last site on my github if you are here lol -->
-<!-- <video autoplay loop muted playsinline id="myVideo">
+<video autoplay loop muted playsinline id="myVideo">
     <source src="resources/Test1.webm" type="video/webm">
-</video> -->
+</video>
 
 <body>
     <!-- Header Section -->
@@ -43,28 +43,34 @@
     <!-- Hero Section -->
     <section>
         <div class="logoimg">
-                <img src="resources/logo.png">
-            </div>
+            <img src="resources/logo.png" alt="Logo" >
+        </div>
         <div class="hero-content">
             <p class="welcomeT">welcome</p>
-            
-            <h1
-                class="welcomeT2">
-                to shaaf labs</h1>
-                <!-- <p class="welcomeP">i am shaaf yousaf, a Junior Software Developer at UTSchools, aswell as a 3rd year Undergraduate at University Of Toronto.</p> -->
-                <!-- <div class="hero-buttons">
+
+            <h1 class="welcomeT2">
+                to shaaf studio</h1>
+            <p class="welcomeP">Half a decade worth of experience graphic designing and videographing.</p>
+            <!-- <div class="hero-buttons">
                     <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="hero-button hire-button" target="_blank" rel="noopener noreferrer">Email Me</a>
                     <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" class="hero-button cv-button" target="_blank" rel="noopener noreferrer">My Resume ➪</a>
                 </div> -->
             <div class="selectionContainer">
-                <h1 class="selection"> ◗ professional experience</h1>
-                <h1 class="selection"> ◗ graphics & video work</h1>
-                <h1 class="selection"> ◗ software projects</h1>
-                <h1 class="selection"> ◗ contact us</h1>
+                <!-- <h1 class="selection"> ◗ professional experience</h1> -->
+                <!-- <h1 class="selection"> graphics</h1>
+                <h1 class="selection"> videography</h1> -->
+                <h1 class="selection" onclick="contactPopUp()">get in touch ◤</h1>
             </div>
             <!-- <h1 class="styleDots">............</h1> -->
         </div>
     </section>
+
+    <div class="popup" id="popup" onclick="goback()">
+        <!-- <h2 >🡨 go back</h2> -->
+        <h1>Email us ◤</h1>
+        <h1>Instagram ◤</h1>
+        <h1>Drive ◤</h1>
+    </div>
 
 
 
@@ -72,7 +78,7 @@
     <script src="scripts/main.js"></script>
     <script src="scripts/p5.min.js"></script>
     <script src="scripts/vanta.topology.min.js"></script>
-    <script>
+    <!-- <script>
     VANTA.TOPOLOGY({
     el: "body",
     mouseControls: false,
@@ -85,7 +91,38 @@
     color: 0xffd500,
     backgroundColor: 0x000000
     })
+    </script> -->
+    <!-- <script src="scripts/three.r134.min.js"></script>
+    <script src="scripts/vanta.fog.min.js"></script>
+    <script>
+        VANTA.FOG({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            highlightColor: 0x9a7400,
+            midtoneColor: 0x0,
+            lowlightColor: 0x0,
+            baseColor: 0x9c8300,
+            blurFactor: 0.26,
+            zoom: 1.30
+        })
+    </script> -->
+
+    <script>
+        function goback() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+        function contactPopUp() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "flex";
+        }
     </script>
 </body>
+
+
 
 </html>
