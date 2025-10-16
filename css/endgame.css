@@ -25,9 +25,6 @@ body {
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     color: #ffffff;
     background-color: #000000;
-    overflow: hidden;
-    height: 100dvh;
-    width: 100dvw;
 }
 
 .container {
@@ -1383,40 +1380,219 @@ body {
     position: fixed;
     height: 100dvh;
     width: 100dvw;
-    background-color: rgba(255, 255, 255, 0.305);
+    background-color: rgba(0, 0, 0, 0.85);
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     backdrop-filter: blur(20px);
     gap: 1rem;
+    z-index: 2000;
 }
+
+.popup-link {
+    text-decoration: none;
+}
+
 .popup h1 {
-    color: black;
+    color: rgba(255, 215, 0, 0.82);
     font-weight: 700;
     transition: 0.5s;
     cursor: pointer;
+    font-size: 2.5rem;
 }
+
 .popup h1:hover {
-    color: rgb(155, 132, 0);
-    font-weight: 700;
-    transition: 0.5s;
+    color: rgb(255, 215, 0);
+    font-weight: 900;
+    text-shadow: rgba(255, 215, 0, 0.82) 0px 0 11px;
+    transition: 0.3s;
 }
+
 .popup h2 {
     position: absolute;
-
     top: 3rem;
     left: 4rem;
-    color: rgb(0, 0, 0);
+    color: rgba(255, 215, 0, 0.82);
     font-weight: 600;
     transition: 0.5s;
     cursor: pointer;
-    
 }
 
 .popup h2:hover {
-    color: rgb(196, 0, 0);
+    color: rgb(255, 215, 0);
     font-weight: 900;
     transition: 0.5s;
+}
+
+/* Services Section */
+.services-section {
+    min-height: 100vh;
+    padding: 8rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: rgba(255, 215, 0, 0.82);
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.service-card:hover {
+    background: rgba(255, 215, 0, 0.05);
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.service-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: rgba(255, 215, 0, 0.82);
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Work Section */
+.work-section {
+    min-height: 100vh;
+    padding: 8rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.work-item {
+    position: relative;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.work-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.work-item:hover::before {
+    opacity: 0.3;
+}
+
+.work-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+}
+
+.work-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    z-index: 2;
+    transform: translateY(60px);
+    transition: transform 0.5s ease;
+}
+
+.work-item:hover .work-overlay {
+    transform: translateY(0);
+}
+
+.work-overlay h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(255, 215, 0, 0.82);
+    margin-bottom: 0.5rem;
+}
+
+.work-overlay p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: lowercase;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services-grid,
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
     
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .services-section,
+    .work-section {
+        padding: 5rem 2rem;
+    }
+    
+    .welcomeT,
+    .welcomeT2 {
+        font-size: 2.5rem;
+    }
+    
+    .welcomeP {
+        font-size: 1.2rem;
+        width: 90%;
+    }
+    
+    .selection {
+        font-size: 1.2rem;
+    }
+    
+    .popup h1 {
+        font-size: 1.8rem;
+    }
 }

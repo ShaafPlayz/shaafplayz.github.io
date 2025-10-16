@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="resources/logo.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaaf Yousaf - Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style_v2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<!-- 
+    ┌─────────────────────────────────────────┐
+    │  Welcome to Shaaf's Portfolio Code      │
+    │  Built with ❤️ and lots of ☕          │
+    │  Check out the repo on GitHub!          │
+    └─────────────────────────────────────────┘
+-->
+<body>
+    <!-- Terminal-style Header -->
+    <header class="terminal-header">
+        <div class="terminal-window">
+            <div class="terminal-controls">
+                <span class="control-btn close"></span>
+                <span class="control-btn minimize"></span>
+                <span class="control-btn maximize"></span>
+            </div>
+            <nav class="terminal-nav">
+                <div class="terminal-path">
+                    <span class="prompt">shaaf@portfolio</span>
+                    <span class="separator">:</span>
+                    <span class="directory">~</span>
+                    <span class="cursor">$</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#aboutsection" data-command="cd about">./about</a></li>
+                    <li><a href="#projectsection" data-command="cd projects">./projects</a></li>
+                    <li><a href="#footer" data-command="cd contact">./contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Code Editor Hero Section -->
+    <section class="hero-code">
+        <div class="code-editor">
+            <div class="editor-tabs">
+                <div class="tab active">
+                    <span class="file-icon"><i class="fas fa-file-code"></i></span>
+                    <span>portfolio.ts</span>
+                    <span class="tab-close">×</span>
+                </div>
+                <div class="tab">
+                    <span class="file-icon"><i class="fas fa-file-alt"></i></span>
+                    <span>README.md</span>
+                </div>
+            </div>
+            <div class="editor-content">
+                <div class="line-numbers">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                    <span>6</span>
+                    <span>7</span>
+                    <span>8</span>
+                    <span>9</span>
+                    <span>10</span>
+                    <span>11</span>
+                    <span>12</span>
+                </div>
+                <div class="code-content">
+                    <pre><code><span class="keyword">interface</span> <span class="class">Developer</span> {
+  <span class="property">name</span>: <span class="type">string</span>;
+  <span class="property">role</span>: <span class="type">string</span>[];
+  <span class="property">location</span>: <span class="type">string</span>;
+  <span class="property">education</span>: <span class="type">string</span>;
+}
+
+<span class="keyword">const</span> <span class="variable">shaaf</span>: <span class="class">Developer</span> = {
+  <span class="property">name</span>: <span class="string">"Shaaf Yousaf"</span>,
+  <span class="property">role</span>: [<span class="string">"Full Stack Developer"</span>, <span class="string">"ML Engineer"</span>, <span class="string">"Designer"</span>],
+  <span class="property">location</span>: <span class="string">"Toronto, Canada"</span>,
+  <span class="property">education</span>: <span class="string">"University of Toronto - HBSc Computer Science"</span>,
+};</code></pre>
+                </div>
+            </div>
+            <div class="editor-footer">
+                <div class="status-left">
+                    <span><i class="fas fa-check-circle"></i> TypeScript</span>
+                    <span><i class="fas fa-code-branch"></i> main</span>
+                </div>
+                <div class="status-right">
+                    <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="status-btn" target="_blank">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                    <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" class="status-btn primary" target="_blank">
+                        <i class="fas fa-file-download"></i> Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Terminal-style About Section -->
+    <section class="about-terminal" id="aboutsection">
+        <div class="terminal-container">
+            <div class="terminal-window">
+                <div class="terminal-header-bar">
+                    <div class="terminal-controls">
+                        <span class="control-btn close"></span>
+                        <span class="control-btn minimize"></span>
+                        <span class="control-btn maximize"></span>
+                    </div>
+                    <div class="terminal-title">shaaf@portfolio: ~/about</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="prompt-symbol">$</span>
+                        <span class="command">cat about.txt</span>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <div class="ascii-art">
+                            <pre>
+    ╔═══════════════════════════════════╗
+    ║                                   ║
+    ║      <img src="resources/pic.png" alt="Shaaf Yousaf" class="profile-img-small">      ║
+    ║                                   ║
+    ║       SHAAF YOUSAF                ║
+    ║       Full Stack Developer        ║
+    ║       ML Engineer | Designer      ║
+    ║                                   ║
+    ╚═══════════════════════════════════╝
+                            </pre>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-block">
+                            <div class="terminal-line">
+                                <span class="comment"># Education</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="key">institution:</span> <span class="value">"University of Toronto"</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="key">degree:</span> <span class="value">"HBSc Computer Science"</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="key">location:</span> <span class="value">"Toronto, Canada"</span>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <div class="terminal-line">
+                                <span class="comment"># Experience</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="key">coding_years:</span> <span class="number">3+</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="key">design_years:</span> <span class="number">11+</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="key">availability:</span> <span class="string">"24/7"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terminal-line spacing-top">
+                        <span class="prompt-symbol">$</span>
+                        <span class="command">ls skills/</span>
+                    </div>
+                    
+                    <div class="skills-output">
+                        <div class="skill-category">
+                            <span class="folder-icon">📁</span> <span class="folder-name">languages/</span>
+                            <div class="skill-items">
+                                <span class="skill-file">Python</span>
+                                <span class="skill-file">JavaScript</span>
+                                <span class="skill-file">TypeScript</span>
+                                <span class="skill-file">Java</span>
+                                <span class="skill-file">C</span>
+                                <span class="skill-file">SQL</span>
+                                <span class="skill-file">R</span>
+                                <span class="skill-file">Dart</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <span class="folder-icon">📁</span> <span class="folder-name">frameworks/</span>
+                            <div class="skill-items">
+                                <span class="skill-file">React</span>
+                                <span class="skill-file">Node.js</span>
+                                <span class="skill-file">Flask</span>
+                                <span class="skill-file">PyTorch</span>
+                                <span class="skill-file">TensorFlow</span>
+                                <span class="skill-file">Next.js</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <span class="folder-icon">📁</span> <span class="folder-name">tools/</span>
+                            <div class="skill-items">
+                                <span class="skill-file">Docker</span>
+                                <span class="skill-file">Git</span>
+                                <span class="skill-file">MongoDB</span>
+                                <span class="skill-file">PostgreSQL</span>
+                                <span class="skill-file">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terminal-line spacing-top">
+                        <span class="prompt-symbol">$</span>
+                        <span class="command">curl -L shaaf.dev/social</span>
+                    </div>
+                    
+                    <div class="social-links-terminal">
+                        <a href="https://github.com/ShaafPlayz" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i> <span>github.com/ShaafPlayz</span>
+                        </a>
+                        <a href="https://linkedin.com/in/shaafyousaf" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i> <span>linkedin.com/in/shaafyousaf</span>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1fex-y7cQ5nDl3tTRKRzx0cr0foUuy36K/view" target="_blank" class="social-link">
+                            <i class="fas fa-palette"></i> <span>Design Portfolio</span>
+                        </a>
+                        <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="social-link">
+                            <i class="fas fa-envelope"></i> <span>shaaf.yousaf@mail.utoronto.ca</span>
+                        </a>
+                    </div>
+
+                    <div class="terminal-line spacing-top">
+                        <span class="prompt-symbol">$</span>
+                        <span class="cursor-blink">_</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-code" id="projectsection">
+        <div class="section-header">
+            <div class="terminal-prompt">
+                <span class="prompt-symbol">$</span>
+                <span class="command">ls -la ~/projects</span>
+            </div>
+            <h2 class="section-title-code">PROJECTS & EXPERIENCE</h2>
+        </div>
+        
+        <div class="projects-grid-code">
+            <!-- Project Card 1 -->
+            <a href="https://glow-frontend-v4-0-0.onrender.com" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.webapp</span>
+                    <span class="status deployed">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="resources/GLOW.png" alt="GLOW Project">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">GLOW</h3>
+                    <p class="project-desc">Water Temperature Observation MVC Application</p>
+                    <div class="tech-stack-code">
+                        <span>Docker</span>
+                        <span>Next.js</span>
+                        <span>MongoDB</span>
+                        <span>Render</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-cloud"></i> Render Deployed</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 2 -->
+            <a href="https://zarabcollections.pk" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.webapp</span>
+                    <span class="status deployed">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="resources/Zarab.png" alt="Zarab Collections">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Zarab Collections</h3>
+                    <p class="project-desc">Online Clothing Brand in Pakistan</p>
+                    <div class="tech-stack-code">
+                        <span>Docker</span>
+                        <span>Next.js</span>
+                        <span>PostgreSQL</span>
+                        <span>VPS</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-server"></i> Digital Ocean Droplet</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 3 -->
+            <a href="https://github.com/ShaafPlayz/Parsea.git" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.app</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="resources/showcase.gif" alt="Parsea">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Parsea</h3>
+                    <p class="project-desc">AI-Powered Email Inbox Management Tool</p>
+                    <div class="tech-stack-code">
+                        <span>Electron</span>
+                        <span>Cohere LLM</span>
+                        <span>IMAP</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-desktop"></i> Desktop Application</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 4 -->
+            <a href="https://github.com/ShaafPlayz/OpenAI-to-Z-challenge.git" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.ipynb</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="resources/openaitoz.png" alt="Lost City of Z">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Lost City of Z</h3>
+                    <p class="project-desc">Rediscovering Ancient Civilizations with AI</p>
+                    <div class="tech-stack-code">
+                        <span>OpenAI</span>
+                        <span>Python</span>
+                        <span>Google Earth Engine</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-robot"></i> AI Challenge Winner</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 5 -->
+            <a href="https://github.com/ShaafPlayz/FakeNewsML.git" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.py</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="resources/FakeNewsAI.png" alt="Fake News AI">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Fake News AI</h3>
+                    <p class="project-desc">ML-Powered Misinformation Detection</p>
+                    <div class="tech-stack-code">
+                        <span>Flask</span>
+                        <span>Scikit-Learn</span>
+                        <span>Python</span>
+                        <span>ML</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-brain"></i> Machine Learning</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 6 -->
+            <a href="https://github.com/ShaafPlayz/Halo-Pixel-Edition" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.asm</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="images/gffe.png" alt="Halo Pixel Edition">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Halo Pixel Edition</h3>
+                    <p class="project-desc">Classic Game Reimagined in MIPS Assembly</p>
+                    <div class="tech-stack-code">
+                        <span>MIPS Assembly</span>
+                        <span>MARS Simulator</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-gamepad"></i> Low-Level Game</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 7 -->
+            <a href="https://github.com/Toyakki/ImagEHR" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.py</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="images/imagEHR logo.png" alt="imagEHR">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">imagEHR</h3>
+                    <p class="project-desc">AI-Powered Clinical Data Mapper</p>
+                    <div class="tech-stack-code">
+                        <span>Flask</span>
+                        <span>YOLOv5</span>
+                        <span>Cohere LLM</span>
+                        <span>Python</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-laptop-code"></i> Healthcare Tech</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 8 -->
+            <a href="https://github.com/KrishnaManamohan/B07FinalProject" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.java</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="images/pla2.jpeg" alt="Planetze">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Planetze</h3>
+                    <p class="project-desc">Carbon Footprint Tracking Application</p>
+                    <div class="tech-stack-code">
+                        <span>Java</span>
+                        <span>Android Studio</span>
+                        <span>XML</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fab fa-android"></i> Android App</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Project Card 9 -->
+            <a href="https://github.com/ShaafPlayz/System-Monitoring-Tool-Unix" class="project-card-code" target="_blank">
+                <div class="card-header">
+                    <span class="file-type">.c</span>
+                    <span class="status active">●</span>
+                </div>
+                <div class="project-image-wrapper">
+                    <img src="images/hawkeye.png" alt="Hawkeye">
+                    <div class="project-overlay">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </div>
+                <div class="project-info-code">
+                    <h3 class="project-name">Hawkeye</h3>
+                    <p class="project-desc">Advanced UNIX System Monitoring Tool</p>
+                    <div class="tech-stack-code">
+                        <span>C</span>
+                        <span>UNIX</span>
+                        <span>System Programming</span>
+                    </div>
+                    <div class="project-meta">
+                        <span><i class="fas fa-terminal"></i> CLI Tool</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Terminal Footer -->
+    <footer class="footer-terminal" id="footer">
+        <div class="terminal-footer-container">
+            <div class="footer-terminal-window">
+                <div class="terminal-prompt-footer">
+                    <span class="prompt-symbol">$</span>
+                    <span class="command">cat contact.json</span>
+                </div>
+                <div class="footer-content-code">
+                    <div class="footer-section-code">
+                        <pre class="json-output">{
+  "<span class="json-key">name</span>": "<span class="json-value">Shaaf Yousaf</span>",
+  "<span class="json-key">role</span>": "<span class="json-value">Full Stack Developer</span>",
+  "<span class="json-key">social</span>": {
+    "<span class="json-key">github</span>": "<a href="https://github.com/ShaafPlayz" target="_blank">github.com/ShaafPlayz</a>",
+    "<span class="json-key">linkedin</span>": "<a href="https://linkedin.com/in/shaafyousaf" target="_blank">linkedin.com/in/shaafyousaf</a>",
+    "<span class="json-key">instagram</span>": "<a href="https://www.instagram.com/shaafyousaf/" target="_blank">instagram.com/shaafyousaf</a>",
+    "<span class="json-key">youtube</span>": "<a href="https://www.youtube.com/@ShaafStudio" target="_blank">youtube.com/@ShaafStudio</a>",
+    "<span class="json-key">devpost</span>": "<a href="https://devpost.com/ShaafDev" target="_blank">devpost.com/ShaafDev</a>"
+  },
+  "<span class="json-key">repository</span>": "<a href="https://github.com/ShaafPlayz/shaafplayz.github.io" target="_blank">View Source Code</a>",
+  "<span class="json-key">lastUpdated</span>": "<span class="json-value">2025-07-30</span>"
+}</pre>
+                    </div>
+                </div>
+                <div class="footer-bottom-code">
+                    <span class="footer-signature">Made with ❤️ by Shaaf Yousaf | © 2025</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

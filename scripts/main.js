@@ -2,19 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCards = document.querySelectorAll('.project-card');
     const logo = document.querySelector('.logo');
     const heroSection = document.querySelector('.hero');
-    const originalText = logo.textContent;
-    const altText = logo.getAttribute('data-alt-text');
+    const originalText = logo ? logo.textContent : '';
+    const altText = logo ? logo.getAttribute('data-alt-text') : '';
 
 
     // Scroll event for logo text change
     window.addEventListener('scroll', () => {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        if (heroBottom <= 0) {
-            logo.classList.add('scrolled');
-        } else {
-            logo.classList.remove('scrolled');
+        if (heroSection && logo) {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom <= 0) {
+                logo.classList.add('scrolled');
+            } else {
+                logo.classList.remove('scrolled');
+            }
         }
     });
+    
     // Project cards functionality
     projectCards.forEach(card => {
         const closeButton = card.querySelector('.close-button');
@@ -78,6 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
             stopCarousel();
         });
     });
+});
 
-    
-}); 
+// Smooth scroll function
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
