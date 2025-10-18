@@ -45,7 +45,7 @@ body {
 .nav-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin: .5rem 1rem;
     padding: 10px;
     padding-left: 15px;
@@ -57,7 +57,7 @@ body {
     max-width: 1000px;
 }
 .logoimg{
-    height: -webkit-fill-available;
+    height: 3rem;
     display: flex;
     align-content: center;
     align-items: center;
@@ -1445,6 +1445,9 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .published-card {
+        flex-direction: column ;
+}
     .nav-container {
         flex-direction: row;
         gap: 1rem;
