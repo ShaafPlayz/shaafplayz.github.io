@@ -151,7 +151,7 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     line-height: 0.8;
     margin-bottom: 1rem;
     mix-blend-mode: exclusion;
@@ -233,7 +233,7 @@ body {
 }
 
 .hero-text p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
     line-height: 0.8;
     margin-bottom: 0.5rem;
@@ -391,24 +391,26 @@ body {
 .about {
     padding: 2rem 0;
     background-color: #000000;
-    /* backdrop-filter: blur(10px); */
     position: relative;
+    box-shadow: 0 0 60px 0px #000000;
+    padding-bottom: 1rem;
 }
 
 .about-container {
     display: grid;
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 52px 70%;
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
+    justify-content: center;
 }
 
 .about-title {
     position: sticky;
     top: 120px;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #ffffff;
     writing-mode: vertical-lr;
     transform: rotate(180deg);
@@ -1048,7 +1050,7 @@ body {
     align-items: center;
     gap: 0.4rem;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .stats-grid {
@@ -1350,6 +1352,7 @@ body {
 }
 .old:hover {
     background: #e6c40046;
+    box-shadow: none;
 }
 
 .work-header {
@@ -1366,14 +1369,14 @@ body {
 
 .work-position {
     color: black;
-    font-size: 2.2rem;
-    font-weight: 900;
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 .work-company {
     color: black;
     font-size: 0.95rem;
-    font-weight: 900;
+    font-weight: 100;
     display: block;
 }
 
@@ -1999,6 +2002,18 @@ body {
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-5px); }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Responsive Design for Certifications */
