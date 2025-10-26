@@ -670,7 +670,6 @@ body {
     left: 1rem;
     background: rgba(255, 166, 0, 0.765);
     backdrop-filter: blur(30px);
-    box-shadow: 0px 0px 10px #000000; 
     color: #000000;
     padding: 0.3rem 0.8rem;
     border-radius: 20px; 
@@ -969,15 +968,20 @@ body {
 
 /* Modern About Section Styles */
 .profile-header-card {
-    /* background: rgb(0, 0, 0); */
-    /* border: 1px solid rgba(255, 215, 0, 0.3); */
-    border-radius: 15px;
-    padding: 1.2rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 30, 0.8));
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 20px;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    backdrop-filter: blur(10px);
-    margin-bottom: 1.2rem;
+    backdrop-filter: blur(15px);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.profile-header-card:hover {
+    border-color: rgba(255, 215, 0, 0.6);
 }
 
 .profile-avatar {
@@ -1019,8 +1023,12 @@ body {
 .profile-name {
     font-size: 2rem;
     font-weight: 900;
-    color: rgba(255, 215, 0, 0.9);
+    background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 .profile-subname {
     font-size: 1.5rem;
@@ -1037,12 +1045,13 @@ body {
 }
 
 .role-tag {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-    color: rgba(255, 215, 0, 0.9);
-    padding: 0.2rem 0.6rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 165, 0, 0.15));
+    color: #B8860B;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    font-weight: 600;
 }
 
 .profile-location {
@@ -1061,54 +1070,67 @@ body {
 }
 
 .stat-card {
-    background: rgb(0, 0, 0);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 1rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 30, 0.6));
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    padding: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .stat-card:hover {
-    border-color: rgba(255, 215, 0, 0.5);
+    border-color: rgba(255, 215, 0, 0.6);
 }
 
 .stat-icon {
-    width: 35px;
-    height: 35px;
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    color: rgba(255, 215, 0, 0.9);
+    font-size: 1.2rem;
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .stat-content h4 {
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #FFFFFF, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0 0 0.1rem 0;
+    font-weight: 900;
 }
 
 .stat-content span {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .section-title {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 1.1rem;
-    color: rgba(255, 215, 0, 0.9);
-    margin-bottom: 1rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
 }
 
-.skills-section, .focus-section, .connect-section {}
+.skills-section, .focus-section, .connect-section {
+    margin-bottom: 1.5rem;
+}
 
 .skills-grid {
     display: grid;
@@ -1229,35 +1251,21 @@ body {
 }
 
 .connect-card {
-    background: rgb(0, 0, 0);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 30, 0.8));
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     text-decoration: none;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.connect-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.connect-card:hover::before {
-    left: 100%;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .connect-card:hover {
-    border-color: rgba(255, 215, 0, 0.5);
+    border-color: rgba(255, 215, 0, 0.6);
 }
 
 .connect-icon {
@@ -1272,19 +1280,23 @@ body {
 }
 
 .connect-card.github .connect-icon {
-    background: linear-gradient(135deg, #333, #000);
+    background: linear-gradient(135deg, #333, #111);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .connect-card.linkedin .connect-icon {
-    background: linear-gradient(135deg, #0077b5, #004182);
+    background: linear-gradient(135deg, #0077b5, #005885);
+    border: 1px solid rgba(0, 119, 181, 0.4);
 }
 
 .connect-card.portfolio .connect-icon {
-    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border: 1px solid rgba(255, 215, 0, 0.4);
 }
 
 .connect-card.email .connect-icon {
-    background: linear-gradient(135deg, #00d2d3, #54a0ff);
+    background: linear-gradient(135deg, #00d2d3, #0099a8);
+    border: 1px solid rgba(0, 210, 211, 0.4);
 }
 
 .connect-info {
@@ -1296,10 +1308,14 @@ body {
 }
 
 .connect-info h4 {
-    color: #fff;
+    background: linear-gradient(135deg, #FFFFFF, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0 0 0.2rem 0;
-    font-size: 1rem;
-    text-shadow: 0 0 7px black;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .bckConnectImage {
@@ -1308,14 +1324,8 @@ body {
 }
 
 .connect-arrow {
-    color: rgba(255, 215, 0, 0.7);
+    color: rgba(255, 215, 0, 0.8);
     font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.connect-card:hover .connect-arrow {
-    color: rgba(255, 215, 0, 1);
-    transform: translateX(3px);
 }
 
 /* Work Experience Section */
@@ -1331,28 +1341,23 @@ body {
 }
 
 .work-card {
-        background: #e6c200;
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    border-radius: 12px;
-    padding: 1rem 1rem 0 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    border-radius: 15px;
+    padding: 1.2rem 1.2rem 0.8rem 1.2rem;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.work-card.current {
+    background: rgba(255, 215, 0, 0.9);
+    border: 2px solid rgba(255, 165, 0, 0.8);
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.25);
+}
 
 .work-card:hover {
-    box-shadow: 0 0px 25px rgba(255, 217, 0, 0.645);
-    transition: 0.5s;
-}
-
-.old {
-    background: #d4d4d487;
-    border: none;
-}
-.old:hover {
-    background: #e6c40046;
-    box-shadow: none;
+    border-color: rgba(255, 215, 0, 0.6);
 }
 
 .work-header {
@@ -1368,27 +1373,41 @@ body {
 }
 
 .work-position {
-    color: black;
-    font-size: 1.6rem;
+    color: #2c2c2c;
+    font-size: 1.4rem;
     font-weight: 700;
+    margin-bottom: 0.3rem;
 }
 
 .work-company {
-    color: black;
-    font-size: 0.95rem;
-    font-weight: 100;
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 500;
     display: block;
 }
 
+.work-card.current .work-position {
+    color: #1a1a1a;
+}
+
+.work-card.current .work-company {
+    color: #333333;
+}
+
 .work-date {
-    margin-top: 0.5rem;
-    color: white;
-    background: black;
-    font-size: 0.85rem;
-    font-weight: 500;
-    width: fit-content;
-    padding: 0.3rem 2rem;
-    border-radius: 30px;
+    color: #666666;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(200, 200, 200, 0.6);
+}
+
+.work-card.current .work-date {
+    color: #333333;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
 .work-description {
@@ -1505,6 +1524,10 @@ body {
         margin-bottom: 1rem;
     }
 
+    .pub h2 {
+        width: 80%;
+    }
+
     .about-content {
         gap: 1.5rem;
     }
@@ -1584,7 +1607,10 @@ body {
     }
 
     .project-image {
-        height: 180px;
+        height: auto;
+    }
+    .published-category {
+        display: none;
     }
 
     .project-title {
