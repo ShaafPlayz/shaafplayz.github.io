@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             background-color: #000000a8;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             color: #fff;
             height: 100vh;
             display: flex;
@@ -39,8 +39,8 @@
             align-items: center;
             overflow: hidden;
             opacity: 1;
-            transition: opacity 1s ease;
-            animation: fadeInandOut 4s ease-out
+            animation: fadeInandOut 2s ease-out forwards;
+            animation-iteration-count: 1;
         }
          @keyframes fadeInandOut {
             0% {
@@ -53,12 +53,14 @@
             50% {
                 opacity: 1;
             }
-            65% {
+            85% {
                 opacity: 1;
                 background-color: #000000a8;
+                
             }
             100% {
                 opacity: 0;
+                background-color: #00000000;
             }
         }
 
@@ -171,7 +173,7 @@
     <div class="splashScreen" id="splashScreen">
         <div class="welcome-container">
             <img src="resources/logo.png" alt="Logo" class="logo">
-            <h1 class="hero-text">SHAAF YOUSAF</h1>
+            <!-- <h1 class="hero-text">SHAAF YOUSAF</h1> -->
             <!-- <p class="sub-text">Loading</p>
             <div class="loading-bar">
                 <div class="loading-progress"></div>
@@ -597,13 +599,13 @@
             hasRun = true;
             
             
-            document.body.style.overflow = "hidden";
+            // document.body.style.overflow = "hidden";
             
             setTimeout(() => {
                 document.getElementById("splashScreen").remove();
-                document.body.style.overflow = "scroll";
+                // document.body.style.overflow = "scroll";
                 
-            }, 3990); // Wait for fade-out animation to complete
+            }, 2000); // Wait for fade-out animation to complete
 
         })
     </script>
