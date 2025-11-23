@@ -79,7 +79,8 @@
             width: 150px;
             height: 150px;
             margin-bottom: 0rem;
-            animation: pulse 2s infinite;
+            animation: pulse 2.1s ease-in-out forwards;
+            animation-iteration-count: 1;
         }
 
         .welcome-text {
@@ -124,9 +125,18 @@
             }
             50% {
                 transform: scale(1.05);
+                
+            }
+            80% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 0;
+               
             }
             100% {
-                transform: scale(1);
+                 transform: scale(0.1);
             }
         }
 
