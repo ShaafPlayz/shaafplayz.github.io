@@ -1,0 +1,119 @@
+#outterbox {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0);
+}
+@font-face {
+    font-family: "book";
+    src: url('../fonts/FuturaPTBook.otf') format('embedded-opentype'), /* Internet Explorer */
+    url('../fonts/FuturaPTBook.otf') format('woff2'),             /* Super Modern Browsers */
+    url('../fonts/FuturaPTBook.otf') format('woff'),              /* Pretty Modern Browsers */
+    url('../fonts/FuturaPTBook.otf') format('truetype'),          /* Safari, Android, iOS */
+    url('../fonts/FuturaPTBook.otf') format('svg');
+}
+@font-face {
+    font-family: "light";
+    src: url('../fonts/FuturaPTLight.otf') format('embedded-opentype'), /* Internet Explorer */
+    url('../fonts/FuturaPTLight.otf') format('woff2'),             /* Super Modern Browsers */
+    url('../fonts/FuturaPTLight.otf') format('woff'),              /* Pretty Modern Browsers */
+    url('../fonts/FuturaPTLight.otf') format('truetype'),          /* Safari, Android, iOS */
+    url('../fonts/FuturaPTLight.otf') format('svg');
+}
+@font-face {
+    font-family: "md";
+    src: url('../fonts/futuramdbt_bold.otf') format('embedded-opentype'), /* Internet Explorer */
+    url('../fonts/futuramdbt_bold.otf') format('woff2'),             /* Super Modern Browsers */
+    url('../fonts/futuramdbt_bold.otf') format('woff'),              /* Pretty Modern Browsers */
+    url('../fonts/futuramdbt_bold.otf') format('truetype'),          /* Safari, Android, iOS */
+    url('../fonts/futuramdbt_bold.otf') format('svg');
+}
+
+#innerbox{
+    margin-top: 90px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 1px solid rgba(128, 109, 0, 0);
+    background-image: url("../images/backblur.jpg");
+    background-size: cover;
+}
+
+.centext {
+    text-align: center;
+    font-size: xxx-large;
+    color: #333;
+    margin: 20px;
+    font-family: "md";
+}
+.companytext{
+    font-size: 50px;
+    color: rgb(128, 109, 0);
+    margin: 0;
+    font-family: "md";
+}
+#nametright {
+    position: fixed;
+    left: 8%;
+    top: 28px;
+}
+
+.donatetext{
+    font-size: 30px;
+    color: rgb(128, 109, 0);
+    margin: 0;
+    font-family: "light", serif;
+}
+.contactext{
+    font-size: 30px;
+    color: rgb(128, 109, 0);
+    margin: 0;
+    font-family: "light", serif;
+}
+.teamtext{
+    font-size: 30px;
+    color: rgb(128, 109, 0);
+    margin: 0;
+    font-family: "light", serif;
+}
+.hover:hover {
+    color: rgb(128, 109, 0);
+    text-decoration: none;
+    font-family: "book", serif;
+}
+#menutleft {
+    position: fixed;
+    display: flex;
+    right: 8%;
+    top: 44px;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 17%;
+}
+.but{
+    text-decoration: none;
+}
+.textgeneric {
+    font-size: 40px;
+    padding-left: 5%;
+    width: 60vw;
+    padding-right: 5%;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    text-align: center;
+    font-family: "md";
+    text-shadow: black 0px 0px 13px;
+}
+
+.small{
+    font-size: 30px;
+}
+
