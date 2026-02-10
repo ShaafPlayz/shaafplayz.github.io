@@ -1,103 +1,51 @@
 <template>
   <div class="homepage">
-    <!-- Hero Section -->
-    <section class="hero-section container">
-      <div class="hero-content">
-        <h2 class="hero-subtitle">WELCOME TO</h2>
-        <h1 class="hero-title">SHAAF'S PORTFOLIO</h1>
-        <p class="hero-description">Engineering ideas through code, design, and film...</p>
-      </div>
-    </section>
+    <section class="hero-section">
+      <div class="hero-container">
+        <!-- Left Content -->
+        <div class="hero-left">
+          <h1 class="hero-title">
+            Fueled<br>
+            By<br>
+            Curiosity.
+          </h1>
+          <p class="hero-description">
+            Hi, I am Shaaf Yousaf - a senior in Computer Science (Software Engineering Stream) at the University Of Toronto.
+          </p>
+          <div class="hero-buttons">
+            <a 
+              href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" 
+              class="btn btn-cv"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              CV
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/shaaf-yousaf/" 
+              class="btn btn-linkedin"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Linkedin
+            </a>
+          </div>
+        </div>
 
-    <!-- Bento Grid Section -->
-    <section class="bento-section container">
-      <div class="bento-grid">
-        <!-- Profile Card -->
-        <BentoCard
-          title="Shaaf Yousaf"
-          description="3rd Year Undergrad at University of Toronto. Full-Stack Developer, Digital Artist, and Filmmaker."
-          :image="'/resources/pic.png'"
-          size="large"
-          badge="About Me"
-          badge-icon="mdi:account"
-          :stats="[
-            { value: '3+', label: 'Years Developing' },
-            { value: '11+', label: 'Years Digital Artist' }
-          ]"
-        />
-
-        <!-- Current Work -->
-        <BentoCard
-          title="Software Developer"
-          description="Building powerful web applications with .NET Blazor, GraphQL, and Entity Framework at UTS"
-          size="medium"
-          badge="Current Role"
-          badge-icon="mdi:briefcase"
-          link="/dev"
-        />
-
-        <!-- Published Software -->
-        <BentoCard
-          title="Slowed Enhanced"
-          description="A Chrome Extension for Advanced Audio Controls - Published on Chrome Web Store"
-          :image="'/resources/PortfolioPromo.png'"
-          size="wide"
-          badge="Published"
-          badge-icon="mdi:google-chrome"
-          link="https://chromewebstore.google.com/detail/mbknnccopgggeedhnloodppflepboggp"
-          :tags="['.NET C#', 'Blazor', 'JavaScript']"
-        />
-
-        <!-- Hackathon Wins -->
-        <BentoCard
-          title="Hackathon Winner"
-          description="🏆 1st Place - DaVinci Competition 2026 | 🏆 Best Healthcare AI - GenAI Genesis 2025"
-          size="medium"
-          badge="Achievements"
-          badge-icon="mdi:trophy"
-          link="/lab"
-        />
-
-        <!-- Design Portfolio -->
-        <BentoCard
-          title="Creative Studio"
-          description="11+ years of digital artistry, filmmaking, and visual storytelling"
-          size="medium"
-          badge="Design"
-          badge-icon="mdi:palette"
-          link="/studio"
-        />
-
-        <!-- Quick Links -->
-        <BentoCard
-          title="Connect"
-          description="Find me on GitHub, LinkedIn, and other platforms"
-          size="small"
-          badge="Social"
-          badge-icon="mdi:link-variant"
-        />
-
-        <!-- Tech Stack -->
-        <BentoCard
-          title="Tech Stack"
-          description="Specialized in .NET, Nuxt, Python, and modern web technologies"
-          size="wide"
-          badge="Skills"
-          badge-icon="mdi:code-tags"
-          :tags="['.NET', 'Blazor', 'Nuxt', 'Python', 'TypeScript', 'Docker', 'Azure']"
-        />
-      </div>
-    </section>
-
-    <!-- Featured Projects Preview -->
-    <section class="featured-section container">
-      <h2 class="section-title">Featured Projects</h2>
-      <div class="featured-grid">
-        <ProjectCard
-          v-for="project in featuredProjects"
-          :key="project.title"
-          v-bind="project"
-        />
+        <!-- Right Content -->
+        <div class="hero-right">
+          <div class="hero-image-container">
+            <div class="hero-image-placeholder">
+              <!-- Placeholder for image/video -->
+            </div>
+          </div>
+          <div class="hero-badges">
+            <span class="badge">Junior Software Developer @ UTS (25-26)</span>
+            <span class="badge">Building IDRAK</span>
+            <span class="badge">2 Hackathons Won</span>
+            <span class="badge">Latest Published Software w/ +300 Install</span>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -106,119 +54,178 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'Shaaf Yousaf - Portfolio',
-  description: 'Engineering ideas through code, design, and film. Full-stack developer, digital artist, and filmmaker.',
-  ogImage: '/resources/logo.png',
+  description: 'Full-Stack Developer, Digital Artist, and Filmmaker'
 })
-
-const featuredProjects = [
-  {
-    title: 'GLOW',
-    description: 'Water Temperature Observation MVC Application',
-    image: '/resources/GLOW.png',
-    link: 'https://glow-frontend-v4-0-0.onrender.com',
-    tags: ['Next.js', 'Express', 'MongoDB', 'Docker'],
-  },
-  {
-    title: 'imagEHR',
-    description: 'AI-Powered Clinical Data Extraction & CDISC Mapping',
-    image: '/images/imagEHR logo.png',
-    link: 'https://devpost.com/software/imagehr',
-    tags: ['Python', 'Flask', 'Cohere LLM', 'YOLOv5'],
-  },
-  {
-    title: 'Zarab Collections',
-    description: 'Online Clothing Brand in Pakistan',
-    image: '/resources/Zarab.png',
-    link: 'https://github.com/ShaafPlayz/farah-faiza',
-    tags: ['Next.js', 'PostgreSQL', 'Docker', 'SupaBase'],
-  },
-]
 </script>
 
 <style scoped>
 .homepage {
   min-height: 100vh;
+  background-color: #000;
 }
 
-/* Hero Section */
 .hero-section {
-  min-height: 60vh;
+  min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: var(--spacing-xl) var(--container-padding);
+  padding: 2rem;
 }
 
-.hero-content {
-  max-width: 900px;
+.hero-container {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
 
-.hero-subtitle {
-  font-size: var(--font-size-xl);
-  font-weight: 300;
-  color: var(--text-secondary);
-  margin-bottom: 0;
-  letter-spacing: 0.2em;
+/* Left Content */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .hero-title {
-  font-size: clamp(var(--font-size-4xl), 8vw, var(--font-size-5xl));
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
-  margin: 0.5rem 0 1.5rem;
-  background: linear-gradient(135deg, var(--color-white), var(--color-gold));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .hero-description {
-  font-size: var(--font-size-lg);
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 500px;
+  margin: 0;
 }
 
-/* Bento Grid */
-.bento-section {
-  padding: var(--spacing-xl) var(--container-padding);
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-md);
-  grid-auto-rows: 250px;
+.btn {
+  padding: 1rem 3rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid #fff;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
-@media (min-width: 768px) {
-  .bento-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
-/* Featured Section */
-.featured-section {
-  padding: var(--spacing-xl) var(--container-padding);
+.btn-cv {
+  border-color: #fff;
+  background-color: #fff;
+  color: #000;
 }
 
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
+.btn-linkedin {
+  border-color: #fff;
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-linkedin:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Right Content */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero-image-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.badge {
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(128, 128, 128, 0.5);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .bento-grid {
+@media (max-width: 1024px) {
+  .hero-container {
     grid-template-columns: 1fr;
-    grid-auto-rows: 200px;
+    gap: 3rem;
   }
   
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+  
+  .hero-description {
+    max-width: 100%;
+  }
+  
+  .hero-badges {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
   .hero-section {
-    min-height: 50vh;
-    padding: var(--spacing-lg) var(--container-padding);
+    padding: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 }
 </style>

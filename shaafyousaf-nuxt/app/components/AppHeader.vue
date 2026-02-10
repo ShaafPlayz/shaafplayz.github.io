@@ -2,40 +2,19 @@
   <header class="header">
     <nav class="nav-container">
       <NuxtLink to="/" class="logo-wrapper">
-        <NuxtImg 
-          src="/resources/logo.png" 
-          alt="Shaaf Yousaf Logo"
-          class="logo-img"
-          width="50"
-          height="50"
-        />
+        <span class="logo-text">shaaf</span>
       </NuxtLink>
       
       <ul class="nav-links">
-        <li><NuxtLink to="/lab">Lab</NuxtLink></li>
-        <li><NuxtLink to="/studio">Studio</NuxtLink></li>
-        <li><NuxtLink to="/dev">Dev</NuxtLink></li>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
+        <li><NuxtLink to="/dev">Experience</NuxtLink></li>
+        <li><NuxtLink to="/lab">Projects</NuxtLink></li>
+        <li><NuxtLink to="/studio">Homelab</NuxtLink></li>
+        <li><NuxtLink to="/contact">Contact</NuxtLink></li>
       </ul>
       
       <div class="header-actions">
-        <a 
-          href="mailto:shaaf.yousaf@mail.utoronto.ca" 
-          class="btn btn-small"
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          <Icon name="mdi:email-outline" />
-          Email
-        </a>
-        <a 
-          href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" 
-          class="btn btn-primary btn-small"
-          target="_blank" 
-          rel="noopener noreferrer"
-        >
-          Resume
-          <Icon name="mdi:arrow-right" />
-        </a>
+        <!-- Actions removed for cleaner navbar matching the design -->
       </div>
     </nav>
   </header>
@@ -73,10 +52,12 @@
   transform: scale(1.05);
 }
 
-.logo-img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
 .nav-links {
@@ -89,11 +70,11 @@
 
 .nav-links a {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: var(--font-size-sm);
+  font-weight: 700;
+  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
   position: relative;
   transition: color var(--transition-base);
 }

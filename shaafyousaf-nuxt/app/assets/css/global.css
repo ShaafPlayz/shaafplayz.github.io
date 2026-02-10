@@ -3,6 +3,31 @@
    Global Styles - Black, White, Gold
    =================================== */
 
+/* Font Faces */
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/FuturaPTLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/FuturaPTBook.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futura PT';
+  src: url('/fonts/futuramdbt_bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS Reset & Base */
 *, *::before, *::after {
   margin: 0;
@@ -44,8 +69,8 @@
   --spacing-xl: 6rem;
   
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Plus Jakarta Sans', var(--font-sans);
+  --font-sans: 'Futura PT', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Futura PT', 'Plus Jakarta Sans', var(--font-sans);
   --font-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
   
   --font-size-xs: 0.75rem;
