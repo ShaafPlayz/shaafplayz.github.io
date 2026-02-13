@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/resources/logo.png' },
+        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' },
       ],
     },
   },
@@ -21,7 +22,13 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/fonts',
+    '@nuxt/content'
   ],
+
+  content: {
+     experimental: { nativeSqlite: true },
+  },
+
   
   css: [
     '~/assets/css/global.css',

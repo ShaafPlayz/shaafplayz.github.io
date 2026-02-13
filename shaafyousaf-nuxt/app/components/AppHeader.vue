@@ -1,20 +1,31 @@
 <template>
   <header class="header">
     <nav class="nav-container">
-      <NuxtLink to="/" class="logo-wrapper">
-        <span class="logo-text">shaaf</span>
+      <NuxtLink to="/" class="logoimg">
+        <NuxtImg src="/resources/logo.png" alt="Shaaf Yousaf Logo" width="50" height="50" />
       </NuxtLink>
       
       <ul class="nav-links">
-        <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/dev">Experience</NuxtLink></li>
-        <li><NuxtLink to="/lab">Projects</NuxtLink></li>
-        <li><NuxtLink to="/studio">Homelab</NuxtLink></li>
-        <li><NuxtLink to="/contact">Contact</NuxtLink></li>
+        <!-- Empty as per original design -->
       </ul>
       
-      <div class="header-actions">
-        <!-- Actions removed for cleaner navbar matching the design -->
+      <div class="hero-buttons">
+        <a 
+          href="mailto:shaaf.yousaf@mail.utoronto.ca" 
+          class="hero-button hire-button" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          Email Me
+        </a>
+        <a 
+          href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" 
+          class="hero-button cv-button" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          My Resume ➪
+        </a>
       </div>
     </nav>
   </header>
@@ -22,30 +33,122 @@
 
 <style scoped>
 .header {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 1%;
   left: 0;
   width: 100%;
-  z-index: var(--z-header);
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: var(--border-thin);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 1rem var(--container-padding);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  align-items: flex-start;
+  margin: 0.5rem 1rem;
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 1000px;
 }
 
-.logo-wrapper {
+.logoimg {
+  height: 3rem;
   display: flex;
+  align-content: center;
   align-items: center;
-  transition: transform var(--transition-base);
+  transition: transform 0.3s ease;
+}
+
+.logoimg:hover {
+  transform: scale(1.05);
+}
+
+.logoimg img {
+  width: 2.5rem;
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+  height: 1.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hero-button {
+  padding: 0.5rem 3.6rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 1s ease;
+  display: inline-block;
+}
+
+.hire-button {
+  background: rgb(255, 217, 0);
+  color: #000000;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.hire-button:hover {
+  background: rgba(255, 255, 255, 0.753);
+  backdrop-filter: blur(20px);
+  padding: 0.5rem 4rem;
+  font-size: 1.2rem;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.593);
+  transition: 0.5s;
+}
+
+.cv-button {
+  background: #000000;
+  color: rgba(255, 215, 0, 0.82);
+  transition: 1s;
+}
+
+.cv-button:hover {
+  background: rgba(255, 255, 255, 0.753);
+  color: #000000;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.596);
+  padding: 0.5rem 4rem;
+  font-size: 1.2rem;
+  transition: 0.5s;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .hero-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .hero-button:hover {
+    padding: 0.5rem 2rem;
+    font-size: 0.9rem;
+  }
 }
 
 .logo-wrapper:hover {
