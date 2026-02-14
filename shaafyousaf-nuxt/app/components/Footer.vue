@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
-const lastUpdated = 'February 13, 2026'
+const lastUpdated = 'February 14, 2026'
 </script>
 
 <template>
@@ -48,7 +48,7 @@ const lastUpdated = 'February 13, 2026'
           </div>
         </div>
 
-        <div class="footer-section email-section">
+        <!-- <div class="footer-section email-section">
           <h3>Get in Touch</h3>
           <p>Drop me a message and let's connect!</p>
           <div class="contact-form">
@@ -67,7 +67,7 @@ const lastUpdated = 'February 13, 2026'
               <Icon name="heroicons:paper-airplane-solid" class="send-icon" />
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="footer-bottom">

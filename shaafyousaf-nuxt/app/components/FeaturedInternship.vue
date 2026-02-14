@@ -17,13 +17,13 @@ const featuredJob = {
   type: 'SWE Internships',
   duration: '8 months',
   employmentType: 'Full-Time',
-  description: 'Leading full-stack development initiatives across multiple projects. Architecting scalable web applications using modern frameworks and implementing CI/CD pipelines. Collaborating with cross-functional teams to deliver high-quality software solutions that enhance user experience and drive operational efficiency.',
+  description: 'Built and deployed two independent .NET (C#) applications for internal and in-class use. Rebuilt RESTful backends into ASP.NET Core GraphQL APIs and redesigned Blazor Web UIs, optimizing database access patterns and reducing request latency from seconds to milliseconds.',
   responsibilities: [
-    'Architected and deployed full-stack web applications using Vue.js, Nuxt, and Node.js, serving 2000+ students and faculty',
-    'Implemented automated CI/CD pipelines with GitHub Actions, reducing deployment time by 60%',
-    'Collaborated with design team to create responsive, accessible interfaces following WCAG 2.1 standards',
-    'Optimized database queries and API endpoints, improving response times by 40%',
-    'Mentored 3 junior developers on best practices and modern development workflows'
+    'Built and deployed two independent .NET (C#) applications for internal and in-class use with separate codebases',
+    'Rebuilt RESTful backends into ASP.NET Core GraphQL APIs using EF Core and SQL Server (100% authored)',
+    'Optimized database access patterns and GraphQL queries with EF Core and Hot Chocolate, reducing request latency from seconds to milliseconds',
+    'Redesigned client UI for both Blazor Web applications using MudBlazor and HTML/CSS (70% authored)',
+    'Received strong positive feedback from staff, teachers, and students on UI improvements'
   ],
   technologies: ['.NET', 'C#', 'Blazor Framework', 'GraphQL (Hot Chocolate)', 'SQL Server', 'SSMS (SQL Server Management Studio)', 'LinQPad', 'Azure DevOps', 'REST APIs'],
   achievements: [],
