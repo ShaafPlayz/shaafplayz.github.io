@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
+const route = useRoute()
 const activeSection = ref('internships')
 const isDialogOpen = ref(false)
 const selectedItem = ref<any>(null)
 let closeTimeout: number | null = null
 const slideDirection = ref(1) // 1 for right, -1 for left
+
+// Check for tab parameter on mount
+onMounted(() => {
+  const tabParam = route.query.tab as string
+  if (tabParam && sections.some(s => s.id === tabParam)) {
+    activeSection.value = tabParam
+  }
+})
 
 const sections = [
   { id: 'internships', label: 'Internships' },

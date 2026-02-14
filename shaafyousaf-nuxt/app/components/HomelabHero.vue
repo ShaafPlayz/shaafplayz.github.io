@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
       <img 
         :src="overlayImage" 
         alt="Overlay" 
-        class="gradient-overlay"
+        :class="['gradient-overlay', { 'flipped': alignRight }]"
       />
     </div>
 
@@ -110,6 +110,10 @@ const props = withDefaults(defineProps<Props>(), {
   object-fit: cover;
   object-position: center;
   z-index: 1;
+}
+
+.gradient-overlay.flipped {
+  transform: scaleX(-1);
 }
 
 .homelab-content {
@@ -221,6 +225,11 @@ const props = withDefaults(defineProps<Props>(), {
     min-height: 350px;
   }
 
+  .background-image {
+    transform: scale(1.2);
+    object-position: center 40%;
+  }
+
   .homelab-content {
     padding: 0 2rem;
   }
@@ -257,6 +266,11 @@ const props = withDefaults(defineProps<Props>(), {
   .homelab-section {
     height: 40vh;
     min-height: 320px;
+  }
+
+  .background-image {
+    transform: scale(1.3);
+    object-position: center 40%;
   }
 
   .homelab-content {

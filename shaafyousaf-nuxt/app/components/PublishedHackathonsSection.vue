@@ -1,22 +1,6 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
 
-const publishedSoftware = [
-  {
-    title: 'Slowed Enhanced',
-    subtitle: 'A Google Chrome Extension for Advanced Audio Controls',
-    category: 'Published on Chrome Web Store',
-    stats: {
-      installs: '600+',
-      users: '75',
-      productHuntRank: '14'
-    },
-    tech: ['.NET C#', 'Blazor Framework', 'MudBlazor', 'JavaScript'],
-    link: 'https://chromewebstore.google.com/detail/mbknnccopgggeedhnloodppflepboggp',
-    image: '/resources/PortfolioPromo.png'
-  }
-]
-
 const hackathons = [
   {
     event: 'GenAI Genesis 2025 (Toronto)',
@@ -54,47 +38,8 @@ const emit = defineEmits<{
       :transition="{ duration: 0.5, delay: 0.1 }"
     >
       <h2 class="section-title">Published Software</h2>
-      <div class="published-grid">
-        <Motion
-          v-for="(project, index) in publishedSoftware"
-          :key="'pub-' + index"
-          :initial="{ opacity: 0, filter: 'blur(8px)', scale: 0.95 }"
-          :animate="{ opacity: 1, filter: 'blur(0px)', scale: 1 }"
-          :transition="{ duration: 0.4, delay: 0.2 }"
-          class="published-card"
-          @click="emit('item-click', project)"
-        >
-          <div class="published-image">
-            <img :src="project.image" :alt="project.title" />
-            <div class="type-badge published-badge">Published</div>
-          </div>
-          <div class="published-content">
-            <h3 class="card-title">{{ project.title }}</h3>
-            <p class="card-subtitle">{{ project.subtitle }}</p>
-            <p class="card-category">{{ project.category }}</p>
-            
-            <!-- Stats -->
-            <div v-if="project.stats" class="stats-grid">
-              <div v-if="project.stats.installs" class="stat-item">
-                <div class="stat-value">{{ project.stats.installs }}</div>
-                <div class="stat-label">Installs</div>
-              </div>
-              <div v-if="project.stats.users" class="stat-item">
-                <div class="stat-value">{{ project.stats.users }}</div>
-                <div class="stat-label">Active Users</div>
-              </div>
-              <div v-if="project.stats.productHuntRank" class="stat-item">
-                <div class="stat-value">#{{ project.stats.productHuntRank }}</div>
-                <div class="stat-label">Product Hunt</div>
-              </div>
-            </div>
-
-            <div class="tech-preview">
-              <span v-for="(tech, i) in project.tech.slice(0, 3)" :key="i" class="tech-tag">{{ tech }}</span>
-              <span v-if="project.tech.length > 3" class="more-tag">+{{ project.tech.length - 3 }}</span>
-            </div>
-          </div>
-        </Motion>
+      <div class="featured-project-wrapper">
+        <FeaturedProject @click="emit('item-click', $event)" />
       </div>
     </Motion>
 
@@ -152,126 +97,11 @@ const emit = defineEmits<{
   margin-top: 4rem;
 }
 
-/* Published Software Styles */
-.published-grid {
-  display: grid;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.published-card {
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
+/* Featured Project Wrapper - Border radius applied here */
+.featured-project-wrapper {
+  border-radius: 16px;
   overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: row;
-  min-height: 200px;
-}
-
-.published-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: #d0d0d0;
-}
-
-.published-image {
-  width: 280px;
-  min-width: 280px;
-  background: #f8f8f8;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.published-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.type-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.7rem;
-  color: #ffffff;
-  backdrop-filter: blur(10px);
-}
-
-.published-badge {
-  background: #000000;
-}
-
-.published-content {
-  flex: 1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-title {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #000000;
-  margin-bottom: 0.35rem;
-  line-height: 1.3;
-}
-
-.card-subtitle {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.85rem;
-  color: #666666;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.card-category {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 500;
-  font-size: 0.75rem;
-  color: #888888;
-  margin-bottom: 0.875rem;
-}
-
-/* Stats Grid */
-.stats-grid {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 0.875rem;
-  padding: 0.75rem 0;
-  border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.stat-value {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #000000;
-  line-height: 1;
-}
-
-.stat-label {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.7rem;
-  color: #888888;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
+  margin-bottom: 3rem;
 }
 
 /* Hackathon Styles */
@@ -322,6 +152,24 @@ const emit = defineEmits<{
 
 .card-content {
   padding: 0.875rem;
+}
+
+.card-title {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #000000;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.card-subtitle {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #666666;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
 }
 
 .event-name {
@@ -382,21 +230,9 @@ const emit = defineEmits<{
     margin-top: 3rem;
   }
 
-  .published-card {
-    flex-direction: column;
-  }
-
-  .published-grid {
+  .featured-project-wrapper {
+    border-radius: 12px;
     margin-bottom: 2.5rem;
-  }
-
-  .published-image {
-    width: 100%;
-    height: 180px;
-  }
-
-  .stats-grid {
-    gap: 1rem;
   }
 
   .hackathons-grid {

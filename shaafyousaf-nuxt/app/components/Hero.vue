@@ -63,10 +63,38 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
           :animate="{ opacity: 1, filter: 'blur(0px)' }"
           :transition="{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }"
         >
-          <a href="#cv" class="btn btn-white">CV</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-white">Linkedin</a>
+          <a href="#cv" class="btn btn-white">
+            <Icon name="heroicons:document-text" class="btn-icon" />
+            CV
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-white">
+            <Icon name="mdi:linkedin" class="btn-icon" />
+            LinkedIn
+          </a>
+          <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="btn btn-white">
+            <Icon name="heroicons:envelope" class="btn-icon" />
+            Email
+          </a>
         </Motion>
       </div>
+
+      <!-- Scroll Down Arrow -->
+      <Motion
+        class="scroll-indicator"
+        :initial="{ opacity: 0, y: -20 }"
+        :animate="{ 
+          opacity: [0, 1, 1, 0],
+          y: [0, 10, 10, 20]
+        }"
+        :transition="{ 
+          duration: 2,
+          delay: 1,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }"
+      >
+        <Icon name="heroicons:chevron-down" class="arrow-icon" />
+      </Motion>
 
       <!-- Bottom Tags -->
       
@@ -156,31 +184,66 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 
 .hero-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 2rem;
-  border-radius: 12px;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 10px;
   font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease;
   backdrop-filter: blur(10px);
+  white-space: nowrap;
+  transform: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.btn::before,
+.btn::after {
+  display: none !important;
+  content: none !important;
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .btn-white {
     background-color: #ffffff2e;
     color: white;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.btn-white::before,
+.btn-white::after {
+  display: none !important;
+  content: none !important;
 }
 
 .btn-white:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff4a;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.btn-white:hover::before,
+.btn-white:hover::after {
+  display: none !important;
+  content: none !important;
 }
 
 .hero-tags {
@@ -207,42 +270,118 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     backdrop-filter: blur(10px);
 }
 
+.scroll-indicator {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow-icon {
+  width: 32px;
+  height: 32px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 @media (max-width: 1024px) {
   .hero-content {
     padding: 0 2rem;
   }
+
+  .hero-title {
+    gap: 1rem;
+  }
+
+  .title-line {
+    font-size: clamp(3.5rem, 10vw, 5rem);
+  }
 }
 
 @media (max-width: 768px) {
+  .hero-section {
+    height: 100dvh; /* Use dynamic viewport height for mobile */
+  }
+
   .background-image {
-    object-position: right center;
+    object-position: 60% 0;
   }
 
   .gradient-overlay {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
     width: 100%;
     height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    padding: 0 1.5rem;
+    justify-content: center;
+    padding-top: 5rem;
+  }
+
+  .hero-text-container {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 2rem;
   }
 
   .hero-title {
-    line-height: 1;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    line-height: 0.95;
   }
   
   .title-line {
-    font-size: clamp(3rem, 12vw, 5rem);
+    font-size: clamp(2.5rem, 15vw, 4rem);
   }
 
   .hero-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
   .btn {
-    font-size: 1.2rem;
-    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.25rem;
+  }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
   }
   
   .hero-tags {
-    justify-content: center; /* Center tags on mobile if needed */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 0.75rem;
+    max-width: 100%;
+  }
+
+  .tag {
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+    height: auto;
+    min-height: 1.6rem;
+  }
+
+  .scroll-indicator {
+    bottom: 4rem;
+  }
+
+  .arrow-icon {
+    width: 28px;
+    height: 28px;
   }
 }
 </style>

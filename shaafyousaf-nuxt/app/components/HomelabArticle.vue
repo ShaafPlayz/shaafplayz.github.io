@@ -332,7 +332,7 @@ import { Motion } from 'motion-v'
 
 .article-text {
   font-family: 'Nexa', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.85);

@@ -4,7 +4,9 @@
 <template>
   <div>
     <Hero />
-    
+     <NuxtLink to="/experience?tab=published" class="clickable-section">
+      <FeaturedProject />
+    </NuxtLink>
     <NuxtLink to="/homelab" class="clickable-section">
       <HomelabHero 
         :alignRight="true"
@@ -13,7 +15,7 @@
         uptime="--"
       />
     </NuxtLink>
-
+   
     <NuxtLink to="/experience" class="clickable-section">
       <FeaturedInternship />
     </NuxtLink>

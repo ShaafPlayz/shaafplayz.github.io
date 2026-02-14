@@ -47,6 +47,27 @@ const lastUpdated = 'February 13, 2026'
             </a>
           </div>
         </div>
+
+        <div class="footer-section email-section">
+          <h3>Get in Touch</h3>
+          <p>Drop me a message and let's connect!</p>
+          <div class="contact-form">
+            <input 
+              type="email" 
+              placeholder="your.email@example.com" 
+              class="email-input"
+            />
+            <textarea 
+              placeholder="Your message..." 
+              class="message-input"
+              rows="4"
+            ></textarea>
+            <button class="send-button">
+              <span>Send Message</span>
+              <Icon name="heroicons:paper-airplane-solid" class="send-icon" />
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="footer-bottom">
@@ -169,6 +190,85 @@ const lastUpdated = 'February 13, 2026'
   margin: 0;
 }
 
+/* Email Section Styles */
+.email-section p {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.email-input,
+.message-input {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: var(--color-white);
+  font-family: 'Nexa', sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.message-input {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+.email-input::placeholder,
+.message-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.email-input:focus,
+.message-input:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.send-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(10px);
+  color: var(--color-white);
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.send-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
+}
+
+.send-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.send-icon {
+  width: 18px;
+  height: 18px;
+}
+
 @media (max-width: 768px) {
   .footer {
     padding: 3rem 1.5rem 1.5rem;
@@ -183,6 +283,22 @@ const lastUpdated = 'February 13, 2026'
     flex-direction: column;
     gap: 0.25rem;
     text-align: center;
+  }
+
+  .email-input,
+  .message-input {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .send-button {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .send-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 </style>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const isScrolled = ref(false)
+const isMobileMenuOpen = ref(false)
 const route = useRoute()
 
 const isExperiencePage = computed(() => route.path === '/experience')
@@ -12,6 +13,19 @@ const logoSrc = computed(() => {
   return isExperiencePage.value 
     ? '/images/shaafonlylabsfontlogoshortblack.png' 
     : '/images/shaafonlylabsfontlogoshort.png'
+})
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  isMobileMenuOpen.value = false
+}
+
+// Close mobile menu when route changes
+watch(() => route.path, () => {
+  closeMobileMenu()
 })
 
 onMounted(() => {
@@ -39,13 +53,36 @@ onMounted(() => {
         />
       </NuxtLink>
       
+      <!-- Desktop Nav Links -->
       <div class="nav-links">
         <NuxtLink to="/" class="nav-link">HOME</NuxtLink>
         <NuxtLink to="/experience" class="nav-link">EXPERIENCE</NuxtLink>
         <NuxtLink to="/homelab" class="nav-link">HOMELAB</NuxtLink>
         <NuxtLink to="/contact" class="nav-link">CONTACT</NuxtLink>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        class="mobile-menu-button" 
+        @click="toggleMobileMenu"
+        aria-label="Toggle menu"
+      >
+        <Icon v-if="!isMobileMenuOpen" name="heroicons:bars-3" class="menu-icon" />
+        <Icon v-else name="heroicons:x-mark" class="menu-icon" />
+      </button>
     </div>
+
+    <!-- Mobile Menu Overlay -->
+    <Transition name="mobile-menu">
+      <div v-if="isMobileMenuOpen" class="mobile-menu">
+        <div class="mobile-nav-links">
+          <NuxtLink to="/" class="mobile-nav-link" @click="closeMobileMenu">HOME</NuxtLink>
+          <NuxtLink to="/experience" class="mobile-nav-link" @click="closeMobileMenu">EXPERIENCE</NuxtLink>
+          <NuxtLink to="/homelab" class="mobile-nav-link" @click="closeMobileMenu">HOMELAB</NuxtLink>
+          <NuxtLink to="/contact" class="mobile-nav-link" @click="closeMobileMenu">CONTACT</NuxtLink>
+        </div>
+      </div>
+    </Transition>
   </Motion>
 </template>
 
@@ -121,9 +158,106 @@ onMounted(() => {
   opacity: 1;
 }
 
+/* Mobile Menu Button */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-white);
+  transition: color 0.3s ease;
+}
+
+.navbar.experience-page .mobile-menu-button {
+  color: #000000;
+}
+
+.navbar.experience-page.scrolled .mobile-menu-button {
+  color: var(--color-white);
+}
+
+.menu-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 0 16px;
+  padding: 1rem;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar.experience-page .mobile-menu {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-nav-link {
+  color: var(--color-white);
+  text-decoration: none;
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.navbar.experience-page .mobile-nav-link {
+  color: #000000;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.router-link-active {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+.navbar.experience-page .mobile-nav-link:hover,
+.navbar.experience-page .mobile-nav-link.router-link-active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Menu Transitions */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-enter-from {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 1rem 1.5rem;
+  }
+
+  .navbar.scrolled {
+    padding: 0.75rem 1.5rem;
   }
 
   .logo {
@@ -131,11 +265,11 @@ onMounted(() => {
   }
 
   .nav-links {
-    gap: 1rem;
+    display: none;
   }
 
-  .nav-link {
-    font-size: 0.75rem;
+  .mobile-menu-button {
+    display: block;
   }
 }
 </style>
