@@ -1,0 +1,317 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+
+const backgroundImage = '/images/homeserveroldPic.png'
+const overlayImage = '/resources/blackSideOverlayGradient.png'
+
+// Server connection state
+const serverConnected = ref(false) // Will be set to true when API responds successfully
+const hostname = ref('the-great-library')
+const uptime = ref('--')
+
+// API Configuration - Update these with your actual endpoints
+const API_CONFIG = {
+  baseUrl: '', // e.g., 'http://your-server-ip:port' or 'https://api.yourdomain.com'
+  endpoints: {
+    status: '/api/status',     // GET: Returns server status, hostname, uptime
+    stats: '/api/stats',       // GET: Returns CPU, RAM, disk, network metrics
+    services: '/api/services'  // GET: Returns list of running services
+  },
+  pollingInterval: 5000,       // Poll every 5 seconds
+  timeout: 3000                // Request timeout in ms
+}
+
+// LocalStorage keys for persisting last known state
+const STORAGE_KEYS = {
+  stats: 'homelab_last_stats',
+  services: 'homelab_last_services',
+  serverInfo: 'homelab_last_server_info',
+  timestamp: 'homelab_last_update'
+}
+
+// Live stats (will be fetched from API later)
+const stats = ref({
+  cpu: { usage: 0, temp: 0, cores: 4 },
+  ram: { used: 0, total: 16, percentage: 0 },
+  disk: { used: 0, total: 240, percentage: 0 },
+  network: { upload: 0, download: 0 }
+})
+
+// Historical data for chart (last 30 data points)
+const historyLength = 30
+const chartHistory = ref({
+  cpu: Array(historyLength).fill(0),
+  ram: Array(historyLength).fill(0),
+  disk: Array(historyLength).fill(0),
+  network: Array(historyLength).fill(0)
+})
+
+// Services status - Update this list based on your actual services
+const services = ref([
+  { name: 'SSH Server', status: 'stopped', port: 22 },
+  { name: 'Web Server', status: 'stopped', port: 80 },
+  { name: 'Node.js App', status: 'stopped', port: 3000 },
+  { name: 'Database', status: 'stopped', port: 5432 },
+  { name: 'Docker', status: 'stopped', port: 2375 },
+  { name: 'Monitoring', status: 'stopped', port: 9090 }
+])
+
+// Hardware specs
+const hardware = {
+  cpu: 'Intel Core i7-8565U @ 1.80GHz',
+  ram: '16GB DDR4 2667MHz (2x 8GB)',
+  storage: '240GB Kingston SA400M8 SSD',
+  gpu: 'NVIDIA GeForce MX130',
+  motherboard: 'Dell Inspiron 5584',
+  network: 'Realtek RTL810xE Ethernet'
+}
+
+// Function to fetch server status and live data
+const loadLastKnownState = () => {
+  try {
+    const savedStats = localStorage.getItem(STORAGE_KEYS.stats)
+    const savedServices = localStorage.getItem(STORAGE_KEYS.services)
+    const savedServerInfo = localStorage.getItem(STORAGE_KEYS.serverInfo)
+    const savedTimestamp = localStorage.getItem(STORAGE_KEYS.timestamp)
+
+    if (savedStats) {
+      const parsed = JSON.parse(savedStats)
+      stats.value = parsed
+      
+      // Update chart history with saved data
+      if (parsed.cpu) {
+        chartHistory.value.cpu = Array(historyLength).fill(parsed.cpu.usage)
+        chartHistory.value.ram = Array(historyLength).fill(parsed.ram.percentage)
+        chartHistory.value.disk = Array(historyLength).fill(parsed.disk.percentage)
+        chartHistory.value.network = Array(historyLength).fill(Math.min(parsed.network.download, 100))
+      }
+    }
+
+    if (savedServices) {
+      services.value = JSON.parse(savedServices)
+    }
+
+    if (savedServerInfo) {
+      const info = JSON.parse(savedServerInfo)
+      hostname.value = info.hostname || hostname.value
+      uptime.value = info.uptime || uptime.value
+    }
+
+    // Log when data was last updated
+    if (savedTimestamp) {
+      console.log('Last server data from:', new Date(parseInt(savedTimestamp)).toLocaleString())
+    }
+  } catch (error) {
+    console.error('Failed to load last known state:', error)
+  }
+}
+
+// Save current state to localStorage
+const saveCurrentState = () => {
+  try {
+    localStorage.setItem(STORAGE_KEYS.stats, JSON.stringify(stats.value))
+    localStorage.setItem(STORAGE_KEYS.services, JSON.stringify(services.value))
+    localStorage.setItem(STORAGE_KEYS.serverInfo, JSON.stringify({
+      hostname: hostname.value,
+      uptime: uptime.value
+    }))
+    localStorage.setItem(STORAGE_KEYS.timestamp, Date.now().toString())
+  } catch (error) {
+    console.error('Failed to save state:', error)
+  }
+}
+
+// Function to fetch server status and live data
+const fetchServerStatus = async () => {
+  // If no API base URL is configured, stay offline and show last known state
+  if (!API_CONFIG.baseUrl) {
+    console.warn('API base URL not configured. Showing last known state.')
+    serverConnected.value = false
+    return
+  }
+
+  try {
+    // Create abort controller for timeout
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout)
+
+    // ============= API CALL: Server Status =============
+    // Expected Response Format:
+    // {
+    //   "online": true,
+    //   "hostname": "the-great-library",
+    //   "uptime": "2 Weeks, 5 Days, 5 Hours"  // or seconds: 1234567
+    // }
+    const statusResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.status}`, {
+      signal: controller.signal,
+      headers: { 'Accept': 'application/json' }
+    })
+    
+    clearTimeout(timeoutId)
+
+    if (!statusResponse.ok) {
+      throw new Error(`Status API returned ${statusResponse.status}`)
+    }
+
+    const statusData = await statusResponse.json()
+    
+    if (!statusData.online) {
+      serverConnected.value = false
+      return
+    }
+
+    serverConnected.value = true
+    hostname.value = statusData.hostname || hostname.value
+    
+    // Handle uptime - can be string or seconds
+    if (typeof statusData.uptime === 'number') {
+      uptime.value = formatUptime(statusData.uptime)
+    } else {
+      uptime.value = statusData.uptime || uptime.value
+    }
+
+    // ============= API CALL: System Stats =============
+    // Expected Response Format:
+    // {
+    //   "cpu": {
+    //     "usage": 45.2,      // percentage (0-100)
+    //     "temp": 62,         // celsius
+    //     "cores": 4
+    //   },
+    //   "ram": {
+    //     "used": 8.5,        // GB
+    //     "total": 16,        // GB
+    //     "percentage": 53    // calculated or provided
+    //   },
+    //   "disk": {
+    //     "used": 125,        // GB
+    //     "total": 240,       // GB
+    //     "percentage": 52    // calculated or provided
+    //   },
+    //   "network": {
+    //     "upload": 12.5,     // MB/s
+    //     "download": 45.8    // MB/s
+    //   }
+    // }
+    const statsResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.stats}`, {
+      headers: { 'Accept': 'application/json' }
+    })
+
+    if (statsResponse.ok) {
+      const statsData = await statsResponse.json()
+      
+      // Calculate percentages if not provided
+      if (!statsData.ram.percentage && statsData.ram.used && statsData.ram.total) {
+        statsData.ram.percentage = Math.round((statsData.ram.used / statsData.ram.total) * 100)
+      }
+      
+      if (!statsData.disk.percentage && statsData.disk.used && statsData.disk.total) {
+        statsData.disk.percentage = Math.round((statsData.disk.used / statsData.disk.total) * 100)
+      }
+
+      // Round values for display
+      statsData.cpu.usage = Math.round(statsData.cpu.usage)
+      statsData.cpu.temp = Math.round(statsData.cpu.temp)
+      statsData.network.upload = Math.round(statsData.network.upload * 10) / 10
+      statsData.network.download = Math.round(statsData.network.download * 10) / 10
+
+      stats.value = statsData
+
+      // Update chart history
+      chartHistory.value.cpu.shift()
+      chartHistory.value.cpu.push(statsData.cpu.usage)
+      
+      chartHistory.value.ram.shift()
+      chartHistory.value.ram.push(statsData.ram.percentage)
+      
+      chartHistory.value.disk.shift()
+      chartHistory.value.disk.push(statsData.disk.percentage)
+      
+      chartHistory.value.network.shift()
+      chartHistory.value.network.push(Math.min(statsData.network.download, 100))
+    }
+
+    // ============= API CALL: Services Status =============
+    // Expected Response Format:
+    // {
+    //   "services": [
+    //     {
+    //       "name": "SSH Server",
+    //       "status": "running" | "stopped",
+    //       "port": 22
+    //     },
+    //     ...
+    //   ]
+    // }
+    const servicesResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.services}`, {
+      headers: { 'Accept': 'application/json' }
+    })
+
+    if (servicesResponse.ok) {
+      const servicesData = await servicesResponse.json()
+      services.value = servicesData.services || services.value
+    }
+
+    // Save successful state to localStorage
+    saveCurrentState()
+
+  } catch (error) {
+    console.error('Failed to fetch server status:', error)
+    serverConnected.value = false
+    // Keep displaying last known state from localStorage
+  }
+}
+
+// Helper function to format uptime from seconds
+const formatUptime = (seconds: number): string => {
+  const weeks = Math.floor(seconds / 604800)
+  const days = Math.floor((seconds % 604800) / 86400)
+  const hours = Math.floor((seconds % 86400) / 3600)
+  
+  const parts = []
+  if (weeks > 0) parts.push(`${weeks} Week${weeks !== 1 ? 's' : ''}`)
+  if (days > 0) parts.push(`${days} Day${days !== 1 ? 's' : ''}`)
+  if (hours > 0) parts.push(`${hours} Hour${hours !== 1 ? 's' : ''}`)
+  
+  return parts.length > 0 ? parts.join(', ') : 'Just started'
+}
+
+onMounted(() => {
+  // Load last known state first (for instant display)
+  loadLastKnownState()
+  
+  // Then attempt to fetch fresh data
+  fetchServerStatus()
+  
+  // Set up polling at configured interval
+  setInterval(fetchServerStatus, API_CONFIG.pollingInterval)
+})
+</script>
+
+<template>
+  <div class="homelab-page">
+    <!-- Hero Section -->
+    <HomelabHero 
+      :background-image="backgroundImage"
+      :overlay-image="overlayImage"
+      :hostname="hostname"
+      :server-connected="serverConnected"
+      :uptime="uptime"
+    />
+
+    <!-- Dashboard Section -->
+    <HomelabDashboard 
+      :server-connected="serverConnected"
+      :stats="stats"
+      :chart-history="chartHistory"
+      :services="services"
+      :hardware="hardware"
+    />
+  </div>
+</template>
+
+<style scoped>
+.homelab-page {
+  background: #000000;
+}
+</style>

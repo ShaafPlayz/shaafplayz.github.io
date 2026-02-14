@@ -5,24 +5,16 @@
 
 /* Font Faces */
 @font-face {
-  font-family: 'Futura PT';
-  src: url('/fonts/FuturaPTLight.otf') format('opentype');
+  font-family: 'Nexa';
+  src: url('/fonts/NexaL.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Futura PT';
-  src: url('/fonts/FuturaPTBook.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Futura PT';
-  src: url('/fonts/futuramdbt_bold.otf') format('opentype');
+  font-family: 'Nexa';
+  src: url('/fonts/NexaH.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -33,7 +25,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-weight: 900;
 }
 
 :root {
@@ -117,14 +108,15 @@ html {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', 'Inter', var(--font-sans);
+  font-family: 'Nexa', sans-serif;
+  font-weight: 300;
   font-size: var(--font-size-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
   line-height: 1.6;
-  color: #ffffffa6;
-  background: var(--bg-primary);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 /* ===================================

@@ -1,25 +1,26 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <div class="app-wrapper">
-    <SplashScreen />
-    <VideoBackground />
-    <AppHeader />
+    <Navbar />
+
     <main class="main-content">
       <slot />
     </main>
-    <AppFooter />
+
+    <Footer />
   </div>
 </template>
 
 <style scoped>
 .app-wrapper {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background: var(--bg-primary);
+  font-family: 'Nexa', sans-serif;
 }
 
 .main-content {
-  flex: 1;
-  padding-top: 80px; /* Account for fixed header */
-  position: relative;
+  padding-top: 0;
 }
 </style>
