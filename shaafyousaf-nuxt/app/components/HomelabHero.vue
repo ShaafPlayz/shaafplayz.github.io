@@ -200,7 +200,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 .status-indicator.online {
   color: #000000;
-  background: #ffd700;
+  background: #ffffff;
 }
 
 .status-indicator.offline {

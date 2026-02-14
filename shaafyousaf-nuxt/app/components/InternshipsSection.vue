@@ -108,7 +108,7 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internships')
 
 <style scoped>
 .internships-section {
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .section-title {
@@ -116,15 +116,19 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internships')
   font-weight: 700;
   font-size: 1.8rem;
   color: #000000;
-  margin-bottom: 0.875rem;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.3px;
+}
+
+.section-title:not(:first-child) {
+  margin-top: 4rem;
 }
 
 .internships-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .internship-card {
@@ -232,10 +236,16 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internships')
   .internships-grid {
     grid-template-columns: 1fr;
     gap: 0.875rem;
+    margin-bottom: 2.5rem;
   }
 
   .section-title {
     font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title:not(:first-child) {
+    margin-top: 3rem;
   }
 
   .job-position {

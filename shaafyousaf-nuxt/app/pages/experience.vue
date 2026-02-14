@@ -189,7 +189,7 @@ const slideVariants = computed(() => ({
 /* Hero Section */
 .hero-section {
   text-align: left;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   position: relative;
   z-index: 1;
 }
@@ -309,6 +309,10 @@ const slideVariants = computed(() => ({
 @media (max-width: 768px) {
   .experience-page {
     padding: 90px 1.25rem 1.5rem;
+  }
+
+  .hero-section {
+    margin-bottom: 3rem;
   }
 
   .experience-logo {

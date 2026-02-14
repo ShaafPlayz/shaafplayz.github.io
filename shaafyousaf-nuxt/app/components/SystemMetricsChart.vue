@@ -67,7 +67,7 @@ const networkPath = computed(() => generatePath(props.chartHistory.network, 100)
         </h3>
         <div class="chart-legend">
           <div class="legend-item">
-            <span class="legend-color" style="background: #ffd700"></span>
+            <span class="legend-color" style="background: #ffffff"></span>
             <span class="legend-label">CPU</span>
             <span class="legend-value">{{ stats.cpu.usage }}%</span>
           </div>
@@ -77,7 +77,7 @@ const networkPath = computed(() => generatePath(props.chartHistory.network, 100)
             <span class="legend-value">{{ stats.ram.percentage }}%</span>
           </div>
           <div class="legend-item">
-            <span class="legend-color" style="background: rgba(255, 215, 0, 0.6)"></span>
+            <span class="legend-color" style="background: rgba(255, 255, 255, 0.6)"></span>
             <span class="legend-label">Storage</span>
             <span class="legend-value">{{ stats.disk.percentage }}%</span>
           </div>
@@ -120,7 +120,7 @@ const networkPath = computed(() => generatePath(props.chartHistory.network, 100)
           <path
             :d="cpuPath"
             fill="none"
-            stroke="#ffd700"
+            stroke="#ffffff"
             stroke-width="2"
             class="chart-line"
           />
@@ -134,7 +134,7 @@ const networkPath = computed(() => generatePath(props.chartHistory.network, 100)
           <path
             :d="diskPath"
             fill="none"
-            stroke="rgba(255, 215, 0, 0.6)"
+            stroke="rgba(255, 255, 255, 0.6)"
             stroke-width="2"
             class="chart-line"
           />
@@ -280,7 +280,7 @@ const networkPath = computed(() => generatePath(props.chartHistory.network, 100)
 .detail-icon {
   width: 20px;
   height: 20px;
-  color: #ffd700;
+  color: rgba(255, 255, 255, 0.7);
   flex-shrink: 0;
 }
 

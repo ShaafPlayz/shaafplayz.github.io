@@ -81,7 +81,7 @@ defineProps<Props>()
 .card-title svg {
   width: 18px;
   height: 18px;
-  color: #ffd700;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Offline Badge */
@@ -165,7 +165,7 @@ defineProps<Props>()
 .arch-connector {
   width: 2px;
   height: 20px;
-  background: rgba(255, 215, 0, 0.3);
+  background: rgba(255, 255, 255, 0.3);
   margin: 0 auto;
 }
 

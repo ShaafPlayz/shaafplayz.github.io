@@ -91,7 +91,7 @@ defineProps<Props>()
 .card-title svg {
   width: 18px;
   height: 18px;
-  color: #ffd700;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Offline Badge */

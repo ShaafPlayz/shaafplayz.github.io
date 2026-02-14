@@ -4,6 +4,9 @@ import { ref, onMounted } from 'vue'
 const backgroundImage = '/images/homeserveroldPic.png'
 const overlayImage = '/resources/blackSideOverlayGradient.png'
 
+// Tab state
+const activeTab = ref<'overview' | 'statistics'>('overview')
+
 // Server connection state
 const serverConnected = ref(false) // Will be set to true when API responds successfully
 const hostname = ref('the-great-library')
@@ -299,19 +302,171 @@ onMounted(() => {
       :uptime="uptime"
     />
 
-    <!-- Dashboard Section -->
-    <HomelabDashboard 
-      :server-connected="serverConnected"
-      :stats="stats"
-      :chart-history="chartHistory"
-      :services="services"
-      :hardware="hardware"
-    />
+    <!-- Tab Navigation -->
+    <div class="tab-navigation-container">
+      <div class="tab-navigation">
+        <button 
+          class="tab-button" 
+          :class="{ active: activeTab === 'overview' }"
+          @click="activeTab = 'overview'"
+        >
+          <Icon name="heroicons:document-text-20-solid" />
+          <span>Project Overview</span>
+        </button>
+        <button 
+          class="tab-button" 
+          :class="{ active: activeTab === 'statistics' }"
+          @click="activeTab = 'statistics'"
+        >
+          <Icon name="heroicons:chart-bar-square-20-solid" />
+          <span>Live Statistics</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Overview Tab -->
+      <div v-show="activeTab === 'overview'" class="tab-panel">
+        <HomelabArticle />
+      </div>
+
+      <!-- Statistics Tab -->
+      <div v-show="activeTab === 'statistics'" class="tab-panel">
+        <HomelabDashboard 
+          :server-connected="serverConnected"
+          :stats="stats"
+          :chart-history="chartHistory"
+          :services="services"
+          :hardware="hardware"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .homelab-page {
   background: #000000;
+  min-height: 100vh;
+}
+
+/* Tab Navigation */
+.tab-navigation-container {
+  background: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.tab-navigation {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+}
+
+.tab-button {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: none;
+  padding: 1.25rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.tab-button svg {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab-button.active {
+  color: #ffffff;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Tab Content */
+.tab-content {
+  background: #000000;
+  padding: 3rem 0;
+}
+
+.tab-panel {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tab-navigation {
+    padding: 0 1.5rem;
+  }
+
+  .tab-button {
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .tab-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .tab-content {
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab-button {
+    padding: 1rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .tab-button span {
+    display: none;
+  }
+
+  .tab-button svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 </style>

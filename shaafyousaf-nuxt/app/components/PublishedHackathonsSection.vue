@@ -136,26 +136,27 @@ const emit = defineEmits<{
 
 <style scoped>
 .published-hackathons-section {
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .section-title {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: #000000;
-  margin-bottom: 0.875rem;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.3px;
 }
 
 .section-title:not(:first-child) {
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 /* Published Software Styles */
 .published-grid {
   display: grid;
   gap: 1rem;
+  margin-bottom: 3rem;
 }
 
 .published-card {
@@ -278,6 +279,7 @@ const emit = defineEmits<{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
+  margin-bottom: 3rem;
 }
 
 .hackathon-card {
@@ -371,8 +373,21 @@ const emit = defineEmits<{
 
 /* Responsive */
 @media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title:not(:first-child) {
+    margin-top: 3rem;
+  }
+
   .published-card {
     flex-direction: column;
+  }
+
+  .published-grid {
+    margin-bottom: 2.5rem;
   }
 
   .published-image {
@@ -387,6 +402,7 @@ const emit = defineEmits<{
   .hackathons-grid {
     grid-template-columns: 1fr;
     gap: 0.875rem;
+    margin-bottom: 2.5rem;
   }
 }
 </style>

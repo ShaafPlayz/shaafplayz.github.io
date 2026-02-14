@@ -125,7 +125,20 @@ const emit = defineEmits<{
 
 <style scoped>
 .projects-section {
-  padding: 0.5rem 0;
+  padding: 0;
+}
+
+.section-title {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #000000;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.3px;
+}
+
+.projects-grid {
+  margin-bottom: 3rem;
 }
 
 .unified-grid {
@@ -244,6 +257,15 @@ const emit = defineEmits<{
 }
 
 @media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .projects-grid {
+    margin-bottom: 2.5rem;
+  }
+
   .unified-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 0.875rem;

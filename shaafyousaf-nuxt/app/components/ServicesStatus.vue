@@ -81,7 +81,7 @@ defineProps<Props>()
 .card-title svg {
   width: 18px;
   height: 18px;
-  color: #ffd700;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Offline Badge */
@@ -167,7 +167,7 @@ defineProps<Props>()
 
 .service-status.running {
   background: transparent;
-  color: #ffd700;
+  color: #4ade80;
   border: none;
 }
 

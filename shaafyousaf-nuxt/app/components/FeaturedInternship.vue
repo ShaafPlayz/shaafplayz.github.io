@@ -97,6 +97,7 @@ const handleClick = () => {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 3rem;
 }
 
 .featured-internship:hover {
@@ -188,6 +189,7 @@ const handleClick = () => {
 @media (max-width: 768px) {
   .featured-internship {
     height: 240px;
+    margin-bottom: 2.5rem;
   }
 
   .featured-content {
