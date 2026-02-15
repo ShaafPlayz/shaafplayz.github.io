@@ -102,7 +102,7 @@ const lastUpdated = 'February 14, 2026'
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   color: var(--color-white);
 }
 
@@ -110,7 +110,7 @@ const lastUpdated = 'February 14, 2026'
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
   line-height: 1.6;
 }
 
@@ -131,7 +131,7 @@ const lastUpdated = 'February 14, 2026'
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
   font-size: 0.9rem;
-  margin-top: 0.5rem;
+  margin-top: 0rem;
   transition: color 0.3s ease;
 }
 

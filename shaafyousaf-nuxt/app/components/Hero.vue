@@ -286,7 +286,6 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 }
 
 
-
 .scroll-indicator {
     position: absolute;
     bottom: 4rem;
