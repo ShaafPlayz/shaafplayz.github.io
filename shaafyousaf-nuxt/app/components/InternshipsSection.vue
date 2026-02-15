@@ -9,7 +9,7 @@ const jobs = [
   {
     position: 'Design Director',
     company: 'Zainematics',
-    location: 'Remote',
+    location: 'Lahore, Pakistan',
     date: 'Sep 2022 - Jan 2023',
     duration: '5 months',
     employmentType: 'Full-Time',
@@ -17,7 +17,7 @@ const jobs = [
     current: false,
     description: '',
     responsibilities: [ ''],
-    technologies: ['Sony ZV-E10', 'Adobe Creative Suite', 'Affinity Designer', 'After Effects', 'Davinci Resolve', 'Blender'],
+    technologies: ['Sony ZV-E10', 'Dji Ronin', 'Adobe Creative Suite', 'Affinity Designer', 'After Effects', 'Davinci Resolve', 'Blender'],
     achievements: [ '' ],
     image: '/images/ThumbnailZainematics.png',
     buttons: [
@@ -35,7 +35,7 @@ const jobs = [
     current: false,
     description: '',
     responsibilities: [ ''],
-    technologies: ['Sony ZV-E10', 'Dji Mini 2','Adobe Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Blender', 'Affinity Designer'],
+    technologies: ['Sony ZV-E10', 'Dji Mini 2', 'Dji Osmo', 'Dji Ronin', 'Adobe Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Blender', 'Affinity Designer'],
     achievements: ['' ],
     image: '/images/isl.png',
     buttons: [

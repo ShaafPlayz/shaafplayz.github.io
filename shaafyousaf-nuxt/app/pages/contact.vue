@@ -10,8 +10,8 @@ const contactMethods = [
   },
   {
     type: 'GitHub',
-    value: 'github.com/ShaafPlayz',
-    link: 'https://github.com/ShaafPlayz',
+    value: 'github.com/shaafyousaf',
+    link: 'https://github.com/shaafyousaf',
     icon: 'mdi:github'
   },
   {
@@ -61,12 +61,12 @@ const socialLinks = [
         :animate="{ opacity: 1, filter: 'blur(0px)' }"
         :transition="{ duration: 0.6, delay: 0.2 }"
       >
-        <h1 class="page-title">Let's Connect</h1>
+        <h1 class="page-title">Let’s Work Together</h1>
         <p class="page-description">
-          I'm always open to discussing new projects, opportunities, or just having a chat about technology.
+          If you’re working on something interesting, hiring, or just want to talk tech — I’d love to hear from you.
         </p>
         <p class="hero-info">
-          Based in Toronto, ON • Available for full-time Coop opportunities starting May 2026
+          Based in Toronto, ON • Available for full-time Coop/Research opportunities starting May 2026
         </p>
       </Motion>
 
