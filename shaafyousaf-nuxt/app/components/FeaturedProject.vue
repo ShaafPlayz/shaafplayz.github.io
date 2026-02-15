@@ -13,12 +13,14 @@ const featuredProject = {
   category: 'Published on Chrome Web Store',
   image: '/images/_DSC4383.JPG',
   stats: {
-    installs: '600+',
+    installs: '400+',
     users: '75',
     productHuntRank: '14'
   },
   tech: ['.NET C#', 'Blazor Framework', 'MudBlazor', 'JavaScript'],
-  link: 'https://chromewebstore.google.com/detail/mbknnccopgggeedhnloodppflepboggp'
+  buttons: [
+    { label: 'Chrome Web Store', url: 'https://chromewebstore.google.com/detail/mbknnccopgggeedhnloodppflepboggp' }
+  ]
 }
 
 const overlayImage = '/resources/blackSideOverlayGradient.png'
@@ -220,7 +222,6 @@ const handleClick = () => {
 @media (max-width: 768px) {
   .featured-project {
     height: 240px;
-    margin-bottom: 2.5rem;
   }
 
   .background-image {

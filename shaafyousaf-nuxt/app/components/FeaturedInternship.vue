@@ -27,7 +27,9 @@ const featuredJob = {
   ],
   technologies: ['.NET', 'C#', 'Blazor Framework', 'GraphQL (Hot Chocolate)', 'SQL Server', 'SSMS (SQL Server Management Studio)', 'LinQPad', 'Azure DevOps', 'REST APIs'],
   achievements: [],
-  link: 'https://github.com/ShaafPlayz'
+  // buttons: [
+  //   { label: 'GitHub', url: 'https://github.com/ShaafPlayz' }
+  // ]
 }
 
 const overlayImage = '/resources/blackSideOverlayGradient.png'

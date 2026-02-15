@@ -80,10 +80,10 @@ const props = withDefaults(defineProps<Props>(), {
       <!-- Architecture & Services Row -->
       <div class="two-column-grid">
         <!-- Architecture Diagram -->
-        <SystemArchitecture :server-connected="serverConnected" />
+        <!-- <SystemArchitecture :server-connected="serverConnected" /> -->
 
         <!-- Services Status -->
-        <ServicesStatus :server-connected="serverConnected" :services="services" />
+        <!-- <ServicesStatus :server-connected="serverConnected" :services="services" /> -->
       </div>
 
       <!-- Hardware Specs -->

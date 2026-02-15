@@ -9,8 +9,10 @@ const hackathons = [
     description: 'Automates the extraction of EHR (text) and X-ray (image) data, then maps it to CDISC-compliant SDTM formats for streamlined research, clinical trials, and regulatory use.',
     prize: 'Google & HBSU Best Healthcare AI Hack',
     tech: ['Python', 'Flask', 'Cohere LLM', 'YOLOv5', 'JavaScript'],
-    link: 'https://devpost.com/software/imagehr',
-    image: '/resources/openaitoz.png'
+    buttons: [
+      { label: 'DevPost', url: 'https://devpost.com/software/imagehr' }
+    ],
+    image: '/images/sample.gif'
   },
   {
     event: 'DaVinci Competition 2026 (Toronto)',
@@ -19,8 +21,10 @@ const hackathons = [
     description: 'A camera-based assistant engine that builds temporal context from live video, enabling real-time visual guidance, safety warnings, and step-by-step assistance for hands-on tasks.',
     prize: '1st Place Overall Winner',
     tech: ['Python', 'TypeScript', 'Vue', 'FastAPI', 'OpenCV', 'Anthropic', 'Whisper'],
-    link: 'https://devpost.com/software/idrak',
-    image: '/images/gffe.png'
+    buttons: [
+      { label: 'DevPost', url: 'https://devpost.com/software/idrak' }
+    ],
+    image: '/images/BannerLinkedin.png'
   }
 ]
 
@@ -33,9 +37,9 @@ const emit = defineEmits<{
   <div class="published-hackathons-section">
     <!-- Published Software Section -->
     <Motion
-      :initial="{ opacity: 0, filter: 'blur(8px)', y: 20 }"
-      :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-      :transition="{ duration: 0.5, delay: 0.1 }"
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.3, delay: 0.1 }"
     >
       <h2 class="section-title">Published Software</h2>
       <div class="featured-project-wrapper">
@@ -45,18 +49,18 @@ const emit = defineEmits<{
 
     <!-- Hackathon Wins Section -->
     <Motion
-      :initial="{ opacity: 0, filter: 'blur(8px)', y: 20 }"
-      :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-      :transition="{ duration: 0.5, delay: 0.3 }"
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.3, delay: 0.2 }"
     >
       <h2 class="section-title">Hackathon Wins</h2>
       <div class="hackathons-grid">
         <Motion
           v-for="(hack, index) in hackathons"
           :key="'hack-' + index"
-          :initial="{ opacity: 0, filter: 'blur(8px)', scale: 0.95 }"
-          :animate="{ opacity: 1, filter: 'blur(0px)', scale: 1 }"
-          :transition="{ duration: 0.4, delay: 0.4 + index * 0.08 }"
+          :initial="{ opacity: 0, y: 15 }"
+          :animate="{ opacity: 1, y: 0 }"
+          :transition="{ duration: 0.3, delay: 0.25 + index * 0.1 }"
           class="hackathon-card"
           @click="emit('item-click', hack)"
         >
@@ -99,7 +103,7 @@ const emit = defineEmits<{
 
 /* Featured Project Wrapper - Border radius applied here */
 .featured-project-wrapper {
-  border-radius: 16px;
+  border-radius: 30px;
   overflow: hidden;
   margin-bottom: 3rem;
 }
@@ -231,8 +235,7 @@ const emit = defineEmits<{
   }
 
   .featured-project-wrapper {
-    border-radius: 12px;
-    margin-bottom: 2.5rem;
+    border-radius: 30px;
   }
 
   .hackathons-grid {

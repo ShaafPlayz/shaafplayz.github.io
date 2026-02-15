@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Engineering ideas through code, design, and film' },
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/resources/logo.png' },
+        { rel: 'icon', type: 'image/png', href: '/resources/ShaafLabsLogo.png' },
         { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' },
       ],
     },

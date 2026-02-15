@@ -52,21 +52,15 @@ const closeDialog = () => {
 const slideVariants = computed(() => ({
   initial: {
     opacity: 0,
-    x: slideDirection.value * 100,
-    filter: 'blur(10px)',
-    scale: 0.95
+    x: slideDirection.value * 50
   },
   animate: {
     opacity: 1,
-    x: 0,
-    filter: 'blur(0px)',
-    scale: 1
+    x: 0
   },
   exit: {
     opacity: 0,
-    x: slideDirection.value * -100,
-    filter: 'blur(10px)',
-    scale: 0.95
+    x: slideDirection.value * -50
   }
 }))
 </script>
@@ -84,6 +78,7 @@ const slideVariants = computed(() => ({
       :category="selectedItem?.category || ''"
       :tech="selectedItem?.tech || selectedItem?.technologies || []"
       :link="selectedItem?.link || ''"
+      :buttons="selectedItem?.buttons || []"
       :prize="selectedItem?.prize || ''"
       :event="selectedItem?.event || ''"
       :company="selectedItem?.company || ''"
@@ -106,9 +101,9 @@ const slideVariants = computed(() => ({
 
     <!-- Hero Section -->
     <Motion
-      :initial="{ opacity: 0, filter: 'blur(8px)', y: -20 }"
-      :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-      :transition="{ duration: 0.5 }"
+      :initial="{ opacity: 0, y: -20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.4 }"
       class="hero-section"
     >
       <h1 class="hero-title">My Experience</h1>
@@ -121,9 +116,9 @@ const slideVariants = computed(() => ({
         <Motion
           v-for="(section, index) in sections"
           :key="section.id"
-          :initial="{ opacity: 0, scale: 0.8, filter: 'blur(5px)' }"
-          :animate="{ opacity: 1, scale: 1, filter: 'blur(0px)' }"
-          :transition="{ duration: 0.4, delay: index * 0.08 }"
+          :initial="{ opacity: 0, scale: 0.95 }"
+          :animate="{ opacity: 1, scale: 1 }"
+          :transition="{ duration: 0.3, delay: 0.1 + index * 0.05 }"
         >
           <button
             :class="['tab-pill', { active: activeSection === section.id }]"
@@ -141,7 +136,7 @@ const slideVariants = computed(() => ({
         :key="activeSection"
         :initial="slideVariants.initial"
         :animate="slideVariants.animate"
-        :transition="{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }"
+        :transition="{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }"
         class="content-section"
       >
         <InternshipsSection v-if="activeSection === 'internships'" @item-click="openDialog" />
@@ -190,7 +185,7 @@ const slideVariants = computed(() => ({
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  padding: 100px 2rem 2rem;
+  padding: 100px 4rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -210,6 +205,7 @@ const slideVariants = computed(() => ({
   color: #000000;
   margin-bottom: 0.5rem;
   letter-spacing: -1.5px;
+  padding-top: 20px;
 }
 
 .hero-description {
@@ -283,7 +279,7 @@ const slideVariants = computed(() => ({
 /* Content Wrapper */
 .content-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: auto;
   overflow: hidden;
   min-height: 400px;
 }
@@ -315,13 +311,20 @@ const slideVariants = computed(() => ({
   border-radius: 40px;
 }
 
+@media (max-width: 968px) {
+  .experience-page {
+    padding: 90px 2rem 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .experience-page {
-    padding: 90px 1.25rem 1.5rem;
+    padding: 90px 1.5rem 1.5rem;
+    padding-top: 150px;
   }
 
   .hero-section {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
   }
 
   .experience-logo {
@@ -340,13 +343,34 @@ const slideVariants = computed(() => ({
   }
 
   .tab-container {
-    gap: 0.4rem;
-    padding: 0.3rem;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tab-container::-webkit-scrollbar {
+    display: none;
   }
 
   .tab-pill {
     padding: 0.55rem 1.2rem;
     font-size: 0.85rem;
+    flex-shrink: 0;
   }
 
   .empty-section {
@@ -360,16 +384,18 @@ const slideVariants = computed(() => ({
 }
 
 @media (max-width: 480px) {
+  .experience-page {
+    padding-top: 150px;
+  }
+
   .tab-container {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    gap: 0.4rem;
   }
 
   .tab-pill {
-    width: 100%;
-    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
 }
 </style>

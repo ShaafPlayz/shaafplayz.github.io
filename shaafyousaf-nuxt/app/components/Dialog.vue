@@ -40,6 +40,10 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  buttons: {
+    type: Array as () => Array<{ label: string; url: string; icon?: string }>,
+    default: () => []
+  },
   // Extra fields for different types of content
   prize: {
     type: String,
@@ -167,40 +171,21 @@ const handleBackdropClick = (event: MouseEvent) => {
         class="dialog-backdrop"
         @click="handleBackdropClick"
       >
-        <Motion
-          :initial="{ opacity: 0, filter: 'blur(20px)' }"
-          :animate="{ opacity: 1, filter: 'blur(0px)' }"
-          :exit="{ opacity: 0, filter: 'blur(20px)' }"
-          :transition="{ 
-            duration: 0.6, 
-            ease: [0.16, 1, 0.3, 1]
-          }"
-        >
-          <div class="dialog-content" @click.stop>
-            <!-- Close Button - Floating -->
-            <Motion
-              :initial="{ opacity: 0, filter: 'blur(10px)' }"
-              :animate="{ opacity: 1, filter: 'blur(0px)' }"
-              :transition="{ duration: 0.5, delay: 0.3 }"
-            >
-              <button class="close-button" @click="closeDialog">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </Motion>
+        <div class="dialog-content" @click.stop>
+          <!-- Close Button - Floating -->
+          <button class="close-button" @click="closeDialog">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
 
-            <!-- Two Column Layout -->
-            <div class="dialog-grid">
-              <!-- LEFT COLUMN: Image Carousel -->
-              <Motion
-                v-if="imageArray.length > 0"
-                :initial="{ opacity: 0, filter: 'blur(20px)' }"
-                :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                :transition="{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }"
-                class="dialog-left"
-              >
+            <!-- Single Column Layout with Scrolling Content -->
+            <div class="dialog-scroll" ref="scrollContainer">
+              <!-- Image Carousel at Top -->
+              <div v-if="imageArray.length > 0" class="content-section carousel-section">
+              <!-- Image Carousel at Top -->
+              <div v-if="imageArray.length > 0" class="content-section carousel-section">
                 <div class="carousel-wrapper">
                   <!-- Image Display -->
                   <div class="carousel-display">
@@ -247,209 +232,140 @@ const handleBackdropClick = (event: MouseEvent) => {
                     {{ currentImageIndex + 1 }} / {{ imageArray.length }}
                   </div>
                 </div>
-              </Motion>
+              </div>
 
-              <!-- RIGHT COLUMN: Content -->
-              <div class="dialog-right">
-                <div class="dialog-scroll" ref="scrollContainer">
-                  <!-- Header Section -->
-                  <div class="content-section">
-                    <Motion
-                      :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                      :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                      :transition="{ duration: 0.5, delay: 0.2 }"
-                    >
-                      <h2 class="title">{{ title }}</h2>
-                      <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
-                    </Motion>
+              <!-- Header Section -->
+              <div class="content-section">
+                <h2 class="title">{{ title }}</h2>
+                <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
 
-                    <!-- Primary Badges -->
-                    <Motion
-                      v-if="prize || award || company || position || event"
-                      :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                      :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                      :transition="{ duration: 0.4, delay: 0.3 }"
-                      class="badges-primary"
-                    >
-                      <span v-if="prize" class="badge badge-prize">
-                        <i class="fas fa-trophy"></i>
-                        {{ prize }}
-                      </span>
-                      <span v-if="award && award !== prize" class="badge badge-award">
-                        <i class="fas fa-award"></i>
-                        {{ award }}
-                      </span>
-                      <span v-if="company" class="badge badge-company">{{ company }}</span>
-                      <span v-if="position" class="badge badge-position">{{ position }}</span>
-                      <span v-if="event" class="badge badge-event">{{ event }}</span>
-                    </Motion>
-
-                    <!-- Secondary Info Pills -->
-                    <Motion
-                      v-if="category || date || (type === 'experience' && (location || duration || employmentType)) || prizeAmount || status || demoType"
-                      :initial="{ opacity: 0, filter: 'blur(8px)' }"
-                      :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                      :transition="{ duration: 0.4, delay: 0.35 }"
-                      class="pills-container"
-                    >
-                      <span v-if="category" class="pill">{{ category }}</span>
-                      <span v-if="date" class="pill"><i class="fas fa-calendar"></i>{{ date }}</span>
-                      <span v-if="prizeAmount" class="pill pill-highlighted"><i class="fas fa-dollar-sign"></i>{{ prizeAmount }}</span>
-                      <span v-if="demoType" class="pill"><i class="fas fa-video"></i>{{ demoType }}</span>
-                      <span v-if="status" class="pill pill-highlighted"><i class="fas fa-rocket"></i>{{ status }}</span>
-                      <span v-if="type === 'experience' && employmentType" class="pill">{{ employmentType }}</span>
-                      <span v-if="type === 'experience' && duration" class="pill"><i class="fas fa-clock"></i>{{ duration }}</span>
-                      <span v-if="type === 'experience' && location" class="pill"><i class="fas fa-map-marker-alt"></i>{{ location }}</span>
-                    </Motion>
-                  </div>
-
-                  <!-- Stats Showcase -->
-                  <Motion
-                    v-if="stats && (stats.users || stats.installs || stats.productHuntRank)"
-                    :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 0.5, delay: 0.4 }"
-                    class="content-section"
-                  >
-                    <div class="stats-grid">
-                      <div v-if="stats.users" class="stat-card">
-                        <div class="stat-icon">
-                          <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                          <div class="stat-value">{{ stats.users }}</div>
-                          <div class="stat-label">Active Users</div>
-                        </div>
-                      </div>
-                      <div v-if="stats.installs" class="stat-card">
-                        <div class="stat-icon">
-                          <i class="fas fa-download"></i>
-                        </div>
-                        <div class="stat-content">
-                          <div class="stat-value">{{ stats.installs }}</div>
-                          <div class="stat-label">Total Installs</div>
-                        </div>
-                      </div>
-                      <div v-if="stats.productHuntRank" class="stat-card">
-                        <div class="stat-icon">
-                          <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="stat-content">
-                          <div class="stat-value">#{{ stats.productHuntRank }}</div>
-                          <div class="stat-label">Product Hunt</div>
-                        </div>
-                      </div>
-                    </div>
-                  </Motion>
-
-                  <!-- Tagline -->
-                  <Motion
-                    v-if="tagline"
-                    :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 0.5, delay: 0.45 }"
-                    class="content-section"
-                  >
-                    <div class="tagline-card">
-                      <i class="fas fa-quote-left"></i>
-                      <p>{{ tagline }}</p>
-                    </div>
-                  </Motion>
-
-                  <!-- Description -->
-                  <Motion
-                    v-if="description"
-                    :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 0.5, delay: 0.5 }"
-                    class="content-section"
-                  >
-                    <p class="description">{{ description }}</p>
-                  </Motion>
-
-                  <!-- Experience Sections -->
-                  <Motion
-                    v-if="type === 'experience' && responsibilities.length > 0"
-                    :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 0.5, delay: 0.55 }"
-                    class="content-section"
-                  >
-                    <div class="info-block">
-                      <h4 class="block-title">Key Responsibilities</h4>
-                      <ul class="info-list">
-                        <li v-for="(item, index) in responsibilities" :key="index">{{ item }}</li>
-                      </ul>
-                    </div>
-                  </Motion>
-
-                  <Motion
-                    v-if="type === 'experience' && achievements.length > 0"
-                    :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 0.5, delay: 0.6 }"
-                    class="content-section"
-                  >
-                    <div class="info-block">
-                      <h4 class="block-title">Key Achievements</h4>
-                      <ul class="info-list achievements">
-                        <li v-for="(item, index) in achievements" :key="index">{{ item }}</li>
-                      </ul>
-                    </div>
-                  </Motion>
-
-                  <!-- Tech Stack -->
-                  <Motion
-                    v-if="tech.length > 0"
-                    :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 0.5, delay: type === 'experience' ? 0.65 : 0.55 }"
-                    class="content-section"
-                  >
-                    <div class="tech-section">
-                      <h4 class="tech-heading">Technologies</h4>
-                      <div class="tech-grid">
-                        <span 
-                          v-for="(techItem, index) in tech" 
-                          :key="index" 
-                          class="tech-chip"
-                        >
-                          {{ techItem }}
-                        </span>
-                      </div>
-                    </div>
-                  </Motion>
-
-                  <!-- Spacer for footer -->
-                  <div class="footer-spacer"></div>
+                <!-- Primary Info as Plain Text -->
+                <div v-if="prize || award || company || position || event" class="meta-info">
+                  <span v-if="prize" class="meta-item meta-prize">🏆 {{ prize }}</span>
+                  <span v-if="award && award !== prize" class="meta-item meta-award">{{ award }}</span>
+                  <span v-if="company" class="meta-item">{{ company }}</span>
+                  <span v-if="position" class="meta-item">{{ position }}</span>
+                  <span v-if="event" class="meta-item">{{ event }}</span>
                 </div>
 
-                <!-- Floating Footer with Link -->
-                <Motion
-                  v-if="link"
-                  :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                  :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                  :transition="{ duration: 0.5, delay: 0.7 }"
-                  class="dialog-footer-floating"
+                <!-- Secondary Info as Plain Text -->
+                <div 
+                  v-if="category || date || (type === 'experience' && (location || duration || employmentType)) || prizeAmount || status || demoType"
+                  class="meta-info meta-secondary"
                 >
-                  <a 
-                    :href="link" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="action-button"
-                  >
-                    <span>View Project</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                </Motion>
+                  <span v-if="category" class="meta-item">{{ category }}</span>
+                  <span v-if="date" class="meta-item">{{ date }}</span>
+                  <span v-if="prizeAmount" class="meta-item meta-prize">{{ prizeAmount }}</span>
+                  <span v-if="demoType" class="meta-item">{{ demoType }}</span>
+                  <span v-if="status" class="meta-item meta-prize">{{ status }}</span>
+                  <span v-if="type === 'experience' && employmentType" class="meta-item">{{ employmentType }}</span>
+                  <span v-if="type === 'experience' && duration" class="meta-item">{{ duration }}</span>
+                  <span v-if="type === 'experience' && location" class="meta-item">{{ location }}</span>
+                </div>
               </div>
+
+              <!-- Stats Showcase -->
+              <div 
+                v-if="stats && (stats.users || stats.installs || stats.productHuntRank)"
+                class="content-section"
+              >
+                <div class="stats-grid">
+                  <div v-if="stats.users" class="stat-item">
+                    <div class="stat-value">{{ stats.users }}</div>
+                    <div class="stat-label">Active Users</div>
+                  </div>
+                  <div v-if="stats.installs" class="stat-item">
+                    <div class="stat-value">{{ stats.installs }}</div>
+                    <div class="stat-label">Total Installs</div>
+                  </div>
+                  <div v-if="stats.productHuntRank" class="stat-item">
+                    <div class="stat-value">#{{ stats.productHuntRank }}</div>
+                    <div class="stat-label">Product Hunt Rank</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tagline -->
+              <div v-if="tagline" class="content-section">
+                <p class="tagline">{{ tagline }}</p>
+              </div>
+
+              <!-- Description -->
+              <div v-if="description" class="content-section">
+                <p class="description">{{ description }}</p>
+              </div>
+
+              <!-- Experience Sections -->
+              <div v-if="type === 'experience' && responsibilities.length > 0" class="content-section">
+                <h4 class="section-heading">RESPONSIBILITIES</h4>
+                <ul class="info-list">
+                  <li v-for="(item, index) in responsibilities" :key="index">{{ item }}</li>
+                </ul>
+              </div>
+
+              <div v-if="type === 'experience' && achievements.length > 0" class="content-section">
+                <h4 class="section-heading">ACHIEVEMENTS</h4>
+                <ul class="info-list">
+                  <li v-for="(item, index) in achievements" :key="index">{{ item }}</li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack -->
+              <div v-if="tech.length > 0" class="content-section">
+                <h4 class="section-heading">TECHNOLOGIES</h4>
+                <div class="tech-list">
+                  <span 
+                    v-for="(techItem, index) in tech" 
+                    :key="index" 
+                    class="tech-item"
+                  >
+                    {{ techItem }}<span v-if="index < tech.length - 1" class="tech-separator"> · </span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Spacer for footer -->
+              <div class="footer-spacer"></div>
+            </div>
+
+            <!-- Floating Footer with Buttons -->
+            <div v-if="buttons.length > 0 || link" class="dialog-footer-floating">
+              <!-- New buttons array (if provided) -->
+              <div v-if="buttons.length > 0" class="action-buttons-container">
+                <a 
+                  v-for="(button, index) in buttons"
+                  :key="index"
+                  :href="button.url" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="action-button"
+                >
+                  <span>{{ button.label }}</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+              <!-- Fallback to single link (for backwards compatibility) -->
+              <a 
+                v-else-if="link"
+                :href="link" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="action-button"
+              >
+                <span>View Project</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
             </div>
           </div>
-        </Motion>
+        </div>
       </div>
     </Transition>
   </Teleport>
@@ -461,8 +377,7 @@ const handleBackdropClick = (event: MouseEvent) => {
 .dialog-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -472,25 +387,17 @@ const handleBackdropClick = (event: MouseEvent) => {
 
 /* ===== DIALOG CONTAINER ===== */
 .dialog-content {
-  background: linear-gradient(145deg, 
-    rgba(10, 10, 10, 0.98) 0%, 
-    rgba(20, 20, 20, 0.95) 50%,
-    rgba(15, 15, 15, 0.98) 100%
-  );
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 24px;
-  width: 1100px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 800px;
   max-width: 95vw;
-  height: 750px;
+  height: 90vh;
   max-height: 90vh;
   overflow: hidden;
   position: relative;
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 215, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== CLOSE BUTTON ===== */
@@ -500,53 +407,73 @@ const handleBackdropClick = (event: MouseEvent) => {
   right: 1.5rem;
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  color: #ffd700;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   z-index: 200;
 }
 
 .close-button:hover {
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #000;
-  border-color: transparent;
-  transform: scale(1.05) rotate(90deg);
-  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* ===== TWO COLUMN GRID ===== */
-.dialog-grid {
-  display: grid;
-  grid-template-columns: 45% 55%;
-  height: 100%;
-  overflow: hidden;
+/* ===== SCROLLING CONTENT ===== */
+.dialog-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2.5rem;
+  scroll-behavior: smooth;
 }
 
-/* ===== LEFT COLUMN: IMAGE CAROUSEL ===== */
-.dialog-left {
-  position: relative;
-  background: #000;
-  border-right: 1px solid rgba(255, 215, 0, 0.1);
-  overflow: hidden;
+/* Custom Scrollbar */
+.dialog-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dialog-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dialog-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.dialog-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== CAROUSEL SECTION ===== */
+.carousel-section {
+  margin-bottom: 2rem;
+}
+
+/* ===== CAROUSEL SECTION ===== */
+.carousel-section {
+  margin-bottom: 2rem;
 }
 
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .carousel-display {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
 
@@ -554,7 +481,7 @@ const handleBackdropClick = (event: MouseEvent) => {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.5s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -568,129 +495,84 @@ const handleBackdropClick = (event: MouseEvent) => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.95) contrast(1.05);
 }
 
 /* Carousel Controls */
 .carousel-controls {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(15px) saturate(180%);
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
   z-index: 10;
 }
 
 .carousel-btn {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  background: rgba(255, 215, 0, 0.1);
-  color: #ffd700;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #ffffff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .carousel-btn:hover {
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
-  color: #000;
-  border-color: transparent;
-  transform: scale(1.1);
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .carousel-dots {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   align-items: center;
 }
 
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.4);
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   padding: 0;
 }
 
 .dot:hover {
-  background: rgba(255, 215, 0, 0.6);
-  transform: scale(1.3);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .dot.active {
-  width: 28px;
+  width: 20px;
   border-radius: 10px;
-  background: linear-gradient(90deg, #ffd700, #ffed4e);
-  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+  background: #ffffff;
 }
 
 /* Image Counter Badge */
 .image-badge {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   font-family: 'Nexa', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: #ffd700;
-  letter-spacing: 0.5px;
+  color: #ffffff;
   z-index: 10;
-}
-
-/* ===== RIGHT COLUMN: CONTENT ===== */
-.dialog-right {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
-
-.dialog-scroll {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 2.5rem 2.5rem 1rem;
-  scroll-behavior: smooth;
-}
-
-/* Custom Scrollbar */
-.dialog-scroll::-webkit-scrollbar {
-  width: 8px;
-}
-
-.dialog-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.dialog-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
-  border-radius: 10px;
-  transition: background 0.3s;
-}
-
-.dialog-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0.4));
 }
 
 /* Content Sections */
@@ -705,22 +587,21 @@ const handleBackdropClick = (event: MouseEvent) => {
 /* ===== TYPOGRAPHY ===== */
 .title {
   font-family: 'Nexa', sans-serif;
-  font-weight: 900;
-  font-size: 2.25rem;
-  line-height: 1.1;
-  color: #fff;
-  margin: 0 0 0.75rem 0;
-  letter-spacing: -0.03em;
-  text-shadow: 0 2px 10px rgba(255, 215, 0, 0.1);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
   font-family: 'Nexa', sans-serif;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 0 1.25rem 0;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 1.5rem 0;
 }
 
 .description {
@@ -728,139 +609,67 @@ const handleBackdropClick = (event: MouseEvent) => {
   font-weight: 300;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
 }
 
-/* ===== BADGES & PILLS ===== */
-.badges-primary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.1rem;
-  border-radius: 10px;
+.section-heading {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
-  font-size: 0.9rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 1rem 0;
 }
 
-.badge i {
+.tagline {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ===== META INFO (Simple Text) ===== */
+.meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-family: 'Nexa', sans-serif;
+}
+
+.meta-item {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.meta-prize {
+  color: rgba(255, 215, 0, 0.9);
+  font-weight: 500;
+}
+
+.meta-secondary {
   font-size: 0.85rem;
 }
 
-.badge-prize,
-.badge-award {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 140, 0, 0.2));
-  color: #ffd700;
-  border-color: rgba(255, 215, 0, 0.4);
-}
-
-.badge-prize:hover,
-.badge-award:hover {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(255, 140, 0, 0.3));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-}
-
-.badge-company,
-.badge-position,
-.badge-event {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.95);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.badge-company:hover,
-.badge-position:hover,
-.badge-event:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
-}
-
-.pills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.85rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.75);
-  transition: all 0.3s ease;
-}
-
-.pill i {
-  font-size: 0.7rem;
-  opacity: 0.8;
-}
-
-.pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.pill-highlighted {
-  color: rgba(255, 215, 0, 0.95);
-  border-color: rgba(255, 215, 0, 0.2);
-  background: rgba(255, 215, 0, 0.08);
+.meta-secondary .meta-item {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
 }
 
 /* ===== STATS SHOWCASE ===== */
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-}
-
-.stat-card {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 140, 0, 0.05));
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  border-radius: 14px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.stat-card:hover {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.1));
-  border-color: rgba(255, 215, 0, 0.3);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
-}
-
-.stat-icon {
-  flex-shrink: 0;
-}
-
-.stat-icon i {
-  font-size: 1.75rem;
-  color: #ffd700;
-  filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.4));
-}
-
-.stat-content {
+.stat-item {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -868,145 +677,65 @@ const handleBackdropClick = (event: MouseEvent) => {
 
 .stat-value {
   font-family: 'Nexa', sans-serif;
-  font-weight: 900;
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.75rem;
   line-height: 1;
-  color: #fff;
+  color: #ffffff;
   letter-spacing: -0.02em;
 }
 
 .stat-label {
   font-family: 'Nexa', sans-serif;
-  font-weight: 500;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* ===== TAGLINE CARD ===== */
-.tagline-card {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 140, 0, 0.08));
-  border-left: 3px solid #ffd700;
-  border-radius: 12px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.tagline-card i {
-  font-size: 1rem;
-  color: rgba(255, 215, 0, 0.8);
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-}
-
-.tagline-card p {
-  font-family: 'Nexa', sans-serif;
   font-weight: 400;
-  font-size: 0.95rem;
-  font-style: italic;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-}
-
-/* ===== INFO BLOCKS (Experience) ===== */
-.info-block {
-  padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-}
-
-.block-title {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #ffd700;
-  margin: 0 0 1rem 0;
-  padding-left: 0.75rem;
-  border-left: 3px solid #ffd700;
+  color: rgba(255, 255, 255, 0.5);
 }
 
+/* ===== INFO LISTS (Experience) ===== */
 .info-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
-  column-gap: 1.25rem;
 }
 
 .info-list li {
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  padding-left: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 1.25rem;
   position: relative;
 }
 
 .info-list li::before {
-  content: '▸';
+  content: '•';
   position: absolute;
   left: 0;
-  color: #ffd700;
-  font-weight: 700;
-}
-
-.info-list.achievements li::before {
-  content: '✓';
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
 }
 
 /* ===== TECH STACK ===== */
-.tech-section {
-  padding: 1.25rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-}
-
-.tech-heading {
+.tech-list {
   font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: rgba(255, 215, 0, 0.85);
-  margin: 0 0 0.85rem 0;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.tech-item {
+  display: inline;
 }
 
-.tech-chip {
-  padding: 0.4rem 0.85rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 7px;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
-  transition: all 0.3s ease;
-}
-
-.tech-chip:hover {
-  background: rgba(255, 215, 0, 0.12);
-  border-color: rgba(255, 215, 0, 0.3);
-  color: #ffd700;
-  transform: translateY(-2px);
+.tech-separator {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 /* ===== FOOTER ===== */
@@ -1026,47 +755,36 @@ const handleBackdropClick = (event: MouseEvent) => {
   z-index: 20;
 }
 
+.action-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
 .action-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.85rem 2rem;
-  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
   font-family: 'Nexa', sans-serif;
-  font-weight: 800;
-  font-size: 0.95rem;
-  color: #000;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #000000;
   text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.35);
-  position: relative;
-  overflow: hidden;
-}
-
-.action-button::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #ffed4e, #ffd700);
-  opacity: 0;
-  transition: opacity 0.4s;
+  transition: all 0.3s ease;
 }
 
 .action-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
 }
 
-.action-button:hover::before {
-  opacity: 1;
-}
-
-.action-button span,
 .action-button svg {
-  position: relative;
-  z-index: 1;
+  opacity: 0.8;
 }
 
 /* ===== TRANSITIONS ===== */

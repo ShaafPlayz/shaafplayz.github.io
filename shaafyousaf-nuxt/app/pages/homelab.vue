@@ -310,16 +310,16 @@ onMounted(() => {
           :class="{ active: activeTab === 'overview' }"
           @click="activeTab = 'overview'"
         >
-          <Icon name="heroicons:document-text-20-solid" />
-          <span>Project Overview</span>
+          <Icon name="heroicons:document-text-20-solid" class="tab-icon" />
+          <span class="tab-label">Project Overview</span>
         </button>
         <button 
           class="tab-button" 
           :class="{ active: activeTab === 'statistics' }"
           @click="activeTab = 'statistics'"
         >
-          <Icon name="heroicons:chart-bar-square-20-solid" />
-          <span>Live Statistics</span>
+          <Icon name="heroicons:chart-bar-square-20-solid" class="tab-icon" />
+          <span class="tab-label">Live Statistics</span>
         </button>
       </div>
     </div>
@@ -353,12 +353,13 @@ onMounted(() => {
 
 /* Tab Navigation */
 .tab-navigation-container {
-  background: #000000;
+  background: rgba(0, 0, 0, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
+  z-index: 110;
+  backdrop-filter: blur(20px);
+  padding: 0.5rem 0;
 }
 
 .tab-navigation {
@@ -386,10 +387,15 @@ onMounted(() => {
   letter-spacing: 0.5px;
 }
 
-.tab-button svg {
+.tab-button .tab-icon,
+.tab-button :deep(.tab-icon),
+.tab-button :deep(.tab-icon svg) {
   width: 20px;
   height: 20px;
   transition: all 0.3s ease;
+  fill: currentColor;
+  flex-shrink: 0;
+  display: block;
 }
 
 .tab-button:hover {
@@ -435,18 +441,24 @@ onMounted(() => {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .tab-navigation-container {
+    padding: 0.75rem 0;
+  }
+
   .tab-navigation {
     padding: 0 1.5rem;
   }
 
   .tab-button {
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     font-size: 0.85rem;
   }
 
-  .tab-button svg {
-    width: 18px;
-    height: 18px;
+  .tab-button .tab-icon,
+  .tab-button :deep(.tab-icon),
+  .tab-button :deep(.tab-icon svg) {
+    width: 20px;
+    height: 20px;
   }
 
   .tab-content {
@@ -455,18 +467,45 @@ onMounted(() => {
 }
 
 @media (max-width: 480px) {
-  .tab-button {
-    padding: 1rem 1rem;
-    font-size: 0.8rem;
+  .tab-navigation-container {
+    padding: 1rem 0;
+    min-height: 70px;
   }
 
-  .tab-button span {
+  .tab-navigation {
+    justify-content: center;
+    gap: 0.5rem;
+    height: 100%;
+  }
+
+  .tab-button {
+    padding: 1.25rem 1rem;
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+    height: 100%;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .tab-button.active {
+    color: #ffffff;
+  }
+  
+  .tab-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .tab-button .tab-icon {
     display: none;
   }
-
-  .tab-button svg {
-    width: 22px;
-    height: 22px;
+  
+  .tab-button .tab-label {
+    display: block;
+    text-align: center;
+    line-height: 1.2;
   }
 }
 </style>

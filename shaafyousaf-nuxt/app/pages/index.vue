@@ -4,6 +4,7 @@
 <template>
   <div>
     <Hero />
+    
      <NuxtLink to="/experience?tab=published" class="clickable-section">
       <FeaturedProject />
     </NuxtLink>
@@ -18,7 +19,8 @@
    
     <NuxtLink to="/experience" class="clickable-section">
       <FeaturedInternship />
-    </NuxtLink>
+    </NuxtLink> 
+    <SkillsSection />
   </div>
 </template>
 

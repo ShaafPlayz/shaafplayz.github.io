@@ -8,7 +8,9 @@ const guiProjects = [
     category: 'Render Deployed',
     image: '/resources/GLOW.png',
     tech: ['JavaScript', 'Next.js Frontend', 'Express Backend', 'MongoDB', 'GitHub Actions', 'Docker', 'Render'],
-    link: 'https://glow-frontend-v4-0-0.onrender.com/'
+    buttons: [
+      { label: 'Live Demo', url: 'https://glow-frontend-v4-0-0.onrender.com/' }
+    ]
   },
   {
     title: 'Planetze',
@@ -16,7 +18,9 @@ const guiProjects = [
     category: 'Android App',
     image: '/images/pla2.jpeg',
     tech: ['Java', 'Android Studio'],
-    link: 'https://github.com/KrishnaManamohan/B07FinalProject'
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/KrishnaManamohan/B07FinalProject' }
+    ]
   },
   {
     title: 'Zarab Collections',
@@ -24,7 +28,9 @@ const guiProjects = [
     category: 'VPS Deployed',
     image: '/resources/Zarab.png',
     tech: ['Docker', 'Digital Ocean\'s (Droplet)', 'Next.js', 'SupaBase', 'PostgreSQL', 'GitHub Actions', 'TypeScript'],
-    link: 'https://github.com/ShaafPlayz/farah-faiza'
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/ShaafPlayz/farah-faiza' }
+    ]
   },
   {
     title: 'Parsea',
@@ -32,7 +38,9 @@ const guiProjects = [
     category: 'Windows/MacOS App',
     image: '/resources/showcase.gif',
     tech: ['Electron', 'Cohere LLM', 'IMAP Protocol', 'JavaScript'],
-    link: 'https://github.com/ShaafPlayz/Parsea.git'
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/ShaafPlayz/Parsea.git' }
+    ]
   }
 ]
 
@@ -43,7 +51,9 @@ const cliProjects = [
     category: 'OpenAI to Z Challenge',
     image: '/resources/openaitoz.png',
     tech: ['Jupyter Notebook', 'OpenAI LLMs', 'Google Earth Engine', 'Python'],
-    link: 'https://github.com/ShaafPlayz/OpenAI-to-Z-challenge.git'
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/ShaafPlayz/OpenAI-to-Z-challenge.git' }
+    ]
   },
   {
     title: 'Halo Pixel Edition',
@@ -51,7 +61,9 @@ const cliProjects = [
     category: 'RICS MIPS GAME',
     image: '/images/gffe.png',
     tech: ['Assembly', 'MARS MIPS Simulator'],
-    link: 'https://github.com/ShaafPlayz/Halo-Pixel-Edition'
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/ShaafPlayz/Halo-Pixel-Edition' }
+    ]
   },
   {
     title: 'Hawkeye',
@@ -59,7 +71,9 @@ const cliProjects = [
     category: 'Command Line Tool',
     image: '/images/hawkeye.png',
     tech: ['C', 'UNIX'],
-    link: 'https://github.com/ShaafPlayz/System-Monitoring-Tool-Unix'
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/ShaafPlayz/System-Monitoring-Tool-Unix' }
+    ]
   }
 ]
 
@@ -76,9 +90,9 @@ const emit = defineEmits<{
       <Motion
         v-for="(project, index) in guiProjects"
         :key="'gui-' + index"
-        :initial="{ opacity: 0, filter: 'blur(8px)', scale: 0.95 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', scale: 1 }"
-        :transition="{ duration: 0.4, delay: 0.1 + index * 0.06 }"
+        :initial="{ opacity: 0, y: 15 }"
+        :animate="{ opacity: 1, y: 0 }"
+        :transition="{ duration: 0.3, delay: 0.05 + index * 0.08 }"
         class="project-card"
         @click="emit('item-click', project)"
       >
@@ -100,9 +114,9 @@ const emit = defineEmits<{
       <Motion
         v-for="(project, index) in cliProjects"
         :key="'cli-' + index"
-        :initial="{ opacity: 0, filter: 'blur(8px)', scale: 0.95 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', scale: 1 }"
-        :transition="{ duration: 0.4, delay: 0.35 + index * 0.06 }"
+        :initial="{ opacity: 0, y: 15 }"
+        :animate="{ opacity: 1, y: 0 }"
+        :transition="{ duration: 0.3, delay: 0.37 + index * 0.08 }"
         class="project-card"
         @click="emit('item-click', project)"
       >

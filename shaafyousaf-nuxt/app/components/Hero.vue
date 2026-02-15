@@ -18,7 +18,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
             <div class="hero-text-container">
                 <Motion tag="h1" class="hero-title" :initial="{ opacity: 0, filter: 'blur(10px)' }"
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }">
+                    :transition="{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }">
                     <span class="title-line">Building reliable</span>
                     <span class="title-line">software and systems.</span>
                     <!-- <span class="title-line">By</span>
@@ -26,21 +26,21 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                 </Motion>
                 <Motion tag="p" class="hero-description" :initial="{ opacity: 0, filter: 'blur(8px)' }"
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }">
+                    :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
                     I’m Shaaf Yousaf, a senior at the University of Toronto in Computer Science (Software Engineering Coop Stream), building production-ready full-stack applications and backend systems.               
                 </Motion>
                 <Motion class="hero-tags" :initial="{ opacity: 0, filter: 'blur(8px)' }"
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }">
+                    :transition="{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }">
                     
                    <div class="tag">Junior Software Developer @ UTS (2025-2026)</div>
                     <div class="tag">2x Hackathon Winner</div>
                     <div class="tag">Building IDRAK</div>
-                    <div class="tag">Latest Published Software (+300 Install)</div>
+                    <div class="tag">Latest Published Software (+400 Install)</div>
                 </Motion>
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }">
+                    :transition="{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }">
                     <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="heroicons:document-text" class="btn-icon" />
                         CV

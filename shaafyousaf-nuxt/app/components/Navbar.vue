@@ -10,9 +10,12 @@ const route = useRoute()
 const isExperiencePage = computed(() => route.path === '/experience')
 
 const logoSrc = computed(() => {
-  return isExperiencePage.value 
-    ? '/images/shaafonlylabsfontlogoshortblack.png' 
-    : '/images/shaafonlylabsfontlogoshort.png'
+  // On experience page, always use black logo
+  if (isExperiencePage.value) {
+    return '/images/shaafonlylabsfontlogoshortblack.png'
+  }
+  // On other pages, always use white logo
+  return '/images/shaafonlylabsfontlogoshort.png'
 })
 
 const toggleMobileMenu = () => {
@@ -40,9 +43,9 @@ onMounted(() => {
     tag="nav"
     class="navbar"
     :class="{ 'scrolled': isScrolled, 'experience-page': isExperiencePage }"
-    :initial="{ y: -100, opacity: 0 }"
-    :animate="{ y: 0, opacity: 1 }"
-    :transition="{ duration: 0.6, ease: 'easeOut' }"
+    :initial="{ opacity: 0 }"
+    :animate="{ opacity: 1 }"
+    :transition="{ duration: 0.3, ease: 'easeOut' }"
   >
     <div class="navbar-container">
       <NuxtLink to="/" class="logo-link">
@@ -100,8 +103,9 @@ onMounted(() => {
 
 .navbar.scrolled {
   padding: 1rem 4rem;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-container {
@@ -141,17 +145,19 @@ onMounted(() => {
   text-transform: uppercase;
 }
 
-/* Black links on experience page */
+/* Black links on experience page when not scrolled */
 .navbar.experience-page .nav-link {
   color: #000000;
 }
 
-.navbar.experience-page.scrolled .nav-link {
+/* White links when scrolled (on any page) for blurred background */
+.navbar.scrolled .nav-link {
   color: var(--color-white);
 }
 
-.navbar.experience-page.scrolled {
-  background: rgba(0, 0, 0, 0.8);
+/* Keep black links on experience page even when scrolled */
+.navbar.experience-page.scrolled .nav-link {
+  color: #000000;
 }
 
 .nav-link:hover, .nav-link.router-link-active {
@@ -173,8 +179,13 @@ onMounted(() => {
   color: #000000;
 }
 
-.navbar.experience-page.scrolled .mobile-menu-button {
+.navbar.scrolled .mobile-menu-button {
   color: var(--color-white);
+}
+
+/* Keep black mobile button on experience page when scrolled */
+.navbar.experience-page.scrolled .mobile-menu-button {
+  color: #000000;
 }
 
 .menu-icon {
@@ -187,17 +198,16 @@ onMounted(() => {
   position: absolute;
   top: 100%;
   right: 0;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   border-radius: 0 0 0 16px;
   padding: 1rem;
   min-width: 180px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.experience-page .mobile-menu {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-links {
@@ -238,17 +248,15 @@ onMounted(() => {
 /* Mobile Menu Transitions */
 .mobile-menu-enter-active,
 .mobile-menu-leave-active {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s ease;
 }
 
 .mobile-menu-enter-from {
   opacity: 0;
-  transform: translateY(-10px) scale(0.95);
 }
 
 .mobile-menu-leave-to {
   opacity: 0;
-  transform: translateY(-10px) scale(0.95);
 }
 
 @media (max-width: 768px) {
