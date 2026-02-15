@@ -33,7 +33,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }">
                     
-                   <div class="tag">Junior Software Developer @ UTS (2025-2026)</div>
+                   <div class="tag">Junior SWE @ UTS (2025-2026)</div>
                     <div class="tag">2x Hackathon Winner</div>
                     <div class="tag">Building IDRAK</div>
                     <div class="tag">Latest Published Software (+400 Install)</div>
@@ -42,20 +42,21 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }">
                     <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
-                        <Icon name="heroicons:document-text" class="btn-icon" />
-                        CV
+                        
+                        View CV
+                        <Icon name="heroicons:arrow-up-right" class="btn-icon" />
                     </a>
-                    <a href="https://github.com/shaafplayz" target="_blank" rel="noopener" class="btn btn-white">
+                    <!-- <a href="https://github.com/shaafplayz" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="mdi:github" class="btn-icon" />
                         GitHub
-                    </a>
+                    </a> -->
                     <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="mdi:linkedin" class="btn-icon" />
                         LinkedIn
-                    </a>
+                    </a>    
                     <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="btn btn-white">
                         <Icon name="heroicons:envelope" class="btn-icon" />
-                        Email
+                        Email Me
                     </a>
                 </Motion>
             </div>
@@ -142,6 +143,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
+    cursor: default;
 }
 
 .title-line {
@@ -157,6 +159,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     color: var(--color-white);
     margin-bottom: 1rem;
     max-width: 800px;
+    cursor: default;
 }
 
 .hero-buttons {
@@ -183,6 +186,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     border: none !important;
     box-shadow: none !important;
     overflow: visible !important;
+    text-transform: unset;
 }
 
 .btn::before,
@@ -198,7 +202,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 }
 
 .btn-white {
-    background-color: #ffffff2e;
+    background-color: #00000063;
     color: white;
     border: none !important;
     box-shadow: none !important;
@@ -211,7 +215,15 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 }
 
 .cv {
-    /* background-color: rgba(255 215 0 / 37%) !important; */
+    background-color: white !important;
+    
+    color: black !important;
+    transition: 0.5s;
+}
+
+.cv:hover {
+    background-color: #ffd700 !important;
+    transition: 0.5s;
 }
 
 .btn-white:hover {
@@ -229,16 +241,16 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 
 .hero-tags {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: auto;
     /* Push to bottom */
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     flex-wrap: wrap;
     max-width: 700px;
 }
 
-.tag {
-    background-color: #ffffff29;
+/* .tag {
+    background-color: #00000063;
     color: #ffffff;
     padding: 0.5rem 1.25rem;
     border-radius: 50px;
@@ -250,7 +262,30 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     display: flex;
     align-items: center;
     backdrop-filter: blur(10px);
+} */
+
+.tag {
+    cursor: default;
+    background: linear-gradient(
+        135deg,
+        #fff9d6,
+        #ffffff,
+        #f3e7b3
+    );
+    color: #111111;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.18);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-family: 'Nexa', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
 }
+
+
 
 .scroll-indicator {
     position: absolute;
@@ -279,7 +314,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     }
 
     .title-line {
-        font-size: clamp(3.5rem, 10vw, 5rem);
+        font-size: clamp(3rem, 8vw, 4rem);
     }
 }
 
@@ -294,16 +329,16 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     }
 
     .gradient-overlay {
-        transform: rotate(180deg);
-        width: 100%;
+        transform: rotate(-90deg);
+        width: 100vh;
         height: 100%;
         object-fit: cover;
     }
 
     .hero-content {
-        padding: 0 1.5rem;
-        justify-content: center;
+        justify-content: flex-end;
         padding-top: 5rem;
+        padding-bottom: 7rem;
     }
 
     .hero-text-container {
@@ -320,7 +355,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     }
 
     .title-line {
-        font-size: clamp(2.5rem, 15vw, 4rem);
+        font-size: clamp(2.5rem, 8vw, 3rem);
     }
 
     .hero-description {
@@ -345,9 +380,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
     }
 
     .hero-tags {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        gap: 0.75rem;
+        gap: 0.5rem;
         max-width: 100%;
     }
 

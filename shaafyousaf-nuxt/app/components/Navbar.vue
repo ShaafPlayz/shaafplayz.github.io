@@ -39,23 +39,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <Motion
-    tag="nav"
-    class="navbar"
-    :class="{ 'scrolled': isScrolled, 'experience-page': isExperiencePage }"
-    :initial="{ opacity: 0 }"
-    :animate="{ opacity: 1 }"
-    :transition="{ duration: 0.3, ease: 'easeOut' }"
-  >
+  <Motion tag="nav" class="navbar" :class="{ 'scrolled': isScrolled, 'experience-page': isExperiencePage }"
+    :initial="{ opacity: 0 }" :animate="{ opacity: 1 }" :transition="{ duration: 0.3, ease: 'easeOut' }">
     <div class="navbar-container">
       <NuxtLink to="/" class="logo-link">
-        <img 
-          :src="logoSrc" 
-          alt="Shaaf Logo" 
-          class="logo"
-        />
+        <img :src="logoSrc" alt="Shaaf Logo" class="logo" />
       </NuxtLink>
-      
+
+
+
       <!-- Desktop Nav Links -->
       <div class="nav-links">
         <NuxtLink to="/" class="nav-link">HOME</NuxtLink>
@@ -65,11 +57,7 @@ onMounted(() => {
       </div>
 
       <!-- Mobile Menu Button -->
-      <button 
-        class="mobile-menu-button" 
-        @click="toggleMobileMenu"
-        aria-label="Toggle menu"
-      >
+      <button class="mobile-menu-button" @click="toggleMobileMenu" aria-label="Toggle menu">
         <Icon v-if="!isMobileMenuOpen" name="heroicons:bars-3" class="menu-icon" />
         <Icon v-else name="heroicons:x-mark" class="menu-icon" />
       </button>
@@ -160,7 +148,8 @@ onMounted(() => {
   color: #000000;
 }
 
-.nav-link:hover, .nav-link.router-link-active {
+.nav-link:hover,
+.nav-link.router-link-active {
   opacity: 1;
 }
 

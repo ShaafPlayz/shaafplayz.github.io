@@ -19,6 +19,12 @@ const contactMethods = [
     value: 'linkedin.com/in/shaafyousaf',
     link: 'https://linkedin.com/in/shaafyousaf',
     icon: 'mdi:linkedin'
+  },
+  {
+    type: 'Download CV',
+    value: '',
+    link: 'https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view',
+    icon: 'heroicons:arrow-down-on-square'
   }
 ]
 
@@ -77,7 +83,6 @@ const socialLinks = [
         :transition="{ duration: 0.6, delay: 0.3 }"
         class="contact-section"
       >
-        <h2 class="section-title">Contact</h2>
         <div class="contact-methods">
           <Motion
             v-for="(method, index) in contactMethods"
@@ -226,8 +231,9 @@ const socialLinks = [
   color: #D4AF37;
   margin-bottom: 1.5rem;
   text-align: left;
+  width: 100%;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: unset;
 }
 
 .contact-methods {
@@ -265,7 +271,7 @@ const socialLinks = [
 }
 
 .contact-icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
   flex-shrink: 0;

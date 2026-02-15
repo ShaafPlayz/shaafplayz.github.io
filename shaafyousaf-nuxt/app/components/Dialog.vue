@@ -244,7 +244,7 @@ const handleBackdropClick = (event: MouseEvent) => {
                   <span v-if="prize" class="meta-item meta-prize">🏆 {{ prize }}</span>
                   <span v-if="award && award !== prize" class="meta-item meta-award">{{ award }}</span>
                   <span v-if="company" class="meta-item">{{ company }}</span>
-                  <span v-if="position" class="meta-item">{{ position }}</span>
+                  <!-- <span v-if="position" class="meta-item">{{ position }}</span> -->
                   <span v-if="event" class="meta-item">{{ event }}</span>
                 </div>
 
@@ -802,7 +802,7 @@ const handleBackdropClick = (event: MouseEvent) => {
 @media (max-width: 1024px) {
   .dialog-content {
     width: 90vw;
-    height: 85vh;
+    height: 80vh;
   }
 
   .dialog-grid {
@@ -829,7 +829,7 @@ const handleBackdropClick = (event: MouseEvent) => {
 
   .dialog-content {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     max-height: 100vh;
     border-radius: 0;
   }
