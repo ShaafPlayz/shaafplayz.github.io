@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
 
-const languages = ['C#', 'C', 'Python', 'TypeScript/JavaScript', 'Java', 'SQL']
+const languages = ['C#', 'C', 'Python', 'TypeScript/JavaScript', 'SQL', 'Shell']
 
 const frameworksAndTools = [
   '.NET',
   'Blazor',
   'GraphQL',
   'Nginx',
-  'EF Core',
+  'SSMS',
+  'Ubuntu Server',
+  'MudBlazor',
+  'Motion.Dev',
+  'Entity Framework Core',
   'Vue',
   'Nuxt: Vue Framework',
   'Flask',
+  'Azure DevOps',
+  'Wireshark',
+  'Cloudflare',
   'Docker',
   'SQL Server',
   'MongoDB'
@@ -134,12 +141,13 @@ const frameworksAndTools = [
 }
 
 .section-title {
+     text-transform: unset;
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
   color: var(--color-white);
   margin-bottom: 4rem;
-  text-align: left;
+  text-align: center;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }

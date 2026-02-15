@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
 
-const backgroundImage = '/images/_DSC4379.JPG'
+const backgroundImage = '/images/_DSC4379_compressed.JPG'
 const overlayImage = '/resources/blackSideOverlayGradient.png'
 </script>
 
@@ -41,7 +41,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :animate="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }">
-                    <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white">
+                    <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
                         <Icon name="heroicons:document-text" class="btn-icon" />
                         CV
                     </a>
@@ -208,6 +208,10 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 .btn-white::after {
     display: none !important;
     content: none !important;
+}
+
+.cv {
+    background-color: rgba(255 215 0 / 37%) !important;
 }
 
 .btn-white:hover {

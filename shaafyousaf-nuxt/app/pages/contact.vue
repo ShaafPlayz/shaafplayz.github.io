@@ -65,6 +65,9 @@ const socialLinks = [
         <p class="page-description">
           I'm always open to discussing new projects, opportunities, or just having a chat about technology.
         </p>
+        <p class="hero-info">
+          Based in Toronto, ON • Available for full-time Coop opportunities starting May 2026
+        </p>
       </Motion>
 
       <!-- Contact Methods Section -->
@@ -96,7 +99,7 @@ const socialLinks = [
       </Motion>
 
       <!-- Social Links Section -->
-      <Motion
+      <!-- <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
         :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.6, delay: 0.5 }"
@@ -121,19 +124,7 @@ const socialLinks = [
             </a>
           </Motion>
         </div>
-      </Motion>
-
-      <!-- Additional Info -->
-      <Motion
-        :initial="{ opacity: 0, y: 20 }"
-        :animate="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.7 }"
-        class="additional-info"
-      >
-        <p class="info-text">
-          Based in Toronto, ON • Available for full-time opportunities starting May 2026
-        </p>
-      </Motion>
+      </Motion> -->
     </Motion>
   </div>
 </template>
@@ -142,7 +133,6 @@ const socialLinks = [
 .contact-page {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   background: var(--color-black);
   padding: 6rem 0 3rem;
   overflow: hidden;
@@ -204,6 +194,17 @@ const socialLinks = [
   font-weight: 300;
   font-size: clamp(1rem, 2vw, 1.2rem);
   color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  max-width: 700px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.hero-info {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  color: #D4AF37;
   margin-bottom: 2.5rem;
   max-width: 700px;
   line-height: 1.5;
@@ -222,7 +223,7 @@ const socialLinks = [
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #D4AF37;
   margin-bottom: 1.5rem;
   text-align: left;
   letter-spacing: 0.05em;
@@ -257,10 +258,10 @@ const socialLinks = [
 }
 
 .contact-link:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: #D4AF37;
+  background: rgba(212, 175, 55, 0.05);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.2);
 }
 
 .contact-icon {
@@ -271,7 +272,7 @@ const socialLinks = [
 }
 
 .contact-link:hover .contact-icon {
-  color: var(--color-white);
+  color: #D4AF37;
   transform: scale(1.1);
 }
 
@@ -324,8 +325,8 @@ const socialLinks = [
 }
 
 .social-link:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.02);
+  border-color: #D4AF37;
+  background: rgba(212, 175, 55, 0.03);
   transform: translateY(-2px);
 }
 
@@ -337,7 +338,7 @@ const socialLinks = [
 }
 
 .social-link:hover .social-icon {
-  color: var(--color-white);
+  color: #D4AF37;
 }
 
 .social-info {
@@ -358,20 +359,6 @@ const socialLinks = [
   font-weight: 300;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
-}
-
-.additional-info {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.info-text {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 300;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.5);
-  text-align: center;
 }
 
 /* Responsive Design */
