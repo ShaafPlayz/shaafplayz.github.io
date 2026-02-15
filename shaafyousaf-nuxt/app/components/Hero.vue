@@ -211,7 +211,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 }
 
 .cv {
-    background-color: rgba(255 215 0 / 37%) !important;
+    /* background-color: rgba(255 215 0 / 37%) !important; */
 }
 
 .btn-white:hover {
