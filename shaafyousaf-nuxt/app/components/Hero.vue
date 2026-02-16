@@ -319,7 +319,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 
 @media (max-width: 768px) {
     .hero-section {
-        height: 100dvh;
+        height: 100vh;
         /* Use dynamic viewport height for mobile */
     }
 
