@@ -10,7 +10,8 @@ import { Motion } from 'motion-v'
       <section class="article-section">
         <h2 class="section-title">Introduction</h2>
         <p class="article-text">
-          Welcome to my HomeLab Page. This page is dedicated to explaining why I have a homelab, and what I do on it. 
+         Welcome to my HomeLab Page. I built this lab to learn how to manage servers, 
+         so that I could eventually build a better lab to manage the servers I bought to learn how to manage servers.
 
         </p>
         <p class="article-text">
@@ -20,13 +21,12 @@ import { Motion } from 'motion-v'
 
           </p>
         <p class="article-text">
-          This server is my playground for all things production and automation. This is where I build, test, and run my own infrastructure. 
-          I use it to experiment with new tools, manage real services, and learn how systems behave outside of a classroom or tutorial. And how 
-          enterprise level buisnesses manage their workflow.
-         
+          This server is my production playground. Here I deploy services, automate workflows, experiment with new technologies, 
+          and manage real infrastructure. It’s where I learn how systems behave in the real world — the same principles used in enterprise environments.
         </p>
+
         <p class="article-text">
-           Below you will find a whole list of services that I manage, and maintain on this server.
+          Below is a collection of the services I run, monitor, and maintain on this system.
         </p>
       </section>
 
