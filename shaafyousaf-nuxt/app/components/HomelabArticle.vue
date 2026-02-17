@@ -10,22 +10,37 @@ import { Motion } from 'motion-v'
       <section class="article-section">
         <h2 class="section-title">Introduction</h2>
         <p class="article-text">
-          This is my homelab — a space where I build, test, and run my own infrastructure. It runs on Ubuntu Server and
-          acts as a multi-purpose system for things like media streaming, secure remote access, self-hosted web apps,
-          and development environments. I use it to experiment with new tools, manage real services, and learn how
-          systems
-          behave outside of a classroom or tutorial.
-        </p>
+          Welcome to my HomeLab Page. This page is dedicated to explaining why I have a homelab, and what I do on it. 
 
+        </p>
+        <p class="article-text">
+          Like all things in life, one does not magically rise to the top of a skill ladder without first stepping on the 
+          first rung. There is a whole world of software that is only useful on machines that run 24 hours a day, 7 days a week, 52 weeks a year.
+          Therefore, the only way to learn those softwares is to have my own machine that runs 24/7.
+
+          </p>
+        <p class="article-text">
+          This server is my playground for all things production and automation. This is where I build, test, and run my own infrastructure. 
+          I use it to experiment with new tools, manage real services, and learn how systems behave outside of a classroom or tutorial. And how 
+          enterprise level buisnesses manage their workflow.
+         
+        </p>
+        <p class="article-text">
+           Below you will find a whole list of services that I manage, and maintain on this server.
+        </p>
       </section>
 
       <!-- Hardware & Network Infrastructure -->
       <section class="article-section">
         <h2 class="section-title">Hardware & Network Infrastructure</h2>
         <p class="article-text">
-          The server runs on a repurposed Dell Inspiron 5584 with an Intel i7-8565U, 16GB of RAM, and a 240GB SSD. I
-          chose to reuse existing hardware to keep the setup cost-efficient while still providing enough resources for
-          multiple services. For network reliability, the system is connected through two Ethernet links — a primary
+          The server is a repurposed Dell Inspiron 5584 with an Intel i7-8565U, 16GB of RAM, and a 240GB SSD. I chose 
+          to reuse an old laptop because of its specifications. Although this is not a true production-grade hardware, this 
+          still provides ample headroom for building/learning real softwares on a small scale. 
+          down.
+        </p>
+         <p class="article-text">
+          For network reliability, the system is connected through two Ethernet links — a primary
           gigabit connection and a secondary 300Mbps backup — so services stay available if the main connection goes
           down.
         </p>
@@ -42,14 +57,13 @@ import { Motion } from 'motion-v'
           <figcaption>Hardware Setup (Old Image without backup Ethernet)</figcaption>
         </figure>
         <p class="article-text">
-          The network is built around a Nighthawk router with multi-gig bandwidth, giving the homelab enough capacity to
-          handle remote access, web traffic, media streaming, and internal services at the same time. The higher
-          throughput helps avoid network bottlenecks and keeps performance stable when multiple workloads are active.
+          My network is built around a Nighthawk multi-gig router, giving the homelab enough capacity to
+          handle remote access, web traffic, media streaming, and internal services without hickups.
         </p>
 
         <figure class="image-figure">
           <img src="/homelab/networkTopology.png" alt="Network Topology Diagram" class="article-image" />
-          <figcaption>Network Topology Diagram</figcaption>
+          <figcaption>My Home Network Topology</figcaption>
         </figure>
       </section>
 
@@ -60,12 +74,12 @@ import { Motion } from 'motion-v'
         <div class="service-subsection">
           <h3 class="service-title">
             <Icon name="heroicons:server-20-solid" />
-            Ubuntu Server Foundation
+            Ubuntu Server
           </h3>
           <p class="article-text">
-            I chose Ubuntu Server instead of a desktop operating system to keep resource usage and power consumption
-            low. A lightweight Linux environment reduces overhead, which helps the system run more efficiently and
-            lowers overall electricity usage. Since the server runs headless, I manage everything remotely over SSH from
+            I chose Ubuntu Server instead of a heavy desktop operating system (eg: Windows Server, Mint, etc...) to keep hardware usage and power consumption
+            low. A lightweight Linux environment reduces overhead, which helps the system run more services and
+            lowers overall electricity usage when idle. Since the server runs headless, I manage everything remotely over SSH from
             other machines, keeping the setup simple, stable, and optimized for long-term operation.
           </p>
 
@@ -77,10 +91,8 @@ import { Motion } from 'motion-v'
             Docker & Containerization
           </h3>
           <p class="article-text">
-            Docker serves as the containerization platform, allowing me to run isolated services with ease.
-            Currently running a Minecraft server in a Docker container, this setup provides portability,
-            easy updates, and consistent environments across deployments. Docker Compose files are stored
-            on the network drive for version control and easy management.
+            Docker serves as my containerization platform, allowing me to run isolated services with ease.
+            I store Docker Compose files on the Samba network drive (see later in this article) for version control and easy management.
           </p>
         </div>
 
@@ -90,15 +102,16 @@ import { Motion } from 'motion-v'
             WireGuard VPN with DuckDNS
           </h3>
           <p class="article-text">
-            I set up a WireGuard VPN with DuckDNS so I can securely connect to my home network from anywhere. This lets
-            me
-            manage the server, access my files, and use internal services as if I were on the local network. It’s fast,
-            reliable, and gives me full remote control without exposing my system publicly.
+            A machine with an uptime of months is bound to break down every now and then. So I set up a WireGuard VPN with DuckDNS 
+            so I can securely connect to my server from anywhere. This lets me
+            manage the server, access my files, and use internal services as if I were on the local network. 
+            Although, my firewall settings may block access to my local LAN, I can temporarily disable it in certain cases to gain further access.
+            This solution is fast, reliable, and gives me full remote control without exposing my system publicly.
           </p>
 
           <figure class="image-figure">
             <img src="/homelab/vpnconnectionFlowChat.png" alt="VPN Connection Flow Diagram" class="article-image" />
-            <figcaption>VPN Connection Flow Diagram</figcaption>
+            <figcaption>My VPN Connection Flow</figcaption>
           </figure>
         </div>
 
@@ -108,7 +121,7 @@ import { Motion } from 'motion-v'
             Samba Network Drive
           </h3>
           <p class="article-text">
-            I use Samba to create a shared storage system that my Windows machines can access like a network drive.
+            I use Samba to create a shared storage system that my personal Windows machines can access like a network drive.
             It acts as a central place for my media, Docker configurations, website builds, project files, and other
             important data. Having everything in one location makes it easy to work across devices and keeps my
             environment organized.
@@ -127,7 +140,7 @@ import { Motion } from 'motion-v'
             Cloudflare Zero Trust Tunnel & Nginx
           </h3>
           <p class="article-text">
-            For web hosting, I use a Cloudflare Tunnel together with an Nginx reverse proxy to publish services without
+            For web hosting, I use a Cloudflared Tunnel together with an Nginx reverse proxy to publish services without
             opening ports on my router. This lets me run websites from home while keeping the network private and
             reducing the attack surface.
           </p>
@@ -137,11 +150,12 @@ import { Motion } from 'motion-v'
             <li>No direct inbound ports exposed on the home network</li>
             <li>SSL/TLS is handled automatically</li>
             <li>Requests are routed internally through Nginx to the right services</li>
+            <li>Taking advantage of Cloudflare cache, which limits the requests incoming to my server. This helps save on hardware resources.</li>
           </ul>
           <p class="article-text">
             This setup lets me host multiple applications securely while keeping control of the infrastructure. It’s the
-            same architecture mindset I’d use in a production environment — minimize exposure, layer security, and keep
-            services isolated behind a controlled entry point.
+            same architecture many enterprises use at a production level. I have learned how to minimize exposure, layer security, and keep
+            services isolated behind a controlled entry point using this configuration.
           </p>
 
           <figure class="image-figure">
@@ -157,8 +171,13 @@ import { Motion } from 'motion-v'
             Minecraft Server
           </h3>
           <p class="article-text">
+            "The only thing faster than the speed of light is how quickly a 'Testing Environment' becomes a 'Survival Minecraft' server."<br>
+            <span style="font-size: 0.8em; color: gray;">— <b>u/KernelPanicAtTheDisco</b> (1.2k upvotes)</span>
+          </p>
+
+          <p class="article-text">            
             I run a Minecraft server in a Docker container with a port opened so friends can connect directly without
-            needing a VPN. This is one of the few services that’s intentionally exposed, and I’ve limited access to only
+            needing a VPN. This is one of the only service with a port intentionally exposed, and I’ve limited access to only
             the required port using UFW firewall rules. It’s a deliberate trade-off between security and usability, with
             the rest of the system kept isolated and protected.
           </p>
@@ -200,9 +219,7 @@ import { Motion } from 'motion-v'
           </h3>
           <p class="article-text">
             I run Plex as a self-hosted media service to manage and stream content stored on my network share. It
-            handles indexing, metadata management, and efficient streaming to devices both locally and remotely. This
-            service also helps me manage storage performance, remote access, and long-running application reliability
-            within the homelab.
+            handles indexing, metadata management, and efficient streaming to devices both locally and remotely.
           </p>
 
         </div>
@@ -214,14 +231,13 @@ import { Motion } from 'motion-v'
           </h3>
           <p class="article-text">
             I use Glances for real-time system monitoring through a web interface on the local network. It tracks key
-            metrics like CPU, memory, disk activity, network usage, and running processes. I also integrate its REST API
-            with my own ASP.NET Core backend, which collects the data and powers the live system statistics displayed in
-            this dashboard.
+            metrics like CPU, memory, disk activity, network usage, running processes, and even docker containers. It comes with an integrated REST API
+            which I fetch with my own ASP.NET Core backend to collect live system statistics displayed on shaafyousaf.com/homelab.
           </p>
 
           <figure class="image-figure">
             <img src="/homelab/glancesScreenShot.png" alt="Monitoring Dashboard Screenshot" class="article-image" />
-            <figcaption>Monitoring Dashboard Screenshot</figcaption>
+            <figcaption>Local Glances Dashboard Screenshot</figcaption>
           </figure>
         </div>
       </section>
@@ -285,15 +301,19 @@ import { Motion } from 'motion-v'
       <section class="article-section">
         <h2 class="section-title">Conclusion</h2>
         <p class="article-text">
-          This homelab is where I experiment, break things, and learn how real systems actually run. It’s my space to
+          This homelab is where I experiment, break things, and learn how real systems actually run. It’s my own space to
           explore
           system administration, networking, security, and DevOps beyond theory — building everything myself and solving
           the
-          problems that come with it.
+          problems that come with it is what I look forward to every week.
         </p>
         <p class="article-text">
           More than anything, this setup reflects how I like to learn: by building, testing, and improving continuously.
           It’s an ongoing project that grows with my skills and curiosity.
+        </p>
+
+        <p class="article-text">
+          Reach out to me for more information/collaboration. I'd love to talk.
         </p>
 
       </section>
