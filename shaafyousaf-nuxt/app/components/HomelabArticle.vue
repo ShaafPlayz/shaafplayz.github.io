@@ -3,63 +3,72 @@ import { Motion } from 'motion-v'
 </script>
 
 <template>
-  <Motion
-    class="article-container"
-    :initial="{ opacity: 0, y: 30 }"
-    :animate="{ opacity: 1, y: 0 }"
-    :transition="{ duration: 0.6, delay: 0.2 }"
-  >
+  <Motion class="article-container" :initial="{ opacity: 0, y: 30 }" :animate="{ opacity: 1, y: 0 }"
+    :transition="{ duration: 0.6, delay: 0.2 }">
     <article class="homelab-article">
       <!-- Introduction -->
       <section class="article-section">
         <h2 class="section-title">Introduction</h2>
         <p class="article-text">
-          Welcome to my homelab! This is where I experiment, learn, and build various infrastructure projects. 
-          Running on Ubuntu Server, this system serves as a multi-purpose platform that handles everything from 
-          media streaming to VPN access, web hosting, and development environments. This article will walk you 
-          through my complete setup, the services running, and the security measures in place.
+          This is my homelab — a space where I build, test, and run my own infrastructure. It runs on Ubuntu Server and
+          acts as a multi-purpose system for things like media streaming, secure remote access, self-hosted web apps,
+          and development environments. I use it to experiment with new tools, manage real services, and learn how
+          systems
+          behave outside of a classroom or tutorial.
         </p>
+
       </section>
 
       <!-- Hardware & Network Infrastructure -->
       <section class="article-section">
         <h2 class="section-title">Hardware & Network Infrastructure</h2>
         <p class="article-text">
-          The server runs on a Dell Inspiron 5584 with an Intel Core i7-8565U processor, 16GB DDR4 RAM, and a 
-          240GB SSD. For reliability, the system is connected through dual ethernet ports—a primary gigabit 
-          connection and a backup 300Mbps connection to ensure uptime even if the primary connection fails 
-          due to errors or network issues.
+          The server runs on a repurposed Dell Inspiron 5584 with an Intel i7-8565U, 16GB of RAM, and a 240GB SSD. I
+          chose to reuse existing hardware to keep the setup cost-efficient while still providing enough resources for
+          multiple services. For network reliability, the system is connected through two Ethernet links — a primary
+          gigabit connection and a secondary 300Mbps backup — so services stay available if the main connection goes
+          down.
         </p>
-        <div class="image-placeholder">
-          <Icon name="heroicons:photo-20-solid" />
-          <span>Hardware Setup Image</span>
-        </div>
+         <!-- <figure class="image-figure">
+          <img src="/homelab/motherboardimage.jpeg" alt="Preparing motherboard for a new 3D Printed Case (NEW)" class="article-image" />
+          <figcaption>Preparing motherboard for a new 3D Printed Case (NEW)</figcaption>
+        </figure>
+         <figure class="image-figure">
+          <img src="/homelab/setupimage.jpeg" alt="Ethernet Connections Image (NEW)" class="article-image" />
+          <figcaption>Ethernet Connections Image (NEW)</figcaption>
+        </figure> -->
+        <figure class="image-figure">
+          <img src="/homelab/setupimage2.jpeg" alt="Hardware Setup Image" class="article-image" />
+          <figcaption>Hardware Setup (Old Image without backup Ethernet)</figcaption>
+        </figure>
         <p class="article-text">
-          The network infrastructure is built around a NIGHTHAWK router with 4Gbps uplink and downlink 
-          capabilities, providing ample bandwidth to support all the traffic crossing through the system. 
-          This high-performance router ensures that multiple services can run simultaneously without 
-          bottlenecks.
+          The network is built around a Nighthawk router with multi-gig bandwidth, giving the homelab enough capacity to
+          handle remote access, web traffic, media streaming, and internal services at the same time. The higher
+          throughput helps avoid network bottlenecks and keeps performance stable when multiple workloads are active.
         </p>
-        <div class="image-placeholder">
-          <Icon name="heroicons:squares-2x2-20-solid" />
-          <span>Network Topology Diagram</span>
-        </div>
+
+        <figure class="image-figure">
+          <img src="/homelab/networkTopology.png" alt="Network Topology Diagram" class="article-image" />
+          <figcaption>Network Topology Diagram</figcaption>
+        </figure>
       </section>
 
       <!-- Core Services -->
       <section class="article-section">
         <h2 class="section-title">Core Services & Infrastructure</h2>
-        
+
         <div class="service-subsection">
           <h3 class="service-title">
             <Icon name="heroicons:server-20-solid" />
             Ubuntu Server Foundation
           </h3>
           <p class="article-text">
-            The entire system runs on Ubuntu Server, providing a stable and secure Linux environment. This 
-            choice offers excellent package management, strong community support, and robust performance for 
-            server workloads.
+            I chose Ubuntu Server instead of a desktop operating system to keep resource usage and power consumption
+            low. A lightweight Linux environment reduces overhead, which helps the system run more efficiently and
+            lowers overall electricity usage. Since the server runs headless, I manage everything remotely over SSH from
+            other machines, keeping the setup simple, stable, and optimized for long-term operation.
           </p>
+
         </div>
 
         <div class="service-subsection">
@@ -68,9 +77,9 @@ import { Motion } from 'motion-v'
             Docker & Containerization
           </h3>
           <p class="article-text">
-            Docker serves as the containerization platform, allowing me to run isolated services with ease. 
-            Currently running a Minecraft server in a Docker container, this setup provides portability, 
-            easy updates, and consistent environments across deployments. Docker Compose files are stored 
+            Docker serves as the containerization platform, allowing me to run isolated services with ease.
+            Currently running a Minecraft server in a Docker container, this setup provides portability,
+            easy updates, and consistent environments across deployments. Docker Compose files are stored
             on the network drive for version control and easy management.
           </p>
         </div>
@@ -81,15 +90,16 @@ import { Motion } from 'motion-v'
             WireGuard VPN with DuckDNS
           </h3>
           <p class="article-text">
-            WireGuard, paired with DuckDNS dynamic DNS, enables this computer to host its own VPN that I can 
-            connect to from anywhere in the world. This provides secure access to my home network remotely, 
-            allowing me to manage the server, access files, and utilize local services as if I were physically 
-            at home. The VPN uses modern cryptography and is significantly faster than traditional VPN protocols.
+            I set up a WireGuard VPN with DuckDNS so I can securely connect to my home network from anywhere. This lets
+            me
+            manage the server, access my files, and use internal services as if I were on the local network. It’s fast,
+            reliable, and gives me full remote control without exposing my system publicly.
           </p>
-          <div class="image-placeholder">
-            <Icon name="heroicons:arrows-right-left-20-solid" />
-            <span>VPN Connection Flow Diagram</span>
-          </div>
+
+          <figure class="image-figure">
+            <img src="/homelab/vpnconnectionFlowChat.png" alt="VPN Connection Flow Diagram" class="article-image" />
+            <figcaption>VPN Connection Flow Diagram</figcaption>
+          </figure>
         </div>
 
         <div class="service-subsection">
@@ -98,45 +108,47 @@ import { Motion } from 'motion-v'
             Samba Network Drive
           </h3>
           <p class="article-text">
-            Samba provides a shared file directory accessible from Windows machines, creating a seamless 
-            network drive experience. This centralized storage houses media files, Docker Compose configurations, 
-            website builds, code repositories, and other important data. It's the backbone of my file management 
-            system, making files accessible across all devices on the network.
+            I use Samba to create a shared storage system that my Windows machines can access like a network drive.
+            It acts as a central place for my media, Docker configurations, website builds, project files, and other
+            important data. Having everything in one location makes it easy to work across devices and keeps my
+            environment organized.
           </p>
+
         </div>
       </section>
 
       <!-- Web Hosting & Security -->
       <section class="article-section">
         <h2 class="section-title">Web Hosting & Security Architecture</h2>
-        
+
         <div class="service-subsection">
           <h3 class="service-title">
             <Icon name="heroicons:cloud-20-solid" />
             Cloudflare Zero Trust Tunnel & Nginx
           </h3>
           <p class="article-text">
-            One of the most crucial aspects of my setup is the web hosting infrastructure. By running a Cloudflare 
-            Zero Trust tunnel alongside an Nginx reverse proxy, I can host websites and expose them publicly to 
-            the internet without port forwarding. This architecture provides multiple security benefits:
+            For web hosting, I use a Cloudflare Tunnel together with an Nginx reverse proxy to publish services without
+            opening ports on my router. This lets me run websites from home while keeping the network private and
+            reducing the attack surface.
           </p>
           <ul class="article-list">
-            <li>The server's real IP address remains hidden from attackers</li>
-            <li>DDoS protection is handled by Cloudflare's network</li>
-            <li>No open ports on the router for web traffic, preventing direct attacks</li>
-            <li>SSL/TLS encryption is managed automatically</li>
-            <li>Protection against common web attacks (SQL injection, XSS, etc.)</li>
+            <li>The server’s real IP stays hidden behind Cloudflare</li>
+            <li>Traffic is filtered and protected by Cloudflare’s network</li>
+            <li>No direct inbound ports exposed on the home network</li>
+            <li>SSL/TLS is handled automatically</li>
+            <li>Requests are routed internally through Nginx to the right services</li>
           </ul>
           <p class="article-text">
-            This setup allows me to host multiple websites and services securely, with Nginx handling the 
-            routing and Cloudflare managing the public-facing security layer. It's a production-grade 
-            solution that keeps my home network safe from malicious actors while still providing public access 
-            to hosted services.
+            This setup lets me host multiple applications securely while keeping control of the infrastructure. It’s the
+            same architecture mindset I’d use in a production environment — minimize exposure, layer security, and keep
+            services isolated behind a controlled entry point.
           </p>
-          <div class="image-placeholder">
-            <Icon name="heroicons:arrow-path-20-solid" />
-            <span>Cloudflare Tunnel & Nginx Architecture Flowchart</span>
-          </div>
+
+          <figure class="image-figure">
+            <img src="/homelab/cloudflaredflowchart.png" alt="Cloudflare Tunnel & Nginx Architecture Flowchart"
+              class="article-image" />
+            <figcaption>Cloudflare Tunnel & Nginx Architecture Flowchart</figcaption>
+          </figure>
         </div>
 
         <div class="service-subsection">
@@ -145,51 +157,54 @@ import { Motion } from 'motion-v'
             Minecraft Server
           </h3>
           <p class="article-text">
-            A Minecraft server runs in a Docker container with its port forwarded to allow friends to connect 
-            directly without needing VPN access. While this means the server is publicly exposed, it's a 
-            calculated trade-off for accessibility. The Minecraft server protocol itself handles authentication, 
-            and UFW firewall rules ensure only the necessary port is accessible.
+            I run a Minecraft server in a Docker container with a port opened so friends can connect directly without
+            needing a VPN. This is one of the few services that’s intentionally exposed, and I’ve limited access to only
+            the required port using UFW firewall rules. It’s a deliberate trade-off between security and usability, with
+            the rest of the system kept isolated and protected.
           </p>
+
         </div>
       </section>
 
       <!-- Firewall & Security -->
       <section class="article-section">
         <h2 class="section-title">Firewall & Security Measures</h2>
-        
+
         <div class="service-subsection">
           <h3 class="service-title">
             <Icon name="heroicons:shield-exclamation-20-solid" />
             Uncomplicated Firewall (UFW)
           </h3>
           <p class="article-text">
-            Security is paramount when running a home server, especially one with public-facing services. 
-            UFW (Uncomplicated Firewall) is configured to manage which ports are allowed and control network 
-            traffic. This is a precautionary measure to prevent attacks or malicious code from spreading 
-            throughout my home network. Only essential ports are open, and all other traffic is blocked by 
-            default, following the principle of least privilege.
+            I use UFW to control which ports and services are allowed to communicate with the server. By default,
+            everything is blocked and only the ports that are absolutely necessary are opened. This keeps the exposed
+            surface minimal and helps prevent unwanted access to the system.
           </p>
           <p class="article-text">
-            The firewall configuration ensures that even if one service is compromised, attackers cannot 
-            easily pivot to other devices on the network or access sensitive services.
+            The goal is to contain risk — even if one service has an issue, it can’t easily reach other parts of my
+            network or access anything it shouldn’t. I try to treat the setup with the same security mindset I would use
+            in a production environment.
           </p>
+
         </div>
       </section>
 
       <!-- Media & Monitoring -->
       <section class="article-section">
         <h2 class="section-title">Media & Monitoring Services</h2>
-        
+
         <div class="service-subsection">
           <h3 class="service-title">
             <Icon name="heroicons:film-20-solid" />
             Plex Media Server
           </h3>
           <p class="article-text">
-            Plex Media Server handles all my media needs, providing a Netflix-like interface for movies, TV 
-            shows, and music stored on the Samba network drive. Plex automatically organizes content, downloads 
-            metadata, and streams to any device on the network or remotely through the internet.
+            I run Plex as a self-hosted media service to manage and stream content stored on my network share. It
+            handles indexing, metadata management, and efficient streaming to devices both locally and remotely. This
+            service also helps me manage storage performance, remote access, and long-running application reliability
+            within the homelab.
           </p>
+
         </div>
 
         <div class="service-subsection">
@@ -198,15 +213,16 @@ import { Motion } from 'motion-v'
             Glances Monitoring
           </h3>
           <p class="article-text">
-            Glances provides real-time system monitoring accessible through a web interface on the local network. 
-            It tracks CPU usage, memory consumption, disk I/O, network traffic, and running processes. More 
-            importantly, Glances exposes a RESTful API that my ASP.NET Core Web API project fetches data from, 
-            which this frontend client then displays to show live server statistics.
+            I use Glances for real-time system monitoring through a web interface on the local network. It tracks key
+            metrics like CPU, memory, disk activity, network usage, and running processes. I also integrate its REST API
+            with my own ASP.NET Core backend, which collects the data and powers the live system statistics displayed in
+            this dashboard.
           </p>
-          <div class="image-placeholder">
-            <Icon name="heroicons:computer-desktop-20-solid" />
-            <span>Monitoring Dashboard Screenshot</span>
-          </div>
+
+          <figure class="image-figure">
+            <img src="/homelab/glancesScreenShot.png" alt="Monitoring Dashboard Screenshot" class="article-image" />
+            <figcaption>Monitoring Dashboard Screenshot</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -214,14 +230,16 @@ import { Motion } from 'motion-v'
       <section class="article-section">
         <h2 class="section-title">Additional Local Services</h2>
         <p class="article-text">
-          Beyond the major services mentioned above, I'm running multiple websites and tools on the local 
-          network for various tasks and projects. These include development environments, testing platforms, 
-          personal projects, and utility services that make daily workflows more efficient.
+          In addition to the core services, I host several internal websites and tools for development, testing, and
+          personal projects. These environments let me experiment safely, test deployments, and run applications before
+          exposing anything publicly. Having dedicated internal services also helps streamline my workflow and keeps my
+          development and infrastructure work organized.
         </p>
+
       </section>
 
       <!-- Future Plans -->
-      <section class="article-section">
+      <!-- <section class="article-section">
         <h2 class="section-title">Future Expansion Plans</h2>
         <p class="article-text">
           There's still much to explore and implement in this homelab environment:
@@ -261,23 +279,23 @@ import { Motion } from 'motion-v'
           <Icon name="heroicons:rocket-launch-20-solid" />
           <span>Future Architecture Diagram</span>
         </div>
-      </section>
+      </section> -->
 
       <!-- Conclusion -->
       <section class="article-section">
         <h2 class="section-title">Conclusion</h2>
         <p class="article-text">
-          This homelab represents a continuous learning journey in system administration, networking, security, 
-          and DevOps practices. It's more than just a server—it's a practical testing ground for technologies 
-          used in production environments. From secure VPN access to public web hosting without exposed ports, 
-          from containerized services to network file sharing, every component teaches valuable lessons about 
-          how modern infrastructure works.
+          This homelab is where I experiment, break things, and learn how real systems actually run. It’s my space to
+          explore
+          system administration, networking, security, and DevOps beyond theory — building everything myself and solving
+          the
+          problems that come with it.
         </p>
         <p class="article-text">
-          Whether you're interested in building your own homelab or just curious about how personal server 
-          infrastructure works, I hope this overview proves insightful. Feel free to check the "Live Statistics" 
-          tab to see real-time metrics from the server!
+          More than anything, this setup reflects how I like to learn: by building, testing, and improving continuously.
+          It’s an ongoing project that grows with my skills and curiosity.
         </p>
+
       </section>
     </article>
   </Motion>
@@ -389,6 +407,38 @@ import { Motion } from 'motion-v'
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
+}
+
+/* Image figure styling (replaces placeholders when actual images are available) */
+.image-figure {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.25s ease;
+}
+
+.image-figure:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.image-figure figcaption {
+  padding: 0.75rem 1rem;
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* Responsive Design */
