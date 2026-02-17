@@ -33,12 +33,17 @@ import { Motion } from 'motion-v'
       <!-- Hardware & Network Infrastructure -->
       <section class="article-section">
         <h2 class="section-title">Hardware & Network Infrastructure</h2>
-        <p class="article-text">
-          The server is a repurposed Dell Inspiron 5584 with an Intel i7-8565U, 16GB of RAM, and a 240GB SSD. I chose 
-          to reuse an old laptop because of its specifications. Although this is not a true production-grade hardware, this 
-          still provides ample headroom for building/learning real softwares on a small scale. 
-          down.
+       <p class="article-text">
+          The server runs on a repurposed Dell Inspiron 5584 with an Intel i7-8565U, 16GB RAM, and a 240GB SSD. 
+          I chose to reuse existing hardware to build a cost-efficient, always-on system with enough capacity 
+          to run multiple services and infrastructure workloads.
         </p>
+
+        <p class="article-text">
+          While this isn’t enterprise hardware, it provides more than enough headroom to simulate real production 
+          environments at a small scale — allowing me to deploy, monitor, and manage services under realistic constraints.
+        </p>
+
          <p class="article-text">
           For network reliability, the system is connected through two Ethernet links — a primary
           gigabit connection and a secondary 300Mbps backup — so services stay available if the main connection goes
@@ -77,11 +82,13 @@ import { Motion } from 'motion-v'
             Ubuntu Server
           </h3>
           <p class="article-text">
-            I chose Ubuntu Server instead of a heavy desktop operating system (eg: Windows Server, Mint, etc...) to keep hardware usage and power consumption
-            low. A lightweight Linux environment reduces overhead, which helps the system run more services and
-            lowers overall electricity usage when idle. Since the server runs headless, I manage everything remotely over SSH from
-            other machines, keeping the setup simple, stable, and optimized for long-term operation.
+            I run Ubuntu Server instead of a desktop operating system to minimize resource usage and power consumption. A lightweight, headless Linux environment reduces system overhead, allowing more services to run efficiently while keeping electricity usage low during idle periods.
           </p>
+
+          <p class="article-text">
+            The server is managed entirely over SSH from other machines, eliminating the need for a graphical interface and keeping the setup simple, stable, and optimized for long-term, 24/7 operation.
+          </p>
+
 
         </div>
 
@@ -104,9 +111,12 @@ import { Motion } from 'motion-v'
           <p class="article-text">
             A machine with an uptime of months is bound to break down every now and then. So I set up a WireGuard VPN with DuckDNS 
             so I can securely connect to my server from anywhere. This lets me
-            manage the server, access my files, and use internal services as if I were on the local network. 
-            Although, my firewall settings may block access to my local LAN, I can temporarily disable it in certain cases to gain further access.
-            This solution is fast, reliable, and gives me full remote control without exposing my system publicly.
+            manage the server, access my files, and use internal services as if I were on the local network.           
+          </p>
+          <p class="article-text">
+            Access is restricted through firewall rules and VPN authentication, ensuring that internal services 
+            remain private and are never exposed directly to the public internet. This setup provides fast, 
+            reliable, and secure remote control while maintaining a strong security posture.
           </p>
 
           <figure class="image-figure">
@@ -300,21 +310,13 @@ import { Motion } from 'motion-v'
       <!-- Conclusion -->
       <section class="article-section">
         <h2 class="section-title">Conclusion</h2>
-        <p class="article-text">
-          This homelab is where I experiment, break things, and learn how real systems actually run. It’s my own space to
-          explore
-          system administration, networking, security, and DevOps beyond theory — building everything myself and solving
-          the
-          problems that come with it is what I look forward to every week.
-        </p>
-        <p class="article-text">
-          More than anything, this setup reflects how I like to learn: by building, testing, and improving continuously.
+       <p class="article-text">
+          This setup reflects how I like to learn: by building, testing, and improving continuously. 
           It’s an ongoing project that grows with my skills and curiosity.
-        </p>
-
-        <p class="article-text">
-          Reach out to me for more information/collaboration. I'd love to talk.
-        </p>
+      </p>
+      <p class="article-text">
+    Reach out to me for more information/collaboration. I'd love to talk.
+</p>
 
       </section>
     </article>
