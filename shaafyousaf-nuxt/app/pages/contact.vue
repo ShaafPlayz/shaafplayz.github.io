@@ -21,9 +21,15 @@ const contactMethods = [
     icon: 'mdi:linkedin'
   },
   {
-    type: 'Download CV',
+    type: 'Download SWE CV',
     value: '',
     link: 'https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view',
+    icon: 'heroicons:arrow-down-on-square'
+  }  ,
+  {
+    type: 'Download Hardware CV',
+    value: '',
+    link: 'https://drive.google.com/file/d/1k6myJd4Gz-WPVKs8sykdEvoOffLwWt8G/view?usp=sharing',
     icon: 'heroicons:arrow-down-on-square'
   }
 ]
