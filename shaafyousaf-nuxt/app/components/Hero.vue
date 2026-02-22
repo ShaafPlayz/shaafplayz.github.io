@@ -55,7 +55,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                         <Icon name="mdi:github" class="btn-icon" />
                         GitHub
                     </a> -->
-                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="btn btn-white">
+                    <a href="https://www.linkedin.com/in/shaafyousaf/" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="mdi:linkedin" class="btn-icon" />
                         LinkedIn
                     </a>    
