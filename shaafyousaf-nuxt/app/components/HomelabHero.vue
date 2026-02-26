@@ -54,6 +54,8 @@ const props = withDefaults(defineProps<Props>(), {
           :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
           :transition="{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }"
         >
+
+        <div class="status-bar-name-status">
           <div class="status-bar-item">
             <!-- <span class="status-bar-label">Server:</span> -->
             <Icon name="heroicons:server-stack" class="tab-icon" />
@@ -66,6 +68,8 @@ const props = withDefaults(defineProps<Props>(), {
               {{ serverConnected ? 'ONLINE' : 'OFFLINE' }}
             </span>
           </div>
+        </div>
+
           <div v-if="serverConnected" class="status-bar-divider"></div>
           <div v-if="serverConnected" class="status-bar-item">
             <!-- <span class="status-bar-label">Uptime:</span> -->
@@ -219,8 +223,19 @@ const props = withDefaults(defineProps<Props>(), {
   background: rgba(255, 255, 255, 0.2);
 }
 
+.status-bar-name-status{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
+
+
   .homelab-section {
     height: 45vh;
     min-height: 350px;
