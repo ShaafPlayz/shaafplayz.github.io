@@ -42,7 +42,7 @@ const handleClick = () => {
 <template>
   <Motion
     :initial="{ opacity: 0, filter: 'blur(8px)', scale: 0.98 }"
-    :animate="{ opacity: 1, filter: 'blur(0px)', scale: 1 }"
+    :while-in-view="{ opacity: 1, filter: 'blur(0px)', scale: 1 }"
     :transition="{ duration: 0.5, delay: 0.1 }"
     class="featured-internship"
     @click="handleClick"
@@ -65,7 +65,7 @@ const handleClick = () => {
     <div class="featured-content">
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 10 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.5, delay: 0.2 }"
       >
         <h2 class="featured-position">{{ featuredJob.position }}</h2>
@@ -73,7 +73,7 @@ const handleClick = () => {
       
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 10 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.5, delay: 0.25 }"
       >
         <p class="featured-company">{{ featuredJob.company }}</p>
@@ -81,7 +81,7 @@ const handleClick = () => {
 
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 10 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.5, delay: 0.3 }"
         class="featured-meta"
       >

@@ -102,7 +102,7 @@ const slideVariants = computed(() => ({
     <!-- Hero Section -->
     <Motion
       :initial="{ opacity: 0, y: -20 }"
-      :animate="{ opacity: 1, y: 0 }"
+      :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.4 }"
       class="hero-section"
     >
@@ -117,7 +117,7 @@ const slideVariants = computed(() => ({
           v-for="(section, index) in sections"
           :key="section.id"
           :initial="{ opacity: 0, scale: 0.95 }"
-          :animate="{ opacity: 1, scale: 1 }"
+          :while-in-view="{ opacity: 1, scale: 1 }"
           :transition="{ duration: 0.3, delay: 0.1 + index * 0.05 }"
         >
           <button
@@ -135,7 +135,7 @@ const slideVariants = computed(() => ({
       <Motion
         :key="activeSection"
         :initial="slideVariants.initial"
-        :animate="slideVariants.animate"
+        :while-in-view="slideVariants.animate"
         :transition="{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }"
         class="content-section"
       >
@@ -147,7 +147,7 @@ const slideVariants = computed(() => ({
         <div v-if="activeSection === 'devops'" class="empty-section">
           <Motion
             :initial="{ opacity: 0, scale: 0.9 }"
-            :animate="{ opacity: 1, scale: 1 }"
+            :while-in-view="{ opacity: 1, scale: 1 }"
             :transition="{ duration: 0.4, delay: 0.2 }"
           >
             <p class="empty-text">Coming Soon...</p>

@@ -12,7 +12,7 @@ defineProps<Props>()
   <Motion
     class="info-card architecture-card"
     :initial="{ opacity: 0, y: 30 }"
-    :animate="{ opacity: 1, y: 0 }"
+    :while-in-view="{ opacity: 1, y: 0 }"
     :transition="{ duration: 0.6, delay: 0.3 }"
   >
     <h3 class="card-title">

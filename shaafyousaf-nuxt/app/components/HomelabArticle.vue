@@ -3,7 +3,7 @@ import { Motion } from 'motion-v'
 </script>
 
 <template>
-  <Motion class="article-container" :initial="{ opacity: 0, y: 30 }" :animate="{ opacity: 1, y: 0 }"
+  <Motion class="article-container" :initial="{ opacity: 0, y: 30 }" :while-in-view="{ opacity: 1, y: 0 }"
     :transition="{ duration: 0.6, delay: 0.2 }">
     <article class="homelab-article">
       <!-- Introduction -->

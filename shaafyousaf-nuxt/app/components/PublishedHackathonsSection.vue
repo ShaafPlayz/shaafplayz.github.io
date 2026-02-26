@@ -38,7 +38,7 @@ const emit = defineEmits<{
     <!-- Published Software Section -->
     <Motion
       :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
+      :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.1 }"
     >
       <h2 class="section-title">Published Software</h2>
@@ -50,7 +50,7 @@ const emit = defineEmits<{
     <!-- Hackathon Wins Section -->
     <Motion
       :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
+      :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.2 }"
     >
       <h2 class="section-title">Hackathon Wins</h2>
@@ -59,7 +59,7 @@ const emit = defineEmits<{
           v-for="(hack, index) in hackathons"
           :key="'hack-' + index"
           :initial="{ opacity: 0, y: 15 }"
-          :animate="{ opacity: 1, y: 0 }"
+          :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.3, delay: 0.25 + index * 0.1 }"
           class="hackathon-card"
           @click="emit('item-click', hack)"

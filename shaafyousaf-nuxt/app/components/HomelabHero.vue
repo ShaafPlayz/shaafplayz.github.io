@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
           tag="h1"
           class="homelab-title"
           :initial="{ opacity: 0, filter: 'blur(10px)', y: 20 }"
-          :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+          :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
           :transition="{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }"
         >
           HomeLab
@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
           tag="div"
           class="server-status-bar"
           :initial="{ opacity: 0, filter: 'blur(8px)', y: 20 }"
-          :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+          :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
           :transition="{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }"
         >
 

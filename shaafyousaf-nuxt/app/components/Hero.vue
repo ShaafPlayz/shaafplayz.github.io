@@ -17,21 +17,21 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
         <div class="hero-content">
             <div class="hero-text-container">
                 <Motion tag="h1" class="hero-title" :initial="{ opacity: 0, filter: 'blur(10px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }">
+                    :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
+                    :transition="{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }">
                     <span class="title-line">Building reliable</span>
                     <span class="title-line">software and systems.</span>
                     <!-- <span class="title-line">By</span>
           <span class="title-line">Curiosity.</span> -->
                 </Motion>
                 <Motion tag="p" class="hero-description" :initial="{ opacity: 0, filter: 'blur(8px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
+                    :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
+                    :transition="{ duration: 1, delay: 0.55, ease: [0.16, 1, 0.3, 1] }">
                     I’m Shaaf Yousaf, a senior at the University of Toronto in Computer Science (Software Engineering Coop Stream), building production-ready full-stack applications and backend systems.               
                 </Motion>
                 <Motion class="hero-tags" :initial="{ opacity: 0, filter: 'blur(8px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }">
+                    :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
+                    :transition="{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }">
                     
                    <div class="tag">Junior SWE @ UTS (2025-2026)</div>
                     <div class="tag">2x Hackathon Winner</div>
@@ -39,8 +39,8 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     <div class="tag">Latest Published Software (+400 Install)</div>
                 </Motion>
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
-                    :animate="{ opacity: 1, filter: 'blur(0px)' }"
-                    :transition="{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }">
+                    :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
+                    :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
                     <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
                         
                         View SWE CV
@@ -67,7 +67,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
             </div>
 
             <!-- Scroll Down Arrow -->
-            <Motion class="scroll-indicator" :initial="{ opacity: 0, y: -20 }" :animate="{
+            <Motion class="scroll-indicator" :initial="{ opacity: 0, y: -20 }" :while-in-view="{
                 opacity: [0, 1, 1, 0],
                 y: [0, 10, 10, 20]
             }" :transition="{

@@ -33,14 +33,14 @@ const frameworksAndTools = [
 
     <Motion
       :initial="{ opacity: 0, filter: 'blur(10px)', y: 30 }"
-      :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-      :transition="{ duration: 0.7, delay: 0.1 }"
+      :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+      :transition="{ duration: 0.1, delay: 0 }"
       class="skills-container"
     >
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)' }"
-        :animate="{ opacity: 1, filter: 'blur(0px)' }"
-        :transition="{ duration: 0.6, delay: 0.2 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
+        :transition="{ duration: 0.2, delay: 0.1}"
       >
         <h2 class="section-title">What I work with day to day.</h2>
       </Motion>
@@ -48,8 +48,8 @@ const frameworksAndTools = [
       <!-- Languages Section - Full Width -->
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.3 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :transition="{ duration: 0.2, delay: 0.05 }"
         class="languages-section"
       >
         <h3 class="subsection-title">Languages</h3>
@@ -58,8 +58,8 @@ const frameworksAndTools = [
             v-for="(language, index) in languages"
             :key="language"
             :initial="{ opacity: 0, scale: 0.95 }"
-            :animate="{ opacity: 1, scale: 1 }"
-            :transition="{ duration: 0.4, delay: 0.4 + index * 0.05 }"
+            :while-in-view="{ opacity: 1, scale: 1 }"
+            :transition="{ duration: 0.2, delay: 0.05 + index * 0.05 }"
             class="skill-tag"
           >
             {{ language }}
@@ -70,8 +70,8 @@ const frameworksAndTools = [
       <!-- Frameworks & Tools Section - Full Width -->
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.4 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :transition="{ duration: 0.3, delay: 0.1 }"
         class="tools-section"
       >
         <h3 class="subsection-title">Frameworks & Tools</h3>
@@ -80,8 +80,8 @@ const frameworksAndTools = [
             v-for="(tool, index) in frameworksAndTools"
             :key="tool"
             :initial="{ opacity: 0, x: -10 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.4, delay: 0.45 + index * 0.03 }"
+            :while-in-view="{ opacity: 1, x: 0 }"
+            :transition="{ duration: 0.2, delay: 0.1 + index * 0.03 }"
             class="tool-item"
           >
             {{ tool }}

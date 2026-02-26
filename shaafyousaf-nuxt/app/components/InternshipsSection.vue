@@ -58,7 +58,7 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
     <!-- Arts Internships -->
     <Motion
       :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
+      :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.15 }"
     >
       <h2 class="section-title">Design & Media</h2>
@@ -67,7 +67,7 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
           v-for="(job, index) in artsJobs"
           :key="index"
           :initial="{ opacity: 0, y: 15 }"
-          :animate="{ opacity: 1, y: 0 }"
+          :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.3, delay: 0.2 + index * 0.1 }"
           class="internship-card"
           @click="emit('item-click', job)"

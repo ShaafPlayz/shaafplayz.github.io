@@ -64,13 +64,13 @@ const socialLinks = [
 
     <Motion
       :initial="{ opacity: 0, filter: 'blur(10px)', y: 30 }"
-      :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+      :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
       :transition="{ duration: 0.7, delay: 0.1 }"
       class="contact-container"
     >
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)' }"
-        :animate="{ opacity: 1, filter: 'blur(0px)' }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
         :transition="{ duration: 0.6, delay: 0.2 }"
       >
         <h1 class="page-title">Let’s Work Together</h1>
@@ -85,7 +85,7 @@ const socialLinks = [
       <!-- Contact Methods Section -->
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.6, delay: 0.3 }"
         class="contact-section"
       >
@@ -94,7 +94,7 @@ const socialLinks = [
             v-for="(method, index) in contactMethods"
             :key="method.type"
             :initial="{ opacity: 0, y: 20 }"
-            :animate="{ opacity: 1, y: 0 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
             :transition="{ duration: 0.4, delay: 0.4 + index * 0.1 }"
             class="contact-item"
           >
@@ -112,7 +112,7 @@ const socialLinks = [
       <!-- Social Links Section -->
       <!-- <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
-        :animate="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.6, delay: 0.5 }"
         class="social-section"
       >
@@ -122,7 +122,7 @@ const socialLinks = [
             v-for="(social, index) in socialLinks"
             :key="social.name"
             :initial="{ opacity: 0, scale: 0.95 }"
-            :animate="{ opacity: 1, scale: 1 }"
+            :while-in-view="{ opacity: 1, scale: 1 }"
             :transition="{ duration: 0.4, delay: 0.6 + index * 0.08 }"
             class="social-item"
           >

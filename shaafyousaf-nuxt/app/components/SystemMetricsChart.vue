@@ -80,7 +80,7 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
 </script>
 
 <template>
-  <Motion class="stats-chart-container" :initial="{ opacity: 0, y: 30 }" :animate="{ opacity: 1, y: 0 }"
+  <Motion class="stats-chart-container" :initial="{ opacity: 0, y: 30 }" :while-in-view="{ opacity: 1, y: 0 }"
     :transition="{ duration: 0.6, delay: 0.2 }">
     <div class="chart-card">
       <div class="chart-header">
@@ -91,7 +91,7 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
             Unavailable
           </span>
         </h3>
-        <Motion :animate="{
+        <Motion :while-in-view="{
           filter: serverConnected ? 'blur(0px)' : 'blur(2px)'
         }" :transition="{ duration: 0.8 }">
 
@@ -148,24 +148,24 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
             <path :d="networkPath" fill="none" stroke="rgba(255, 140, 0, 0.5)" stroke-width="2" class="chart-line" /> -->
 
           <Motion as="path" :d="cpuPath" fill="none" stroke="#ffffff" stroke-width="2" class="chart-line"
-            :animate="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
+            :while-in-view="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
             :transition="serverConnected ? { duration: 0.4 } : { duration: 2.0, repeat: Infinity, ease: 'easeInOut' }" />
 
           <Motion as="path" :d="ramPath" fill="none" stroke="#ff8c00" stroke-width="2" class="chart-line"
-            :animate="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
+            :while-in-view="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
             :transition="serverConnected ? { duration: 0.4 } : { duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }" />
 
           <Motion as="path" :d="diskPath" fill="none" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2"
-            class="chart-line" :animate="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
+            class="chart-line" :while-in-view="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
             :transition="serverConnected ? { duration: 0.4 } : { duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }" />
 
           <Motion as="path" :d="networkPath" fill="none" stroke="rgba(255, 140, 0, 0.5)" stroke-width="2"
-            class="chart-line" :animate="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
+            class="chart-line" :while-in-view="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
             :transition="serverConnected ? { duration: 0.4 } : { duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }" />
         </svg>
       </div>
 
-      <Motion :animate="{
+      <Motion :while-in-view="{
         filter: serverConnected ? 'blur(0px)' : 'blur(2px)'
       }" :transition="{ duration: 0.8 }">
         <div class="chart-details">
