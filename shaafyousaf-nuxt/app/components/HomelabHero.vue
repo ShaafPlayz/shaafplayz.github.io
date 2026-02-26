@@ -55,19 +55,20 @@ const props = withDefaults(defineProps<Props>(), {
           :transition="{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }"
         >
           <div class="status-bar-item">
-            <span class="status-bar-label">Server:</span>
+            <!-- <span class="status-bar-label">Server:</span> -->
+            <Icon name="heroicons:server-stack" class="tab-icon" />
             <span class="status-bar-value">{{ hostname }}</span>
           </div>
           <div class="status-bar-divider"></div>
           <div class="status-bar-item">
-            <span class="status-bar-label">Status:</span>
+            <!-- <span class="status-bar-label">Status:</span> -->
             <span :class="['status-indicator', serverConnected ? 'online' : 'offline']">
               {{ serverConnected ? 'ONLINE' : 'OFFLINE' }}
             </span>
           </div>
           <div v-if="serverConnected" class="status-bar-divider"></div>
           <div v-if="serverConnected" class="status-bar-item">
-            <span class="status-bar-label">Uptime:</span>
+            <!-- <span class="status-bar-label">Uptime:</span> -->
             <span class="status-bar-value">{{ uptime }}</span>
           </div>
         </Motion>
@@ -186,7 +187,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 .status-bar-value {
   font-family: 'Nexa', sans-serif;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 0.85rem;
   color: #ffffff;
   letter-spacing: 0.5px;
@@ -204,7 +205,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 .status-indicator.online {
   color: #000000;
-  background: #ffffff;
+  background: #00f83a;
 }
 
 .status-indicator.offline {

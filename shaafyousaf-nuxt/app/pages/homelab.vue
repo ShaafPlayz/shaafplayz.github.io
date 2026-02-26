@@ -20,7 +20,7 @@ const API_CONFIG = {
     stats: '/api/stats',       // GET: Returns CPU, RAM, disk, network metrics
     services: '/api/services'  // GET: Returns list of running services
   },
-  pollingInterval: 5000,       // Poll every 5 seconds
+  pollingInterval: 30000,       // Poll every 30 seconds
   timeout: 3000                // Request timeout in ms
 }
 
@@ -127,16 +127,16 @@ const saveCurrentState = () => {
 // Function to fetch server status and live data
 const fetchServerStatus = async () => {
   // If no API base URL is configured, stay offline and show last known state
-  if (!API_CONFIG.baseUrl) {
-    console.warn('API base URL not configured. Showing last known state.')
-    serverConnected.value = false
-    return
-  }
+  // if (!API_CONFIG.baseUrl) {
+  //   console.warn('API base URL not configured. Showing last known state.')
+  //   serverConnected.value = false
+  //   return
+  // }
 
   try {
     // Create abort controller for timeout
-    const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout)
+    // const controller = new AbortController()
+    // const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.timeout)
 
     // ============= API CALL: Server Status =============
     // Expected Response Format:
@@ -145,33 +145,49 @@ const fetchServerStatus = async () => {
     //   "hostname": "the-great-library",
     //   "uptime": "2 Weeks, 5 Days, 5 Hours"  // or seconds: 1234567
     // }
-    const statusResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.status}`, {
-      signal: controller.signal,
-      headers: { 'Accept': 'application/json' }
-    })
+
+    // ping test
+    async function pingURL() {
+
+      // The custom URL entered by user
+      var URL = "https://shaafyousaf.me";
+      const response = await fetch(URL);
+      return response;
+    }
+
+    const statusResponse = await pingURL();
+    ////// Uncommeted the following 
+    // const statusResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.status}`, {
+    //   signal: controller.signal,
+    //   headers: { 'Accept': 'application/json' }
+    // })
     
-    clearTimeout(timeoutId)
+    // clearTimeout(timeoutId)
 
     if (!statusResponse.ok) {
+      serverConnected.value = false
       throw new Error(`Status API returned ${statusResponse.status}`)
     }
 
-    const statusData = await statusResponse.json()
+    // const statusData = await statusResponse.json()
     
-    if (!statusData.online) {
-      serverConnected.value = false
-      return
-    }
+    // if (!statusData.online) {
+    //   serverConnected.value = false
+    //   return
+    // }
 
     serverConnected.value = true
-    hostname.value = statusData.hostname || hostname.value
+    uptime.value = "Temporarily connected through shaafyousaf.me";
+    console.log(`Fetched Response from  https://shaafyousaf.me - isOnline: ${statusResponse.ok}`)
+    console.log(`Sending another request in 30 seconds.`)
+    // hostname.value = statusData.hostname || hostname.value
     
     // Handle uptime - can be string or seconds
-    if (typeof statusData.uptime === 'number') {
-      uptime.value = formatUptime(statusData.uptime)
-    } else {
-      uptime.value = statusData.uptime || uptime.value
-    }
+    // if (typeof statusData.uptime === 'number') {
+    //   uptime.value = formatUptime(statusData.uptime)
+    // } else {
+    //   uptime.value = statusData.uptime || uptime.value
+    // }
 
     // ============= API CALL: System Stats =============
     // Expected Response Format:
@@ -196,43 +212,43 @@ const fetchServerStatus = async () => {
     //     "download": 45.8    // MB/s
     //   }
     // }
-    const statsResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.stats}`, {
-      headers: { 'Accept': 'application/json' }
-    })
+    // const statsResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.stats}`, {
+    //   headers: { 'Accept': 'application/json' }
+    // })
 
-    if (statsResponse.ok) {
-      const statsData = await statsResponse.json()
+    // if (statsResponse.ok) {
+    //   const statsData = await statsResponse.json()
       
-      // Calculate percentages if not provided
-      if (!statsData.ram.percentage && statsData.ram.used && statsData.ram.total) {
-        statsData.ram.percentage = Math.round((statsData.ram.used / statsData.ram.total) * 100)
-      }
+    //   // Calculate percentages if not provided
+    //   if (!statsData.ram.percentage && statsData.ram.used && statsData.ram.total) {
+    //     statsData.ram.percentage = Math.round((statsData.ram.used / statsData.ram.total) * 100)
+    //   }
       
-      if (!statsData.disk.percentage && statsData.disk.used && statsData.disk.total) {
-        statsData.disk.percentage = Math.round((statsData.disk.used / statsData.disk.total) * 100)
-      }
+    //   if (!statsData.disk.percentage && statsData.disk.used && statsData.disk.total) {
+    //     statsData.disk.percentage = Math.round((statsData.disk.used / statsData.disk.total) * 100)
+    //   }
 
-      // Round values for display
-      statsData.cpu.usage = Math.round(statsData.cpu.usage)
-      statsData.cpu.temp = Math.round(statsData.cpu.temp)
-      statsData.network.upload = Math.round(statsData.network.upload * 10) / 10
-      statsData.network.download = Math.round(statsData.network.download * 10) / 10
+    //   // Round values for display
+    //   statsData.cpu.usage = Math.round(statsData.cpu.usage)
+    //   statsData.cpu.temp = Math.round(statsData.cpu.temp)
+    //   statsData.network.upload = Math.round(statsData.network.upload * 10) / 10
+    //   statsData.network.download = Math.round(statsData.network.download * 10) / 10
 
-      stats.value = statsData
+    //   stats.value = statsData
 
-      // Update chart history
-      chartHistory.value.cpu.shift()
-      chartHistory.value.cpu.push(statsData.cpu.usage)
+    //   // Update chart history
+    //   chartHistory.value.cpu.shift()
+    //   chartHistory.value.cpu.push(statsData.cpu.usage)
       
-      chartHistory.value.ram.shift()
-      chartHistory.value.ram.push(statsData.ram.percentage)
+    //   chartHistory.value.ram.shift()
+    //   chartHistory.value.ram.push(statsData.ram.percentage)
       
-      chartHistory.value.disk.shift()
-      chartHistory.value.disk.push(statsData.disk.percentage)
+    //   chartHistory.value.disk.shift()
+    //   chartHistory.value.disk.push(statsData.disk.percentage)
       
-      chartHistory.value.network.shift()
-      chartHistory.value.network.push(Math.min(statsData.network.download, 100))
-    }
+    //   chartHistory.value.network.shift()
+    //   chartHistory.value.network.push(Math.min(statsData.network.download, 100))
+    // }
 
     // ============= API CALL: Services Status =============
     // Expected Response Format:
@@ -246,14 +262,14 @@ const fetchServerStatus = async () => {
     //     ...
     //   ]
     // }
-    const servicesResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.services}`, {
-      headers: { 'Accept': 'application/json' }
-    })
+    // const servicesResponse = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.services}`, {
+    //   headers: { 'Accept': 'application/json' }
+    // })
 
-    if (servicesResponse.ok) {
-      const servicesData = await servicesResponse.json()
-      services.value = servicesData.services || services.value
-    }
+    // if (servicesResponse.ok) {
+    //   const servicesData = await servicesResponse.json()
+    //   services.value = servicesData.services || services.value
+    // }
 
     // Save successful state to localStorage
     saveCurrentState()
@@ -264,6 +280,11 @@ const fetchServerStatus = async () => {
     // Keep displaying last known state from localStorage
   }
 }
+
+
+
+
+
 
 // Helper function to format uptime from seconds
 const formatUptime = (seconds: number): string => {
@@ -279,6 +300,8 @@ const formatUptime = (seconds: number): string => {
   return parts.length > 0 ? parts.join(', ') : 'Just started'
 }
 
+let pollingTimer: ReturnType<typeof setInterval> | null = null
+
 onMounted(() => {
   // Load last known state first (for instant display)
   loadLastKnownState()
@@ -287,7 +310,11 @@ onMounted(() => {
   fetchServerStatus()
   
   // Set up polling at configured interval
-  setInterval(fetchServerStatus, API_CONFIG.pollingInterval)
+  pollingTimer = setInterval(fetchServerStatus, API_CONFIG.pollingInterval)
+})
+
+onUnmounted(() => {
+  if (pollingTimer) clearInterval(pollingTimer)
 })
 </script>
 
@@ -334,7 +361,7 @@ onMounted(() => {
       <!-- Statistics Tab -->
       <div v-show="activeTab === 'statistics'" class="tab-panel">
         <HomelabDashboard 
-          :server-connected="serverConnected"
+          :server-connected="false"
           :stats="stats"
           :chart-history="chartHistory"
           :services="services"
