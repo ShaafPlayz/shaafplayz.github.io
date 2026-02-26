@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue';
 
-var serverConnected = false;
-var uptime = "--";
+const serverConnected = ref(false);
+const uptime = ref("--");
 
 let pollingTimer: ReturnType<typeof setInterval> | null = null;
 
 async function CheckServer() {
-  serverConnected = await pingURL();
+  serverConnected.value = await pingURL();
   if(serverConnected){
-    uptime = "Temporarily connected through shaafyousaf.me";
+    uptime.value = "Temporarily connected through shaafyousaf.me";
   }
 }
 
 onMounted(async () => {
-  await CheckServer();
-  pollingTimer = setInterval(CheckServer, 60000); // imma check every minute
+  setTimeout(async () => {
+    await CheckServer();
+    pollingTimer = setInterval(CheckServer, 60000); // imma check every minute
+  }, 500)
+  
 })
 
 onUnmounted(() => {

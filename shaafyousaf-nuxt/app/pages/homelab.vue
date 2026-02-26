@@ -303,7 +303,9 @@ const formatUptime = (seconds: number): string => {
 let pollingTimer: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
-  // Load last known state first (for instant display)
+
+  setTimeout(async () => {
+    // Load last known state first (for instant display)
   loadLastKnownState()
   
   // Then attempt to fetch fresh data
@@ -311,6 +313,8 @@ onMounted(() => {
   
   // Set up polling at configured interval
   pollingTimer = setInterval(fetchServerStatus, API_CONFIG.pollingInterval)
+  }, 400)
+  
 })
 
 onUnmounted(() => {
