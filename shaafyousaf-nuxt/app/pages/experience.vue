@@ -142,9 +142,12 @@ const slideVariants = computed(() => ({
         <InternshipsSection v-if="activeSection === 'internships'" @item-click="openDialog" />
         <PublishedHackathonsSection v-if="activeSection === 'published'" @item-click="openDialog" />
         <ProjectsSection v-if="activeSection === 'projects'" @item-click="openDialog" />
-        
+        <DevOpsIT v-if="activeSection === 'devops'" />
+
+
+
         <!-- DevOps Section - Empty for now -->
-        <div v-if="activeSection === 'devops'" class="empty-section">
+        <!-- <div v-if="activeSection === 'devops'" class="empty-section">
           <Motion
             :initial="{ opacity: 0, scale: 0.9 }"
             :while-in-view="{ opacity: 1, scale: 1 }"
@@ -152,7 +155,7 @@ const slideVariants = computed(() => ({
           >
             <p class="empty-text">Coming Soon...</p>
           </Motion>
-        </div>
+        </div> -->
       </Motion>
     </div>
     </div>
