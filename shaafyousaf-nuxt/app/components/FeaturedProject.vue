@@ -9,17 +9,19 @@ const emit = defineEmits<{
 // Featured project data
 const featuredProject = {
   title: 'Slowed Enhanced',
-  subtitle: 'A Google Chrome Extension for Advanced Audio Controls',
+  subtitle: 'An Open Source Google Chrome Extension for Advanced Audio Controls',
   category: 'Published on Chrome Web Store',
   image: '/images/_DSC4383_compressed.JPG',
   stats: {
-    installs: '400+',
-    users: '75',
+    installs: '700+',
+    users: '60+',
     productHuntRank: '14'
   },
   tech: ['.NET C#', 'Blazor Framework', 'MudBlazor', 'JavaScript'],
   buttons: [
-    { label: 'Chrome Web Store', url: 'https://chromewebstore.google.com/detail/mbknnccopgggeedhnloodppflepboggp' }
+    { label: 'Chrome Web Store', url: 'https://chromewebstore.google.com/detail/mbknnccopgggeedhnloodppflepboggp' },
+    { label: 'Github (Open Source)', url: 'https://github.com/shaafyousaf/Slowed-Enhanced.git' },
+    { label: 'Product Hunt', url: 'https://www.producthunt.com/products/slowed-enchanced/launches/slowed-enchanced' }
   ]
 }
 
