@@ -9,7 +9,7 @@ const guiProjects = [
     image: '/resources/GLOW.png',
     tech: ['JavaScript', 'Next.js Frontend', 'Express Backend', 'MongoDB', 'GitHub Actions', 'Docker', 'Render'],
     buttons: [
-      { label: 'Live Demo', url: 'https://glow-frontend-v4-0-0.onrender.com/' }
+      { label: 'GitHub', url: 'https://github.com/UTSC-CSCC01-Software-Engineering-I/GLOW-WebApp.git' }
     ]
   },
   {
