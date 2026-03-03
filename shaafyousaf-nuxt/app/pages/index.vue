@@ -33,10 +33,15 @@ async function pingURL() {
   const response = await fetch(URL);
   console.log(`Fetched Response from  https://shaafyousaf.me - isOnline: ${response.ok}`)
   console.log(`Sending another request in 60 seconds.`)
-  if(response.ok){
-    return true;
+  if(!response.ok){
+    return false;
   }
-  return false;
+  const body = await response.text();
+  
+  
+  let isLive = body.includes("Welcome to Shaaf's old ePortfolio URL");
+  console.log(`isLive: ${isLive}`);
+  return isLive;
 }
 </script>
 

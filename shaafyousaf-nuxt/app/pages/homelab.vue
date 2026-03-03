@@ -169,14 +169,13 @@ const fetchServerStatus = async () => {
       throw new Error(`Status API returned ${statusResponse.status}`)
     }
 
-    // const statusData = await statusResponse.json()
-    
-    // if (!statusData.online) {
-    //   serverConnected.value = false
-    //   return
-    // }
+    const body = await statusResponse.text();
+  
+  
+    let isLive = body.includes("Welcome to Shaaf's old ePortfolio URL");
+    console.log(`isLive: ${isLive}`);
 
-    serverConnected.value = true
+    serverConnected.value = isLive;
     uptime.value = "Temporarily connected through shaafyousaf.me";
     console.log(`Fetched Response from  https://shaafyousaf.me - isOnline: ${statusResponse.ok}`)
     console.log(`Sending another request in 30 seconds.`)

@@ -1,4 +1,4 @@
-<script  setup lang="ts">
+<script setup lang="ts">
 import { Motion } from 'motion-v'
 import { onMounted, onUnmounted } from 'vue';
 
@@ -9,7 +9,7 @@ let pollingTimer: ReturnType<typeof setInterval> | null = null;
 
 async function CheckServer() {
   serverConnected.value = await pingURL();
-  if(serverConnected){
+  if (serverConnected) {
     uptime.value = "Temporarily connected through shaafyousaf.me";
   }
 }
@@ -19,11 +19,11 @@ onMounted(async () => {
     await CheckServer();
     pollingTimer = setInterval(CheckServer, 60000); // imma check every minute
   }, 500)
-  
+
 })
 
 onUnmounted(() => {
-  if(pollingTimer) clearInterval(pollingTimer);
+  if (pollingTimer) clearInterval(pollingTimer);
 })
 
 // ping test
@@ -34,35 +34,33 @@ async function pingURL() {
   const response = await fetch(URL);
   console.log(`Fetched Response from  https://shaafyousaf.me - isOnline: ${response.ok}`)
   console.log(`Sending another request in 60 seconds.`)
-  if(response.ok){
-    return true;
+  if (!response.ok) {
+    return false;
   }
-  return false;
+  const body = await response.text();
+
+
+  let isLive = body.includes("Welcome to Shaaf's old ePortfolio URL");
+  console.log(`isLive: ${isLive}`);
+  return isLive;
 }
 </script>
 
 
 <template>
-    <div class="published-hackathons-section">
-        <Motion
-      :initial="{ opacity: 0, y: 20 }"
-      :while-in-view="{ opacity: 1, y: 0 }"
-      :transition="{ duration: 0.3, delay: 0.1 }"
-    >
+  <div class="published-hackathons-section">
+    <Motion :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.3, delay: 0.1 }">
       <h2 class="section-title">Personal Infrastructure</h2>
-<div class="featured-project-wrapper">
-    <NuxtLink to="/homelab" class="clickable-section">
-      <HomelabHero 
-        :alignRight="true"
-        hostname="the-great-library"
-        :server-connected= serverConnected
-        :uptime=  uptime
-      />
-    </NuxtLink>
+      <div class="featured-project-wrapper">
+        <NuxtLink to="/homelab" class="clickable-section">
+          <HomelabHero :alignRight="true" hostname="the-great-library" :server-connected=serverConnected
+            :uptime=uptime />
+        </NuxtLink>
 
-</div>
-</Motion>
-</div>
+      </div>
+    </Motion>
+  </div>
 
 
 </template>
