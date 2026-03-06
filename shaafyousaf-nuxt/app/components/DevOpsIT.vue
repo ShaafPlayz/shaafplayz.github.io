@@ -9,8 +9,8 @@ let pollingTimer: ReturnType<typeof setInterval> | null = null;
 
 async function CheckServer() {
   serverConnected.value = await pingURL();
-  if (serverConnected) {
-    uptime.value = "Temporarily connected through shaafyousaf.me";
+  if (serverConnected.value) {
+    uptime.value = "Connected to Server-Observer-Utility";
   }
 }
 
@@ -30,9 +30,9 @@ onUnmounted(() => {
 async function pingURL() {
 
   // The custom URL entered by user
-  var URL = "https://shaafyousaf.me";
+  var URL = "https://server-observer-utility.shaafyousaf.space/Observer";
   const response = await fetch(URL);
-  console.log(`Fetched Response from  https://shaafyousaf.me - isOnline: ${response.ok}`)
+  console.log(`Fetched Response from  https://server-observer-utility.shaafyousaf.space/Observer - isOnline: ${response.ok}`)
   console.log(`Sending another request in 60 seconds.`)
   if (!response.ok) {
     return false;
@@ -40,7 +40,7 @@ async function pingURL() {
   const body = await response.text();
 
 
-  let isLive = body.includes("Welcome to Shaaf's old ePortfolio URL");
+  let isLive = body.includes("All Systems Nominal.");
   console.log(`isLive: ${isLive}`);
   return isLive;
 }

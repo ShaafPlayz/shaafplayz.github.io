@@ -150,7 +150,7 @@ const fetchServerStatus = async () => {
     async function pingURL() {
 
       // The custom URL entered by user
-      var URL = "https://shaafyousaf.me";
+      var URL = "https://server-observer-utility.shaafyousaf.space/Observer";
       const response = await fetch(URL);
       return response;
     }
@@ -172,12 +172,12 @@ const fetchServerStatus = async () => {
     const body = await statusResponse.text();
   
   
-    let isLive = body.includes("Welcome to Shaaf's old ePortfolio URL");
+    let isLive = body.includes("All Systems Nominal.");
     console.log(`isLive: ${isLive}`);
 
     serverConnected.value = isLive;
-    uptime.value = "Temporarily connected through shaafyousaf.me";
-    console.log(`Fetched Response from  https://shaafyousaf.me - isOnline: ${statusResponse.ok}`)
+    uptime.value = "Connected to Server-Observer-Utility";
+    console.log(`Fetched Response from  https://server-observer-utility.shaafyousaf.space/Observer - isOnline: ${statusResponse.ok}`)
     console.log(`Sending another request in 30 seconds.`)
     // hostname.value = statusData.hostname || hostname.value
     
