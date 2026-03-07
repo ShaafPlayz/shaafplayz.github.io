@@ -29,9 +29,9 @@ onUnmounted(() => {
 async function pingURL() {
 
   // The custom URL entered by user
-  var URL = "https://server-observer-utility.shaafyousaf.space/Observer";
+  var URL = "https://the-great-server.shaafyousaf.com/Observer";
   const response = await fetch(URL);
-  console.log(`Fetched Response from  https://server-observer-utility.shaafyousaf.space/Observer - isOnline: ${response.ok}`)
+  console.log(`Fetched Response from  https://the-great-server.shaafyousaf.com/Observer - isOnline: ${response.ok}`)
   console.log(`Sending another request in 60 seconds.`)
   if(!response.ok){
     return false;

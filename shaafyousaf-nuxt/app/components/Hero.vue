@@ -43,14 +43,14 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
                     <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
                         
-                        View SWE CV
+                        View Resume
                         <Icon name="heroicons:arrow-up-right" class="btn-icon" />
                     </a>
-                    <a href="https://drive.google.com/file/d/1k6myJd4Gz-WPVKs8sykdEvoOffLwWt8G/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-white cv">
+                    <!-- <a href="https://drive.google.com/file/d/1k6myJd4Gz-WPVKs8sykdEvoOffLwWt8G/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-white cv">
                         
                         View Hardware CV
                         <Icon name="heroicons:arrow-up-right" class="btn-icon" />
-                    </a>
+                    </a> -->
                     <!-- <a href="https://github.com/shaafplayz" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="mdi:github" class="btn-icon" />
                         GitHub
