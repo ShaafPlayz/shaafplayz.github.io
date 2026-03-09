@@ -21,9 +21,7 @@ defineProps<Props>()
 <template>
   <Motion
     class="info-card hardware-card"
-    :initial="{ opacity: 0, y: 30 }"
-    
-    :transition="{ duration: 0.6, delay: 0.5 }"
+    :initial="{ opacity: 1, y: 30 }"
   >
     <h3 class="card-title">
       <Icon name="heroicons:computer-desktop-20-solid" />
