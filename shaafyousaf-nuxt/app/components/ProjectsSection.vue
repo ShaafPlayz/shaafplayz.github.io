@@ -5,9 +5,9 @@ const guiProjects = [
   {
     title: 'GLOW',
     subtitle: 'Water Temperature Observation MVC Application',
-    category: 'Render Deployed',
+    category: 'Production Web Application',
     image: '/resources/GLOW.png',
-    tech: ['JavaScript', 'Next.js Frontend', 'Express Backend', 'MongoDB', 'GitHub Actions', 'Docker', 'Render'],
+    tech: ['JavaScript', 'Next.js', 'Express Backend', 'MongoDB', 'Jest', 'GitHub Actions', 'Docker', 'Render'],
     buttons: [
       { label: 'GitHub', url: 'https://github.com/UTSC-CSCC01-Software-Engineering-I/GLOW-WebApp.git' }
     ]
@@ -16,18 +16,20 @@ const guiProjects = [
     title: 'Planetze',
     subtitle: 'Track and Reduce Your Carbon Footprint',
     category: 'Android App',
-    image: '/images/pla2.jpeg',
-    tech: ['Java', 'Android Studio'],
+    image: '/images/planetzeandroidstudiosc.png',
+    tech: ['Java', 'Android Studio', 'JUnit'],
     buttons: [
-      { label: 'GitHub', url: 'https://github.com/KrishnaManamohan/B07FinalProject' }
+      { label: 'GitHub', url: 'https://github.com/KrishnaManamohan/B07FinalProject' },
+      { label: 'Demo Video', url: 'https://www.youtube.com/watch?v=kPucqKiZSr8' },
+      { label: 'Documentation', url: 'https://docs.google.com/document/d/1E8K7M2KeTI2QX76r0JHJFt2Dfh2fHfJYNujhZVbhaYI/edit?tab=t.0#heading=h.wkfbqc178vg8' }
     ]
   },
   {
     title: 'Zarab Collections',
     subtitle: 'A online Clothing Brand in Pakistan',
-    category: 'VPS Deployed',
+    category: 'Production Web Application',
     image: '/resources/Zarab.png',
-    tech: ['Docker', 'Digital Ocean\'s (Droplet)', 'Next.js', 'SupaBase', 'PostgreSQL', 'GitHub Actions', 'TypeScript'],
+    tech: ['TypeScript', 'Next.js', 'SupaBase', 'PostgreSQL', 'GitHub Actions', 'Docker', 'Digital Ocean\'s (Droplet)',],
     buttons: [
       { label: 'GitHub', url: 'https://github.com/ShaafPlayz/farah-faiza' }
     ]
@@ -37,11 +39,26 @@ const guiProjects = [
     subtitle: 'A Tool That Reads My Inbox And Saves Me Time',
     category: 'Windows/MacOS App',
     image: '/resources/showcase.gif',
-    tech: ['Electron', 'Cohere LLM', 'IMAP Protocol', 'JavaScript'],
+    tech: ['JavaScript', 'Electron', 'Cohere LLM', 'IMAP Protocol'],
     buttons: [
       { label: 'GitHub', url: 'https://github.com/ShaafPlayz/Parsea.git' }
     ]
   }
+]
+
+const backendProjects = [
+  
+  {
+    title: 'Server Observer Utility',
+    subtitle: 'Server Monitoring & Alerting Tool',
+    category: 'API',
+    image: '/homelab/sou.png',
+    tech: [ 'C#', 'ASP.NET Core', 'Docker', 'Github Actions & Runner', ],
+    buttons: [
+      { label: 'GitHub', url: 'https://github.com/shaafyousaf/Server-Observer-Utility' }
+    ]
+  }
+  
 ]
 
 const cliProjects = [
@@ -50,7 +67,7 @@ const cliProjects = [
     subtitle: 'Rediscovering Ancient Civilizations Across Earth',
     category: 'OpenAI to Z Challenge',
     image: '/resources/openaitoz.png',
-    tech: ['Jupyter Notebook', 'OpenAI LLMs', 'Google Earth Engine', 'Python'],
+    tech: ['Python', 'Jupyter Notebook', 'OpenAI LLMs', 'Google Earth Engine', ],
     buttons: [
       { label: 'GitHub', url: 'https://github.com/ShaafPlayz/OpenAI-to-Z-challenge.git' }
     ]
@@ -86,6 +103,30 @@ const emit = defineEmits<{
   <div class="projects-section">
     <!-- All Projects in One Grid -->
     <div class="unified-grid">
+       <!-- Backend Projects -->
+      <Motion
+        v-for="(project, index) in backendProjects"
+        :key="'gui-' + index"
+        :initial="{ opacity: 0, y: 15 }"
+        :while-in-view="{ opacity: 1, y: 0 }"
+        :transition="{ duration: 0.3, delay: 0.05 + index * 0.08 }"
+        class="project-card"
+        @click="emit('item-click', project)"
+      >
+        <div class="card-image">
+          <img :src="project.image" :alt="project.title" />
+          <div class="category-badge backend">Backend</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">{{ project.title }}</h3>
+          <p class="card-subtitle">{{ project.subtitle }}</p>
+          <div class="tech-preview">
+            <span v-for="(tech, i) in project.tech.slice(0, 2)" :key="i" class="tech-tag">{{ tech }}</span>
+            <span v-if="project.tech.length > 2" class="more-tag">+{{ project.tech.length - 2 }}</span>
+          </div>
+        </div>
+      </Motion>
+
       <!-- GUI Projects -->
       <Motion
         v-for="(project, index) in guiProjects"
@@ -210,6 +251,11 @@ const emit = defineEmits<{
 .category-badge.cli {
   background: linear-gradient(135deg, #ffd700, #ff8c00);
   color: #000000;
+}
+
+.category-badge.backend{
+   background: linear-gradient(135deg, #5bffc0, #66adff);
+   color: rgb(0, 0, 0);
 }
 
 .card-content {
