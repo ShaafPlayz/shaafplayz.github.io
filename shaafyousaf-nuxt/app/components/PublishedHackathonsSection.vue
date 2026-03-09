@@ -12,7 +12,7 @@ const hackathons = [
     buttons: [
       { label: 'DevPost', url: 'https://devpost.com/software/imagehr' }
     ],
-    image: '/images/sample.gif'
+    image: '/images/genai_imagehr_wide.jpg'
   },
   {
     event: 'DaVinci Competition 2026 (Toronto)',
