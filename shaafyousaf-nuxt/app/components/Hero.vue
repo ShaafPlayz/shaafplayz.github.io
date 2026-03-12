@@ -35,7 +35,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     
                    <div class="tag">Junior SWE @ UTS (2025-2026)</div>
                     <div class="tag">2x Hackathon Winner</div>
-                    <div class="tag">Building IDRAK</div>
+                    <div class="tag">Designing & Operating a Self-Hosted Linux Infrastructure</div>
                     <div class="tag">Latest Published Software (+700 Install)</div>
                 </Motion>
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
