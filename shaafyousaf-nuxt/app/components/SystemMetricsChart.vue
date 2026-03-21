@@ -147,7 +147,7 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
             <path :d="diskPath" fill="none" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" class="chart-line" />
             <path :d="networkPath" fill="none" stroke="rgba(255, 140, 0, 0.5)" stroke-width="2" class="chart-line" /> -->
 
-          <Motion as="path" :d="cpuPath" fill="none" stroke="#ffffff" stroke-width="2" class="chart-line"
+          <!-- <Motion as="path" :d="cpuPath" fill="none" stroke="#ffffff" stroke-width="2" class="chart-line"
             :while-in-view="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
             :transition="serverConnected ? { duration: 0.4 } : { duration: 2.0, repeat: Infinity, ease: 'easeInOut' }" />
 
@@ -161,7 +161,7 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
 
           <Motion as="path" :d="networkPath" fill="none" stroke="rgba(255, 140, 0, 0.5)" stroke-width="2"
             class="chart-line" :while-in-view="{ opacity: serverConnected ? 1 : [0.3, 0.9, 0.3] }"
-            :transition="serverConnected ? { duration: 0.4 } : { duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }" />
+            :transition="serverConnected ? { duration: 0.4 } : { duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }" /> -->
         </svg>
       </div>
 
