@@ -91,7 +91,7 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
             Unavailable
           </span>
         </h3>
-        <Motion :while-in-view="{
+        <!-- <Motion :while-in-view="{
           filter: serverConnected ? 'blur(0px)' : 'blur(2px)'
         }" :transition="{ duration: 0.8 }">
 
@@ -119,7 +119,7 @@ const networkPath = computed(() => applyWobble(props.chartHistory.network, 100, 
           </div>
 
 
-        </Motion>
+        </Motion> -->
       </div>
       <div class="chart-wrapper">
         <svg :width="chartWidth" :height="chartHeight" :viewBox="`0 0 ${chartWidth} ${chartHeight}`"
