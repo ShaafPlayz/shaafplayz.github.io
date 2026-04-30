@@ -29,15 +29,15 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     :transition="{ duration: 1, delay: 0.55, ease: [0.16, 1, 0.3, 1] }">
                     I’m Shaaf Yousaf, a senior at the University of Toronto in Computer Science (Software Engineering Coop Stream), building production-ready full-stack applications and backend systems.               
                 </Motion>
-                <Motion class="hero-tags" :initial="{ opacity: 0, filter: 'blur(8px)' }"
+               <!--   <Motion class="hero-tags" :initial="{ opacity: 0, filter: 'blur(8px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }">
                     
-                   <div class="tag">Junior SWE @ UTS (2025-2026)</div>
+                    <div class="tag">Junior SWE @ UTS (2025-2026)</div>
                     <div class="tag">2x Hackathon Winner</div>
                     <div class="tag special-tag">Designing & Operating a Self-Hosted Linux Infrastructure</div>
                     <div class="tag">Latest Published Software (+700 Install)</div>
-                </Motion>
+                </Motion>-->
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
