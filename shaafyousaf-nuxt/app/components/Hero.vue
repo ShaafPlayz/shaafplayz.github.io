@@ -33,7 +33,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }">
 
-                    <div class="tag">.NET Developer Co-op @ OPS</div>
+                    <div class="tag">(Incoming) .NET Developer Co-op @ OPS</div>
                     <div class="tag">Junior SWE Co-op @ UTS</div>
                     <div class="tag">2x Hackathon Winner</div>
                     <div class="tag">Homelabber</div>
