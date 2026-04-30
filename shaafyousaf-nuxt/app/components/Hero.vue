@@ -37,7 +37,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     <div class="tag">Junior SWE Co-op @ UTS</div>
                     <div class="tag">2x Hackathon Winner</div>
                     <div class="tag">Homelabber</div>
-                    <div class="tag">Astrophotographer</div>
+                    <div class="tag">Curious about the night sky</div>
                 </Motion>
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
