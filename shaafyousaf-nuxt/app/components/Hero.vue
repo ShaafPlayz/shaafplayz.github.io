@@ -27,25 +27,26 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                 <Motion tag="p" class="hero-description" :initial="{ opacity: 0, filter: 'blur(8px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.55, ease: [0.16, 1, 0.3, 1] }">
-                    I’m Shaaf Yousaf, a senior at the University of Toronto in Computer Science (Software Engineering Coop Stream), building production-ready full-stack applications and backend systems.               
-                </Motion>
-               <!--   <Motion class="hero-tags" :initial="{ opacity: 0, filter: 'blur(8px)' }"
+                    I'm Shaaf Yousaf — third-year Software Engineering student at UofT Scarborough. I build softwares,
+                    tinker with hardware, and occasionally photograph satellites and stars. </Motion>
+                <Motion class="hero-tags" :initial="{ opacity: 0, filter: 'blur(8px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }">
-                    
-                    <div class="tag">Junior SWE @ UTS (2025-2026)</div>
+
+                    <div class="tag">.NET Developer Co-op @ OPS</div>
+                    <div class="tag">Junior SWE Co-op @ UTS</div>
                     <div class="tag">2x Hackathon Winner</div>
-                    <div class="tag special-tag">Designing & Operating a Self-Hosted Linux Infrastructure</div>
-                    <div class="tag">Latest Published Software (+700 Install)</div>
-                </Motion>-->
+                    <div class="tag">Homelabber</div>
+                    <div class="tag">Astrophotographer</div>
+                </Motion>
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
-                      <a href="/contact" class="btn btn-white cv">
-                        
+
+                    <NuxtLink to="/contact" class="btn btn-white cv">
                         Contact Me
                         <Icon name="heroicons:arrow-right" class="btn-icon" />
-                    </a>
+                    </NuxtLink>
                     <!-- <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
                         
                         View Resume
@@ -76,11 +77,11 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                 opacity: [0, 1, 1, 0],
                 y: [0, 10, 10, 20]
             }" :transition="{
-            duration: 2,
-            delay: 1,
-            repeat: Infinity,
-            ease: 'easeInOut'
-        }">
+                duration: 2,
+                delay: 1,
+                repeat: Infinity,
+                ease: 'easeInOut'
+            }">
                 <Icon name="heroicons:chevron-down" class="arrow-icon" />
             </Motion>
 
@@ -226,7 +227,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 
 .cv {
     background-color: white !important;
-    
+
     color: black !important;
     transition: 0.5s;
 }
@@ -276,23 +277,21 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 
 .tag {
     cursor: default;
-    background: linear-gradient(
-        135deg,
-        #fff9d6,
-        #ffffff,
-        #f3e7b3
-    );
-    color: #111111;
-    border: 1px solid rgba(212, 175, 55, 0.35);
-    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 0.5rem 1.25rem;
     border-radius: 50px;
     font-family: 'Nexa', sans-serif;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.95rem;
     height: 1.8rem;
     display: flex;
     align-items: center;
+    letter-spacing: 0.2px;
 }
 
 
@@ -399,6 +398,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
         height: auto;
         min-height: 1.6rem;
     }
+
     .special-tag {
         width: 60% !important;
         border-radius: 20px;

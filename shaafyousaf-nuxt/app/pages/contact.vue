@@ -78,7 +78,7 @@ const socialLinks = [
           If you’re working on something interesting, hiring, or just want to talk tech — I’d love to hear from you.
         </p>
         <p class="hero-info">
-          Based in Toronto, ON • Available for full-time Coop/Research opportunities starting May 2026
+          Based in Toronto, ON 
         </p>
       </Motion>
 
