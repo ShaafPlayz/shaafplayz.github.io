@@ -41,7 +41,12 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
-                    <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
+                      <a href="/contact" target="_blank" rel="noopener" class="btn btn-white cv">
+                        
+                        Contact Me
+                        <Icon name="heroicons:arrow-right" class="btn-icon" />
+                    </a>
+                    <!-- <a href="https://drive.google.com/file/d/1_H4GS3Ufw6UOnEJhch0OapYTXMUZFIor/view" target="_blank" rel="noopener" class="btn btn-white cv">
                         
                         View Resume
                         <Icon name="heroicons:arrow-up-right" class="btn-icon" />
@@ -54,15 +59,15 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                     <!-- <a href="https://github.com/shaafplayz" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="mdi:github" class="btn-icon" />
                         GitHub
-                    </a> -->
-                    <a href="https://www.linkedin.com/in/shaafyousaf/" target="_blank" rel="noopener" class="btn btn-white">
+                    </a>
+                   <!-- <a href="https://www.linkedin.com/in/shaafyousaf/" target="_blank" rel="noopener" class="btn btn-white">
                         <Icon name="mdi:linkedin" class="btn-icon" />
                         LinkedIn
                     </a>    
                     <a href="mailto:shaaf.yousaf@mail.utoronto.ca" class="btn btn-white">
                         <Icon name="heroicons:envelope" class="btn-icon" />
                         Email Me
-                    </a>
+                    </a> -->
                 </Motion>
             </div>
 
