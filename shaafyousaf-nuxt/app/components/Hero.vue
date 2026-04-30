@@ -41,7 +41,7 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
                 <Motion class="hero-buttons" :initial="{ opacity: 0, filter: 'blur(6px)' }"
                     :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
                     :transition="{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }">
-                      <a href="/contact" target="_blank" rel="noopener" class="btn btn-white cv">
+                      <a href="/contact" class="btn btn-white cv">
                         
                         Contact Me
                         <Icon name="heroicons:arrow-right" class="btn-icon" />
