@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue';
+import OPSDotnetDev from '~/components/OPSDotnetDev.vue';
 
 const serverConnected = ref(false);
 const uptime = ref("--");
@@ -49,7 +50,11 @@ async function pingURL() {
   <div>
     <Hero />
     <SkillsSection />
-     <NuxtLink to="/experience?tab=published" class="clickable-section">
+    <NuxtLink to="/experience" class="clickable-section">
+      <OPSDotnetDev/>
+      <!-- <UTSJuniorSWE /> -->
+    </NuxtLink> 
+    <NuxtLink to="/experience?tab=published" class="clickable-section">
       <FeaturedProject />
     </NuxtLink>
     <NuxtLink to="/homelab" class="clickable-section">
@@ -61,9 +66,7 @@ async function pingURL() {
       />
     </NuxtLink>
    
-    <NuxtLink to="/experience" class="clickable-section">
-      <FeaturedInternship />
-    </NuxtLink> 
+    
     
   </div>
 </template>

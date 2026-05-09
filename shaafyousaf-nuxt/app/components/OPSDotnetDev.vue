@@ -8,24 +8,18 @@ const emit = defineEmits<{
 
 // Featured internship data
 const featuredJob = {
-  position: 'Junior Software Developer',
-  company: 'University of Toronto Schools',
+  position: '.NET Developer',
+  company: 'Ontario Government',
   location: 'Toronto, ON',
-  date: 'Sep 2025 - Apr 2026',
+  date: 'May 2026 - Present',
   current: true,
-  image: '/images/open-house-blog-thumbnail.jpg',
+  image: '/images/ops.jpeg',
   type: 'SWE Internships',
   duration: '8 months',
   employmentType: 'Full-Time',
-  description: 'Built and deployed two independent .NET (C#) applications for internal and in-class use. Rebuilt RESTful backends into ASP.NET Core GraphQL APIs and redesigned Blazor Web UIs, optimizing database access patterns and reducing request latency from seconds to milliseconds.',
-  responsibilities: [
-    'Built and deployed two independent .NET (C#) applications for internal and in-class use with separate codebases',
-    'Rebuilt RESTful backends into ASP.NET Core GraphQL APIs using EF Core and SQL Server (100% authored)',
-    'Optimized database access patterns and GraphQL queries with EF Core and Hot Chocolate, reducing request latency from seconds to milliseconds',
-    'Redesigned client UI for both Blazor Web applications using MudBlazor and HTML/CSS (70% authored)',
-    'Received strong positive feedback from staff, teachers, and students on UI improvements'
-  ],
-  technologies: ['.NET', 'C#', 'Blazor Framework', 'GraphQL (Hot Chocolate)', 'SQL Server', 'SSMS (SQL Server Management Studio)', 'LinQPad', 'Azure DevOps', 'REST APIs'],
+  description: 'A .NET + Angular developer.',
+  responsibilities: [],
+  technologies: ['.NET', 'Angular'],
   achievements: [],
   // buttons: [
   //   { label: 'GitHub', url: 'https://github.com/ShaafPlayz' }

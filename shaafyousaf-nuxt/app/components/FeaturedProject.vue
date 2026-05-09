@@ -13,8 +13,8 @@ const featuredProject = {
   category: 'Published on Chrome Web Store',
   image: '/images/_DSC4383_compressed.JPG',
   stats: {
-    installs: '700+',
-    users: '60+',
+    installs: '1200+',
+    users: '90 (Apr - May)',
     productHuntRank: '14'
   },
   tech: ['.NET C#', 'Blazor Framework', 'MudBlazor', 'JavaScript'],
@@ -95,7 +95,7 @@ const handleClick = () => {
         </div>
         <div v-if="featuredProject.stats.users" class="stat-item">
           <div class="stat-value">{{ featuredProject.stats.users }}</div>
-          <div class="stat-label">Active Users</div>
+          <div class="stat-label">Active Users (last 30 days, 2026)</div>
         </div>
         <div v-if="featuredProject.stats.productHuntRank" class="stat-item">
           <div class="stat-value">#{{ featuredProject.stats.productHuntRank }}</div>

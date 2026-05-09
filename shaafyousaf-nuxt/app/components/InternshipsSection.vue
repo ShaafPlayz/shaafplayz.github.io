@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
+import OPSDotnetDev from './OPSDotnetDev.vue';
 
 const emit = defineEmits<{
   (e: 'item-click', item: any): void
@@ -52,7 +53,8 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
   <div class="internships-section">
     <!-- Featured Internship -->
     <h2 class="section-title">SWE</h2>
-    <FeaturedInternship @click="emit('item-click', $event)" />
+    <OPSDotnetDev @click="emit('item-click', $event)" />
+    <UTSJuniorSWE @click="emit('item-click', $event)" />
 
 
     <!-- Arts Internships -->
