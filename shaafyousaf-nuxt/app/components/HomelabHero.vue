@@ -65,7 +65,7 @@ const props = withDefaults(defineProps<Props>(), {
           <div class="status-bar-item">
             <!-- <span class="status-bar-label">Status:</span> -->
             <span :class="['status-indicator', serverConnected ? 'online' : 'offline']">
-              {{ serverConnected ? 'ONLINE' : 'OFFLINE' }}
+              {{ serverConnected ? 'ONLINE' : 'LINK-DOWN' }}
             </span>
           </div>
         </div>

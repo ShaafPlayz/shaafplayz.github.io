@@ -332,8 +332,8 @@ onUnmounted(() => {
       :uptime="uptime"
     />
 
-    <!-- Tab Navigation 
-    <div class="tab-navigation-container">
+    <!-- Tab Navigation -->
+    <!-- <div class="tab-navigation-container">
       <div class="tab-navigation">
         <button 
           class="tab-button" 
@@ -352,7 +352,7 @@ onUnmounted(() => {
           <span class="tab-label">Live Statistics</span>
         </button>
       </div>
-    </div>-->
+    </div> -->
 
     <!-- Tab Content -->
     <div class="tab-content">
