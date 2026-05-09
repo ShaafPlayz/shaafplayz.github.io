@@ -21,9 +21,11 @@ const featuredJob = {
   responsibilities: [],
   technologies: ['.NET', 'C#', 'Blazor Framework', 'WebSockets (SignalR)', 'Plugin Architecture', 'GraphQL (Hot Chocolate)', 'SQL Server', 'SSMS (SQL Server Management Studio)', 'LinQPad', 'Azure DevOps', 'REST APIs'],
   achievements: [],
-  // buttons: [
-  //   { label: 'GitHub', url: 'https://github.com/ShaafPlayz' }
-  // ]
+  buttons: [
+    { label: 'My Work Part 1 (of 2)', url: 'https://files.shaafyousaf.com/UTS%20-%20Sep%2025%20to%20Apr%2026/home_artifact-number-1-asset-tracker.html' },
+        { label: 'temporarily unavailable - My Work Part 2 (of 2)' }
+
+  ]
 }
 
 const overlayImage = '/resources/blackSideOverlayGradient.png'
