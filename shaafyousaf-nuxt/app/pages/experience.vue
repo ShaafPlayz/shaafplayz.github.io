@@ -3,7 +3,7 @@ import { Motion } from 'motion-v'
 import { ref, computed, onMounted } from 'vue'
 
 const route = useRoute()
-const activeSection = ref('internships')
+const activeSection = ref('professional-work')
 const isDialogOpen = ref(false)
 const selectedItem = ref<any>(null)
 let closeTimeout: number | null = null
@@ -18,7 +18,7 @@ onMounted(() => {
 })
 
 const sections = [
-  { id: 'internships', label: 'Internships' },
+  { id: 'professional-work', label: 'Professional Work' },
   { id: 'published', label: 'Published & Hackathons' },
   { id: 'projects', label: 'Projects' },
   { id: 'devops', label: 'DevOps/IT' }
@@ -108,7 +108,7 @@ const slideVariants = computed(() => ({
     >
       <h1 class="hero-title">My Experience</h1>
       <p class="hero-description">
-        Explore my internships, hackathon wins, published work, and projects
+        Explore my professional work, hackathon wins, published work, and projects
       </p>
 
       <!-- Tab Pills -->
@@ -139,7 +139,7 @@ const slideVariants = computed(() => ({
         :transition="{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }"
         class="content-section"
       >
-        <InternshipsSection v-if="activeSection === 'internships'" @item-click="openDialog" />
+        <InternshipsSection v-if="activeSection === 'professional-work'" @item-click="openDialog" />
         <PublishedHackathonsSection v-if="activeSection === 'published'" @item-click="openDialog" />
         <ProjectsSection v-if="activeSection === 'projects'" @item-click="openDialog" />
         <DevOpsIT v-if="activeSection === 'devops'" />
