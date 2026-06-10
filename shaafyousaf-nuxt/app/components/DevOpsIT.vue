@@ -108,7 +108,7 @@ async function pingURL() {
             <div class="library-links">
               <a href="https://vault.shaafyousaf.com" target="_blank" rel="noopener noreferrer" class="library-link" title="Personal Knowledge Base">
                 <Icon name="heroicons:book-open-20-solid" />
-                <span>Vault</span>
+                <span>Vault (Temporarily Offline)</span>
               </a>
               <a href="https://files.shaafyousaf.com" target="_blank" rel="noopener noreferrer" class="library-link" title="File Server">
                 <Icon name="heroicons:folder-20-solid" />

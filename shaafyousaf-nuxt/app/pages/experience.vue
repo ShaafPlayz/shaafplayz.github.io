@@ -21,6 +21,7 @@ const sections = [
   { id: 'professional-work', label: 'Professional Work' },
   { id: 'published', label: 'Published & Hackathons' },
   { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills & Certifications' },
   { id: 'devops', label: 'DevOps/IT' }
 ]
 
@@ -142,6 +143,7 @@ const slideVariants = computed(() => ({
         <InternshipsSection v-if="activeSection === 'professional-work'" @item-click="openDialog" />
         <PublishedHackathonsSection v-if="activeSection === 'published'" @item-click="openDialog" />
         <ProjectsSection v-if="activeSection === 'projects'" @item-click="openDialog" />
+        <SkillsCertsSection v-if="activeSection === 'skills'" />
         <DevOpsIT v-if="activeSection === 'devops'" />
 
 
@@ -198,7 +200,7 @@ const slideVariants = computed(() => ({
   text-align: left;
   margin-bottom: 4rem;
   position: relative;
-  z-index: 1;
+  z-index: 50;
 }
 
 .hero-title {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const currentYear = new Date().getFullYear()
-const lastUpdated = 'March 7th, 2026'
+const lastUpdated = 'June 10th, 2026'
 </script>
 
 <template>
@@ -38,9 +38,9 @@ const lastUpdated = 'March 7th, 2026'
 
           <span class="footer-links-divider"></span>
 
-          <a href="https://vault.shaafyousaf.com" target="_blank" rel="noopener noreferrer" class="text-link" title="Personal Knowledge Base">
+          <!-- <a href="https://vault.shaafyousaf.com" target="_blank" rel="noopener noreferrer" class="text-link" title="Personal Knowledge Base">
             <i class="fas fa-book"></i><span>Vault</span>
-          </a>
+          </a> -->
           <a href="https://files.shaafyousaf.com" target="_blank" rel="noopener noreferrer" class="text-link" title="File Server">
             <i class="fas fa-folder"></i><span>Files</span>
           </a>
@@ -53,10 +53,10 @@ const lastUpdated = 'March 7th, 2026'
             rel="noopener noreferrer"
             class="source-link"
           >
-            View Source Code
+            Source Code
           </a>
           <span class="footer-dot">·</span>
-          <p class="update-info">Last Updated: {{ lastUpdated }}</p>
+          <p class="update-info">Updated: {{ lastUpdated }}</p>
         </div>
       </div>
     </div>
@@ -159,9 +159,9 @@ const lastUpdated = 'March 7th, 2026'
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: 0rem;
   padding-top: 1.5rem;
-  border-top: var(--border-thin);
+  /* border-top: var(--border-thin); */
 }
 
 .source-link {
