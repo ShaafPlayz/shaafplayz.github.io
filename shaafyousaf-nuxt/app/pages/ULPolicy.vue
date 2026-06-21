@@ -6,7 +6,7 @@
         <div class="dot red" />
         <div class="dot yellow" />
         <div class="dot green" />
-        <span class="title">slowed enhanced</span>
+        <span class="title">Ugly Links</span>
       </div>
 
       <!-- Terminal Body -->
