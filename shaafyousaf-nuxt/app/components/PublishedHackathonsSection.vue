@@ -3,11 +3,26 @@ import { Motion } from 'motion-v'
 
 const hackathons = [
   {
+    event: 'Hack the 6ix 2026 (Toronto)',
+    title: 'Rocky',
+    subtitle: 'Unbeatable rock-paper-scissors robot with live gesture tracking.',
+    description: 'A Raspberry Pi robot that plays rock paper scissors and never loses. Live camera feed runs through MediaPipe Hands for landmark tracking, a rule-based classifier locks in rock/paper/scissors after a stability check, then the backend picks the winning counter-move and drives GPIO/servo hardware while a real-time web UI stays in sync with the game loop.',
+    prize: 'Built at Hack the 6ix',
+    won: false,
+    tech: ['Python', 'MediaPipe', 'OpenCV', 'Raspberry Pi', 'GPIO', 'QNX', 'ElevenLabs'],
+    buttons: [
+      { label: 'DevPost', url: 'https://devpost.com/software/rocky-unbeatable-at-rps' },
+      { label: 'GitHub', url: 'https://github.com/chantalzhang/ht62026' }
+    ],
+    image: '/images/rocky_hackthe6ix.jpg'
+  },
+  {
     event: 'GenAI Genesis 2025 (Toronto)',
     title: 'imagEHR',
     subtitle: 'AI-Powered Clinical Data Extraction & CDISC Mapping',
     description: 'Automates the extraction of EHR (text) and X-ray (image) data, then maps it to CDISC-compliant SDTM formats for streamlined research, clinical trials, and regulatory use.',
     prize: 'Google & HBSU Best Healthcare AI Hack',
+    won: true,
     tech: ['Python', 'Flask', 'Cohere LLM', 'YOLOv5', 'JavaScript'],
     buttons: [
       { label: 'DevPost', url: 'https://devpost.com/software/imagehr' }
@@ -20,6 +35,7 @@ const hackathons = [
     subtitle: 'Early MVP for a Real-time assistant for context-aware visual tasks.',
     description: 'A camera-based assistant engine that builds temporal context from live video, enabling real-time visual guidance, safety warnings, and step-by-step assistance for hands-on tasks.',
     prize: '1st Place Overall Winner',
+    won: true,
     tech: ['Python', 'TypeScript', 'Vue', 'FastAPI', 'OpenCV', 'Anthropic', 'Whisper'],
     buttons: [
       { label: 'DevPost', url: 'https://devpost.com/software/idrak' }
@@ -47,13 +63,13 @@ const emit = defineEmits<{
       </div>
     </Motion>
 
-    <!-- Hackathon Wins Section -->
+    <!-- Hackathons Section -->
     <Motion
       :initial="{ opacity: 0, y: 20 }"
       :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.2 }"
     >
-      <h2 class="section-title">Hackathon Wins</h2>
+      <h2 class="section-title">Hackathons</h2>
       <div class="hackathons-grid">
         <Motion
           v-for="(hack, index) in hackathons"
@@ -61,11 +77,14 @@ const emit = defineEmits<{
           :initial="{ opacity: 0, y: 15 }"
           :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.3, delay: 0.25 + index * 0.1 }"
-          class="hackathon-card"
+          :class="['hackathon-card', { 'is-win': hack.won !== false }]"
           @click="emit('item-click', hack)"
         >
           <div class="prize-header">
-            <Icon name="heroicons:trophy-20-solid" class="trophy-icon" />
+            <Icon
+              :name="hack.won !== false ? 'heroicons:trophy-20-solid' : 'heroicons:code-bracket-20-solid'"
+              class="trophy-icon"
+            />
             <span class="prize-text">{{ hack.prize }}</span>
           </div>
           <div class="card-content">
@@ -118,25 +137,38 @@ const emit = defineEmits<{
 
 .hackathon-card {
   background: #ffffff;
-  border: 2px solid #ffd700;
+  border: 2px solid #d0d0d0;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.hackathon-card.is-win {
+  border-color: #ffd700;
+}
+
 .hackathon-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #999999;
+}
+
+.hackathon-card.is-win:hover {
   box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
   border-color: #ff8c00;
 }
 
 .prize-header {
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  background: #f0f0f0;
   padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.hackathon-card.is-win .prize-header {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
 }
 
 .trophy-icon {

@@ -81,6 +81,7 @@ const slideVariants = computed(() => ({
       :link="selectedItem?.link || ''"
       :buttons="selectedItem?.buttons || []"
       :prize="selectedItem?.prize || ''"
+      :won="selectedItem?.won !== false"
       :event="selectedItem?.event || ''"
       :company="selectedItem?.company || ''"
       :position="selectedItem?.position || ''"
@@ -109,7 +110,7 @@ const slideVariants = computed(() => ({
     >
       <h1 class="hero-title">My Experience</h1>
       <p class="hero-description">
-        Explore my professional work, hackathon wins, published work, and projects
+        Explore my professional work, hackathons, published work, and projects
       </p>
 
       <!-- Tab Pills -->

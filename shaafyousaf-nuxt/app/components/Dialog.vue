@@ -49,6 +49,10 @@ const props = defineProps({
     type: String,
     default: ''
   },
+  won: {
+    type: Boolean,
+    default: true
+  },
   event: {
     type: String,
     default: ''
@@ -241,7 +245,7 @@ const handleBackdropClick = (event: MouseEvent) => {
 
                 <!-- Primary Info as Plain Text -->
                 <div v-if="prize || award || company || position || event" class="meta-info">
-                  <span v-if="prize" class="meta-item meta-prize">🏆 {{ prize }}</span>
+                  <span v-if="prize" class="meta-item meta-prize">{{ won ? '🏆 ' : '' }}{{ prize }}</span>
                   <span v-if="award && award !== prize" class="meta-item meta-award">{{ award }}</span>
                   <span v-if="company" class="meta-item">{{ company }}</span>
                   <!-- <span v-if="position" class="meta-item">{{ position }}</span> -->
