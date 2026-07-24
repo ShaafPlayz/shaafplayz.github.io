@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Motion } from 'motion-v'
 
 const hackathons = [
@@ -15,6 +16,20 @@ const hackathons = [
       { label: 'GitHub', url: 'https://github.com/chantalzhang/ht62026' }
     ],
     image: '/images/rocky_hackthe6ix.jpg'
+  },
+  {
+    event: 'OpenAI to Z Challenge 2025 (Kaggle, Global)',
+    title: 'Lost City of Z',
+    subtitle: 'Rediscovering Ancient Civilizations Across Earth',
+    description: 'A submission to OpenAI\'s Kaggle-hosted "to Z Challenge," searching for undiscovered archaeological sites in the Amazon. The workflow fetches satellite imagery from Google Earth Engine, cross-references it against existing vector data, and prompts GPT-4.1\'s image model to flag anomalous surface features worth investigating as potential lost settlements.',
+    prize: 'Built for OpenAI to Z Challenge',
+    won: false,
+    tech: ['Python', 'Jupyter Notebook', 'OpenAI GPT-4.1', 'Google Earth Engine'],
+    buttons: [
+      { label: 'Kaggle Writeup', url: 'https://www.kaggle.com/competitions/openai-to-z-challenge/writeups/multisource-anomaly-detection-workflow' },
+      { label: 'GitHub', url: 'https://github.com/shaafyousaf/OpenAI-to-Z-challenge' }
+    ],
+    image: '/resources/openaitoz.png'
   },
   {
     event: 'GenAI Genesis 2025 (Toronto)',
@@ -44,6 +59,10 @@ const hackathons = [
   }
 ]
 
+const sortedHackathons = computed(() => {
+  return [...hackathons].sort((a, b) => Number(b.won !== false) - Number(a.won !== false))
+})
+
 const emit = defineEmits<{
   (e: 'item-click', item: any): void
 }>()
@@ -72,7 +91,7 @@ const emit = defineEmits<{
       <h2 class="section-title">Hackathons</h2>
       <div class="hackathons-grid">
         <Motion
-          v-for="(hack, index) in hackathons"
+          v-for="(hack, index) in sortedHackathons"
           :key="'hack-' + index"
           :initial="{ opacity: 0, y: 15 }"
           :while-in-view="{ opacity: 1, y: 0 }"
