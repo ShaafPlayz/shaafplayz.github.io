@@ -150,26 +150,33 @@ const certificates = [
         class="certs-section"
       >
         <h3 class="subsection-title">Licenses & Certifications</h3>
-        <div class="certs-list">
+        <div class="certs-grid">
           <Motion
             v-for="(cert, index) in certificates"
             :key="cert.title"
-            :initial="{ opacity: 0, y: 10 }"
+            :initial="{ opacity: 0, y: 15 }"
             :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.2, delay: 0.15 + index * 0.05 }"
-            class="cert-row"
+            :transition="{ duration: 0.3, delay: 0.15 + index * 0.06 }"
+            class="cert-card"
           >
-            <div class="cert-info">
-              <h4 class="cert-title">{{ cert.title }}</h4>
-              <p class="cert-meta">
-                {{ cert.issuer }} &middot; Issued {{ cert.issued }}<span v-if="cert.credentialId"> &middot; Credential ID {{ cert.credentialId }}</span>
-              </p>
+            <div class="cert-card-header">
+              <div class="cert-icon">
+                <Icon name="heroicons:academic-cap-20-solid" />
+              </div>
+              <span class="cert-issuer">{{ cert.issuer }}</span>
             </div>
+
+            <h4 class="cert-title">{{ cert.title }}</h4>
+            <p class="cert-meta">
+              Issued {{ cert.issued }}<span v-if="cert.credentialId"><br />Credential ID {{ cert.credentialId }}</span>
+            </p>
+
             <a
               :href="cert.url"
               target="_blank"
               rel="noopener noreferrer"
               class="cert-link"
+              @click.stop
             >
               Show credential
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -231,14 +238,14 @@ const certificates = [
 
 /* Languages Section */
 .languages-section {
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 .subsection-title {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   text-align: left;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -248,49 +255,54 @@ const certificates = [
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .skill-tag {
-  background: transparent;
-  color: #000000;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  background: #f5f5f5;
+  color: #222222;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
   font-family: 'Nexa', sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1.5px solid transparent;
+  transition: all 0.25s ease;
   cursor: default;
 }
 
 .skill-tag:hover {
-  border-color: rgba(0, 0, 0, 0.4);
+  background: #fff8dc;
+  border-color: #ffd700;
   color: #000000;
+  transform: translateY(-2px);
 }
 
 /* Tools Section */
 .tools-section {
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 .tools-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 0.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .tool-item {
   font-family: 'Nexa', sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  color: rgba(0, 0, 0, 0.7);
-  padding: 0.5rem 0;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #333333;
+  background: #f5f5f5;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  transition: all 0.25s ease;
   cursor: default;
 }
 
 .tool-item:hover {
+  background: #e8e8e8;
   color: #000000;
 }
 
@@ -299,34 +311,54 @@ const certificates = [
   margin-bottom: 1rem;
 }
 
-.certs-list {
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.cert-card {
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cert-row {
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #d0d0d0;
+}
+
+.cert-card-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease;
-  cursor: default;
-  user-select: none;
-  -webkit-user-select: none;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.cert-row:first-child {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.cert-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #000000;
+  color: #ffffff;
 }
 
-.cert-row:hover {
-  border-bottom-color: rgba(0, 0, 0, 0.3);
-}
-
-.cert-info {
-  min-width: 0;
+.cert-issuer {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .cert-title {
@@ -334,39 +366,44 @@ const certificates = [
   font-weight: 700;
   font-size: 1.05rem;
   color: #000000;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
 
 .cert-meta {
   font-family: 'Nexa', sans-serif;
-  font-weight: 300;
-  font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.55);
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: #888888;
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 
 .cert-link {
-  flex-shrink: 0;
+  margin-top: auto;
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
   font-family: 'Nexa', sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.8rem;
   text-decoration: none;
-  color: #000000;
-  background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  color: #333333;
+  background: #f5f5f5;
+  border: 1.5px solid transparent;
+  transition: all 0.25s ease;
   white-space: nowrap;
   cursor: pointer;
 }
 
 .cert-link:hover {
-  border-color: rgba(0, 0, 0, 0.4);
+  background: #fff8dc;
+  border-color: #ffd700;
+  color: #000000;
 }
 
 /* Responsive Design */
@@ -377,16 +414,15 @@ const certificates = [
   }
 
   .languages-section {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
   .tools-section {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
 
-  .tools-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.5rem 1.5rem;
+  .certs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 }
 
@@ -398,36 +434,34 @@ const certificates = [
 
   .subsection-title {
     font-size: 0.85rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.1rem;
   }
 
   .languages-section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .tags-container {
-    gap: 0.6rem;
+    gap: 0.5rem;
   }
 
   .skill-tag {
-    padding: 0.4rem 0.85rem;
-    font-size: 0.9rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
   }
 
   .tools-list {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 0.4rem 1rem;
+    gap: 0.4rem;
   }
 
   .tool-item {
-    font-size: 0.9rem;
-    padding: 0.4rem 0;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.7rem;
   }
 
-  .cert-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+  .certs-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
   }
 
   .grid-background {
