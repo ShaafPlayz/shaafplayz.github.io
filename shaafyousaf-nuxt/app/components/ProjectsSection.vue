@@ -94,6 +94,38 @@ const backendProjects = [
   }
 ]
 
+const infraProjects = [
+  {
+    title: 'The Great Library',
+    subtitle: 'A Self-Hosted Home Server Built From Repurposed Hardware',
+    category: 'Home Server',
+    badge: 'Infra',
+    badgeClass: 'infra',
+    date: '2025-09-01',
+    image: '/images/homeserveroldPic.png',
+    description: 'A 24/7 home server ("the-great-library") running on repurposed hardware, used as a production playground for real infrastructure. Publishes services through a Cloudflare Zero Trust Tunnel and Nginx reverse proxy with no exposed ports, stores everything on a Samba network drive, and stays reachable remotely over a WireGuard VPN with DuckDNS — all monitored live with Glances and a custom-built Server Observer Utility.',
+    tech: ['Ubuntu Server', 'Docker', 'Nginx', 'Cloudflare Tunnel', 'WireGuard VPN', 'Samba', 'Glances'],
+    buttons: [
+      { label: 'View Homelab', url: '/homelab' }
+    ]
+  },
+  {
+    title: 'Self-Hosted File Vault',
+    subtitle: 'Automated Google Drive Sync & Personal Knowledge Base',
+    category: 'Self-Hosted Service',
+    badge: 'Infra',
+    badgeClass: 'infra',
+    date: '2025-10-01',
+    image: '/homelab/networkTopology.png',
+    description: 'A self-hosted file server and personal knowledge base running on the homelab. Files sync automatically from Google Drive every 60 seconds via rclone, a GitHub Actions self-hosted runner auto-deploys config changes on push, and HTML/PDF files are auto-wrapped into browsable pages served through MkDocs and Nginx.',
+    tech: ['Ubuntu Server', 'Docker', 'MkDocs', 'Nginx', 'rclone', 'GitHub Actions', 'Python', 'Google Drive'],
+    buttons: [
+      { label: 'Vault (Temporarily Offline)', url: 'https://vault.shaafyousaf.com' },
+      { label: 'Files', url: 'https://files.shaafyousaf.com' }
+    ]
+  }
+]
+
 const cliProjects = [
   {
     title: 'Halo Pixel Edition',
@@ -125,13 +157,14 @@ const cliProjects = [
   }
 ]
 
-const allProjects = [...backendProjects, ...guiProjects, ...cliProjects]
+const allProjects = [...backendProjects, ...guiProjects, ...cliProjects, ...infraProjects]
 
 const categories = [
   { id: 'all', label: 'All' },
   { id: 'gui', label: 'GUI' },
   { id: 'backend', label: 'Backend' },
-  { id: 'cli', label: 'CLI/Retro' }
+  { id: 'cli', label: 'CLI/Retro' },
+  { id: 'infra', label: 'Infra' }
 ]
 
 const sortOptions = [

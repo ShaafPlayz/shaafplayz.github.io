@@ -21,8 +21,7 @@ const sections = [
   { id: 'professional-work', label: 'Professional Work' },
   { id: 'published', label: 'Published & Hackathons' },
   { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Skills & Certifications' },
-  { id: 'devops', label: 'DevOps/IT' }
+  { id: 'skills', label: 'Certifications' }
 ]
 
 const setActiveSection = (sectionId: string) => {
@@ -145,20 +144,6 @@ const slideVariants = computed(() => ({
         <PublishedHackathonsSection v-if="activeSection === 'published'" @item-click="openDialog" />
         <ProjectsSection v-if="activeSection === 'projects'" @item-click="openDialog" />
         <SkillsCertsSection v-if="activeSection === 'skills'" />
-        <DevOpsIT v-if="activeSection === 'devops'" />
-
-
-
-        <!-- DevOps Section - Empty for now -->
-        <!-- <div v-if="activeSection === 'devops'" class="empty-section">
-          <Motion
-            :initial="{ opacity: 0, scale: 0.9 }"
-            :while-in-view="{ opacity: 1, scale: 1 }"
-            :transition="{ duration: 0.4, delay: 0.2 }"
-          >
-            <p class="empty-text">Coming Soon...</p>
-          </Motion>
-        </div> -->
       </Motion>
     </div>
     </div>

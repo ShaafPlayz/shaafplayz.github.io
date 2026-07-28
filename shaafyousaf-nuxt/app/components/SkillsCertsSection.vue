@@ -90,63 +90,11 @@ const certificates = [
       :transition="{ duration: 0.1, delay: 0 }"
       class="skills-container"
     >
-      <Motion
-        :initial="{ opacity: 0, filter: 'blur(6px)' }"
-        :while-in-view="{ opacity: 1, filter: 'blur(0px)' }"
-        :transition="{ duration: 0.2, delay: 0.1 }"
-      >
-        <h2 class="section-title">What I work with day to day.</h2>
-      </Motion>
-
-      <!-- Languages Section -->
-      <Motion
-        :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
-        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-        :transition="{ duration: 0.2, delay: 0.05 }"
-        class="languages-section"
-      >
-        <h3 class="subsection-title">Languages</h3>
-        <div class="tags-container">
-          <Motion
-            v-for="(language, index) in languages"
-            :key="language"
-            :initial="{ opacity: 0, scale: 0.95 }"
-            :while-in-view="{ opacity: 1, scale: 1 }"
-            :transition="{ duration: 0.2, delay: 0.05 + index * 0.05 }"
-            class="skill-tag"
-          >
-            {{ language }}
-          </Motion>
-        </div>
-      </Motion>
-
-      <!-- Frameworks & Tools Section -->
-      <Motion
-        :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
-        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-        :transition="{ duration: 0.3, delay: 0.1 }"
-        class="tools-section"
-      >
-        <h3 class="subsection-title">Frameworks & Tools</h3>
-        <div class="tools-list">
-          <Motion
-            v-for="(tool, index) in frameworksAndTools"
-            :key="tool"
-            :initial="{ opacity: 0, x: -10 }"
-            :while-in-view="{ opacity: 1, x: 0 }"
-            :transition="{ duration: 0.2, delay: 0.1 + index * 0.03 }"
-            class="tool-item"
-          >
-            {{ tool }}
-          </Motion>
-        </div>
-      </Motion>
-
       <!-- Certifications Section -->
       <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
         :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-        :transition="{ duration: 0.3, delay: 0.15 }"
+        :transition="{ duration: 0.2, delay: 0.05 }"
         class="certs-section"
       >
         <h3 class="subsection-title">Licenses & Certifications</h3>
@@ -156,7 +104,7 @@ const certificates = [
             :key="cert.title"
             :initial="{ opacity: 0, y: 15 }"
             :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.3, delay: 0.15 + index * 0.06 }"
+            :transition="{ duration: 0.3, delay: 0.05 + index * 0.06 }"
             class="cert-card"
           >
             <div class="cert-card-header">
@@ -184,6 +132,50 @@ const certificates = [
                 <path d="M7 7h10v10" />
               </svg>
             </a>
+          </Motion>
+        </div>
+      </Motion>
+
+      <!-- Languages Section -->
+      <Motion
+        :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :transition="{ duration: 0.2, delay: 0.1 }"
+        class="languages-section"
+      >
+        <h3 class="subsection-title">Languages</h3>
+        <div class="tags-container">
+          <Motion
+            v-for="(language, index) in languages"
+            :key="language"
+            :initial="{ opacity: 0, scale: 0.95 }"
+            :while-in-view="{ opacity: 1, scale: 1 }"
+            :transition="{ duration: 0.2, delay: 0.1 + index * 0.05 }"
+            class="skill-tag"
+          >
+            {{ language }}
+          </Motion>
+        </div>
+      </Motion>
+
+      <!-- Frameworks & Tools Section -->
+      <Motion
+        :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
+        :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+        :transition="{ duration: 0.3, delay: 0.15 }"
+        class="tools-section"
+      >
+        <h3 class="subsection-title">Frameworks & Tools</h3>
+        <div class="tools-list">
+          <Motion
+            v-for="(tool, index) in frameworksAndTools"
+            :key="tool"
+            :initial="{ opacity: 0, x: -10 }"
+            :while-in-view="{ opacity: 1, x: 0 }"
+            :transition="{ duration: 0.2, delay: 0.15 + index * 0.03 }"
+            class="tool-item"
+          >
+            {{ tool }}
           </Motion>
         </div>
       </Motion>
@@ -280,7 +272,7 @@ const certificates = [
 
 /* Tools Section */
 .tools-section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
 }
 
 .tools-list {
@@ -308,7 +300,7 @@ const certificates = [
 
 /* Certifications Section */
 .certs-section {
-  margin-bottom: 1rem;
+  margin-bottom: 3.5rem;
 }
 
 .certs-grid {
@@ -413,11 +405,11 @@ const certificates = [
     margin-bottom: 2rem;
   }
 
-  .languages-section {
+  .certs-section {
     margin-bottom: 2.5rem;
   }
 
-  .tools-section {
+  .languages-section {
     margin-bottom: 2.5rem;
   }
 
@@ -435,6 +427,10 @@ const certificates = [
   .subsection-title {
     font-size: 0.85rem;
     margin-bottom: 1.1rem;
+  }
+
+  .certs-section {
+    margin-bottom: 2rem;
   }
 
   .languages-section {
