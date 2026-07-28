@@ -233,21 +233,21 @@ const emit = defineEmits<{
         <div class="row-image">
           <img :src="project.image" :alt="project.title" loading="lazy" />
           <div class="image-fade"></div>
+          <div class="image-overlay">
+            <span :class="['category-badge', project.badgeClass]">{{ project.badge }}</span>
+            <span class="date-label">{{ formatDate(project.date) }}</span>
+          </div>
         </div>
 
         <div class="row-content">
-          <div class="row-meta">
-            <span :class="['category-badge', project.badgeClass]">{{ project.badge }}</span>
-            <span class="category-label">{{ project.category }}</span>
-            <span class="date-label">{{ formatDate(project.date) }}</span>
-          </div>
-
+          <span class="category-label">{{ project.category }}</span>
           <h3 class="row-title">{{ project.title }}</h3>
           <p class="row-subtitle">{{ project.subtitle }}</p>
           <p class="row-description">{{ project.description }}</p>
 
           <div class="tech-list">
-            <span v-for="(tech, i) in project.tech" :key="i" class="tech-tag">{{ tech }}</span>
+            <span v-for="(tech, i) in project.tech.slice(0, 4)" :key="i" class="tech-tag">{{ tech }}</span>
+            <span v-if="project.tech.length > 4" class="more-tag">+{{ project.tech.length - 4 }}</span>
           </div>
 
           <div class="row-actions">
@@ -379,8 +379,21 @@ const emit = defineEmits<{
   position: relative;
   background: #0a0a0a;
   overflow: hidden;
-  height: 190px;
+  height: 200px;
   flex-shrink: 0;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  pointer-events: none;
 }
 
 .row-image img {
@@ -405,7 +418,7 @@ const emit = defineEmits<{
 }
 
 .row-content {
-  padding: 1.5rem;
+  padding: 1.35rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -413,13 +426,6 @@ const emit = defineEmits<{
   flex: 1;
   position: relative;
   z-index: 1;
-}
-
-.row-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.85rem;
 }
 
 .category-badge {
@@ -430,25 +436,33 @@ const emit = defineEmits<{
   font-size: 0.7rem;
   letter-spacing: 0.3px;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .category-label {
   font-family: 'Nexa', sans-serif;
   font-weight: 600;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
 }
 
 .date-label {
   font-family: 'Nexa', sans-serif;
-  font-weight: 500;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.3);
-  margin-left: auto;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 0.3rem 0.65rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .row-title {
@@ -505,6 +519,17 @@ const emit = defineEmits<{
 
 .project-row:hover .tech-tag {
   border-color: rgba(255, 255, 255, 0.18);
+}
+
+.more-tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .row-actions {
@@ -566,11 +591,6 @@ const emit = defineEmits<{
     width: 100%;
   }
 
-  .date-label {
-    margin-left: 0;
-    width: 100%;
-  }
-
   .projects-list {
     gap: 1.25rem;
   }
@@ -579,8 +599,14 @@ const emit = defineEmits<{
     height: 180px;
   }
 
+  .image-overlay {
+    top: 0.65rem;
+    left: 0.65rem;
+    right: 0.65rem;
+  }
+
   .row-content {
-    padding: 1.25rem 1.25rem 1.5rem;
+    padding: 1.1rem 1.25rem 1.5rem;
   }
 
   .row-title {
