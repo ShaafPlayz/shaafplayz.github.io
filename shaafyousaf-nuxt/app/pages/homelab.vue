@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const backgroundImage = '/images/homeserveroldPic.jpeg'
-const overlayImage = '/resources/blackSideOverlayGradient.png'
+const backgroundImage = '/optimized/images/homeserveroldPic.webp'
+const overlayImage = '/optimized/resources/blackSideOverlayGradient.webp'
 
 // Tab state
 const activeTab = ref<'overview' | 'statistics'>('overview')

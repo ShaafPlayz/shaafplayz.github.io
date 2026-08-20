@@ -4,7 +4,7 @@ import OPSDotnetDev from '~/components/OPSDotnetDev.vue';
 
 const serverConnected = ref(false);
 const uptime = ref("--");
-const backgroundImage = '/images/homeserveroldPic.jpeg'
+const backgroundImage = '/optimized/images/homeserveroldPic.webp'
 
 let pollingTimer: ReturnType<typeof setInterval> | null = null;
 

@@ -28,7 +28,7 @@ const featuredJob = {
   ]
 }
 
-const overlayImage = '/resources/blackSideOverlayGradient.png'
+const overlayImage = '/optimized/resources/blackSideOverlayGradient.webp'
 
 const handleClick = () => {
   emit('click', featuredJob)

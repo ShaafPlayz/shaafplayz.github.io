@@ -12,10 +12,10 @@ const isExperiencePage = computed(() => route.path === '/experience')
 const logoSrc = computed(() => {
   // On experience page, always use black logo
   if (isExperiencePage.value) {
-    return '/images/shaafonlylabsfontlogoshortblack_Small.png'
+    return '/optimized/images/shaafonlylabsfontlogoshortblack_Small.webp'
   }
   // On other pages, always use white logo
-  return '/images/shaafonlylabsfontlogoshort_Small.png'
+  return '/optimized/images/shaafonlylabsfontlogoshort_Small.webp'
 })
 
 const toggleMobileMenu = () => {

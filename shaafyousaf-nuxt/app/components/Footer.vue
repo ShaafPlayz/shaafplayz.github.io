@@ -9,7 +9,7 @@ const lastUpdated = 'June 10th, 2026'
       <div class="footer-content">
         <div class="logo-container">
           <img 
-            src="/images/shaafonlylabsfontlogoshort_Small.png" 
+            src="/optimized/images/shaafonlylabsfontlogoshort_Small.webp" 
             alt="Shaaf Logo" 
             class="footer-logo"
           />

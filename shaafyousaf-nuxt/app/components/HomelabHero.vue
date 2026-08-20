@@ -11,8 +11,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  backgroundImage: '/images/homeserveroldPic.png',
-  overlayImage: '/resources/blackSideOverlayGradient.png',
+  backgroundImage: '/optimized/images/homeserveroldPic_png.webp',
+  overlayImage: '/optimized/resources/blackSideOverlayGradient.webp',
   hostname: 'the-great-library',
   serverConnected: false,
   uptime: '--',
