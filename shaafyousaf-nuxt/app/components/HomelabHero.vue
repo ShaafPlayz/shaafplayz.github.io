@@ -27,11 +27,13 @@ const props = withDefaults(defineProps<Props>(), {
         :src="backgroundImage" 
         alt="Background" 
         class="background-image"
+        loading="lazy"
       />
       <img 
         :src="overlayImage" 
         alt="Overlay" 
         :class="['gradient-overlay', { 'flipped': alignRight }]"
+        loading="lazy"
       />
     </div>
 

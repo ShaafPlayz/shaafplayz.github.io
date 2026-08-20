@@ -13,7 +13,7 @@ const featuredJob = {
   location: 'Toronto, ON',
   date: 'May 2026 - Present',
   current: true,
-  image: '/images/ops.jpeg',
+  image: '/images/ops_small.jpeg',
   type: 'SWE Internships',
   duration: '8 months',
   employmentType: 'Full-Time',
@@ -47,11 +47,13 @@ const handleClick = () => {
         :src="featuredJob.image" 
         alt="Background" 
         class="background-image"
+        loading="lazy"
       />
       <img 
         :src="overlayImage" 
         alt="Overlay" 
         class="gradient-overlay"
+        loading="lazy"
       />
     </div>
 

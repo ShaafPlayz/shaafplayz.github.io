@@ -137,7 +137,7 @@ const certificates = [
       </Motion>
 
       <!-- Languages Section -->
-      <Motion
+      <!-- <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
         :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.2, delay: 0.1 }"
@@ -156,10 +156,10 @@ const certificates = [
             {{ language }}
           </Motion>
         </div>
-      </Motion>
+      </Motion> -->
 
       <!-- Frameworks & Tools Section -->
-      <Motion
+      <!-- <Motion
         :initial="{ opacity: 0, filter: 'blur(6px)', y: 20 }"
         :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
         :transition="{ duration: 0.3, delay: 0.15 }"
@@ -178,7 +178,7 @@ const certificates = [
             {{ tool }}
           </Motion>
         </div>
-      </Motion>
+      </Motion> -->
     </Motion>
   </div>
 </template>

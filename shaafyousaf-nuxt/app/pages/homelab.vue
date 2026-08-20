@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const backgroundImage = '/images/homeserveroldPic.png'
+const backgroundImage = '/images/homeserveroldPic_Small.png'
 const overlayImage = '/resources/blackSideOverlayGradient.png'
 
 // Tab state

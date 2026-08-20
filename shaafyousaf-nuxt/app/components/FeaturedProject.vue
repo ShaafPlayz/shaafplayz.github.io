@@ -11,7 +11,7 @@ const featuredProject = {
   title: 'Slowed Enhanced',
   subtitle: 'An Open Source Google Chrome Extension for Advanced Audio Controls',
   category: 'Published on Chrome Web Store',
-  image: '/images/_DSC4383_compressed.JPG',
+  image: '/images/_DSC4383_compressed_Small.jpeg',
   stats: {
     installs: '1200+',
     users: '90 (Apr - May)',
@@ -46,11 +46,13 @@ const handleClick = () => {
         :src="featuredProject.image" 
         alt="Background" 
         class="background-image"
+        loading="lazy"
       />
       <img 
         :src="overlayImage" 
         alt="Overlay" 
         class="gradient-overlay"
+        loading="lazy"
       />
     </div>
 

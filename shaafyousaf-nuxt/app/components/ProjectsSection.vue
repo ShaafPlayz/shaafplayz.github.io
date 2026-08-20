@@ -102,7 +102,7 @@ const infraProjects = [
     badge: 'Infra',
     badgeClass: 'infra',
     date: '2025-09-01',
-    image: '/images/homeserveroldPic.png',
+    image: '/images/homeserveroldPic_Small.png',
     description: 'A 24/7 home server ("the-great-library") running on repurposed hardware, used as a production playground for real infrastructure. Publishes services through a Cloudflare Zero Trust Tunnel and Nginx reverse proxy with no exposed ports, stores everything on a Samba network drive, and stays reachable remotely over a WireGuard VPN with DuckDNS — all monitored live with Glances and a custom-built Server Observer Utility.',
     tech: ['Ubuntu Server', 'Docker', 'Nginx', 'Cloudflare Tunnel', 'WireGuard VPN', 'Samba', 'Glances'],
     buttons: [
