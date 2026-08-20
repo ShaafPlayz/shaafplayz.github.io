@@ -4,6 +4,7 @@ import OPSDotnetDev from '~/components/OPSDotnetDev.vue';
 
 const serverConnected = ref(false);
 const uptime = ref("--");
+const backgroundImage = '/images/homeserveroldPic.jpeg'
 
 let pollingTimer: ReturnType<typeof setInterval> | null = null;
 
@@ -59,6 +60,7 @@ async function pingURL() {
     </NuxtLink>
     <NuxtLink to="/homelab" class="clickable-section">
       <HomelabHero 
+        :background-image="backgroundImage"
         :alignRight="true"
         hostname="the-great-library"
         :server-connected= serverConnected
