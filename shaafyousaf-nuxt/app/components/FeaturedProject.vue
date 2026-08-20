@@ -11,7 +11,7 @@ const featuredProject = {
   title: 'Slowed Enhanced',
   subtitle: 'An Open Source Google Chrome Extension for Advanced Audio Controls',
   category: 'Published on Chrome Web Store',
-  image: '/optimized/images/_DSC4383_compressed_Small.webp',
+  image: '/optimized/images/_DSC4383_compressed.webp',
   stats: {
     installs: '1200+',
     users: '90 (Apr - May)',
