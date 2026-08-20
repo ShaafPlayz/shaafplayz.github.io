@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import viteCompression from 'vite-plugin-compression'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -66,6 +68,13 @@ export default defineNuxtConfig({
   },
   
   vite: {
+    plugins: [
+      viteCompression({
+        algorithm: 'gzip',
+        ext: '.gz',
+        threshold: 1024, // only compress files > 1kb
+      }),
+    ],
     css: {
       preprocessorOptions: {
         scss: {

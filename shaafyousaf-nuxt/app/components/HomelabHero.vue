@@ -39,23 +39,29 @@ const props = withDefaults(defineProps<Props>(), {
 
     <div class="homelab-content" :class="{ 'align-right': alignRight }">
       <div class="homelab-text-container">
-        <Motion
-          tag="h1"
-          class="homelab-title"
-          :initial="{ opacity: 0, filter: 'blur(10px)', y: 20 }"
-          :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-          :transition="{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }"
-        >
-          HomeLab
-        </Motion>
+        <ClientOnly>
+          <Motion
+            tag="h1"
+            class="homelab-title"
+            :initial="{ opacity: 0, filter: 'blur(10px)', y: 20 }"
+            :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+            :transition="{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }"
+          >
+            HomeLab
+          </Motion>
+          <template #fallback>
+            <h1 class="homelab-title">HomeLab</h1>
+          </template>
+        </ClientOnly>
 
-        <Motion
-          tag="div"
-          class="server-status-bar"
-          :initial="{ opacity: 0, filter: 'blur(8px)', y: 20 }"
-          :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
-          :transition="{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }"
-        >
+        <ClientOnly>
+          <Motion
+            tag="div"
+            class="server-status-bar"
+            :initial="{ opacity: 0, filter: 'blur(8px)', y: 20 }"
+            :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+            :transition="{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }"
+          >
 
         <div class="status-bar-name-status">
           <div class="status-bar-item">
@@ -77,7 +83,17 @@ const props = withDefaults(defineProps<Props>(), {
             <!-- <span class="status-bar-label">Uptime:</span> -->
             <span class="status-bar-value">{{ uptime }}</span>
           </div>
-        </Motion>
+          </Motion>
+          <template #fallback>
+            <div class="server-status-bar">
+              <div class="status-bar-name-status">
+                <div class="status-bar-item">
+                  <span class="status-bar-value">{{ hostname }}</span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </ClientOnly>
       </div>
     </div>
   </div>
