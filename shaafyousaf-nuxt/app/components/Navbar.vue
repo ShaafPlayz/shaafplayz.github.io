@@ -12,10 +12,10 @@ const isExperiencePage = computed(() => route.path === '/experience')
 const logoSrc = computed(() => {
   // On experience page, always use black logo
   if (isExperiencePage.value) {
-    return '/images/shaafonlylabsfontlogoshortblack.png'
+    return '/images/shaafonlylabsfontlogoshortblack_Small.png'
   }
   // On other pages, always use white logo
-  return '/images/shaafonlylabsfontlogoshort.png'
+  return '/images/shaafonlylabsfontlogoshort_Small.png'
 })
 
 const toggleMobileMenu = () => {
@@ -40,7 +40,7 @@ onMounted(() => {
 
 <template>
   <Motion tag="nav" class="navbar" :class="{ 'scrolled': isScrolled, 'experience-page': isExperiencePage }"
-    :initial="{ opacity: 0 }" :while-in-view="{ opacity: 1 }" :transition="{ duration: 0.3, ease: 'easeOut' }">
+    :initial="{ opacity: 1 }" :while-in-view="{ opacity: 1 }" :transition="{ duration: 0, ease: 'easeOut' }">
     <div class="navbar-container">
       <NuxtLink to="/" class="logo-link">
         <img :src="logoSrc" alt="Shaaf Logo" class="logo" />

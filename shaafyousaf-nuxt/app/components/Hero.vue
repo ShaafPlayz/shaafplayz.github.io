@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
 
-const backgroundImage = '/images/_DSC4379_compressed.JPG'
+const backgroundImage = '/images/_DSC4379_compressed_Small.jpeg'
 const overlayImage = '/resources/blackSideOverlayGradient.png'
 </script>
 
@@ -111,10 +111,14 @@ const overlayImage = '/resources/blackSideOverlayGradient.png'
 }
 
 .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    display: block;
 }
 
 .gradient-overlay {
