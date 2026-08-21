@@ -49,8 +49,18 @@ const props = withDefaults(defineProps<Props>(), {
           >
             HomeLab
           </Motion>
+          <Motion
+            tag="p"
+            class="homelab-subtitle"
+            :initial="{ opacity: 0, filter: 'blur(8px)', y: 15 }"
+            :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
+            :transition="{ duration: 0.8, delay: 0.18, ease: [0.16, 1, 0.3, 1] }"
+          >
+            The cloud is just someone else's computer. This one's mine.
+          </Motion>
           <template #fallback>
             <h1 class="homelab-title">HomeLab</h1>
+            <p class="homelab-subtitle">The cloud is just someone else's computer. This one's mine.</p>
           </template>
         </ClientOnly>
 
@@ -69,7 +79,7 @@ const props = withDefaults(defineProps<Props>(), {
             <Icon name="heroicons:server-stack" class="tab-icon" />
             <span class="status-bar-value">{{ hostname }}</span>
           </div>
-          <div class="status-bar-divider"></div>
+          <!-- <div class="status-bar-divider"></div> -->
           <div class="status-bar-item">
             <!-- <span class="status-bar-label">Status:</span> -->
             <span :class="['status-indicator', serverConnected ? 'online' : 'offline']">
@@ -165,6 +175,10 @@ const props = withDefaults(defineProps<Props>(), {
   text-align: right;
 }
 
+.homelab-content.align-right .homelab-subtitle {
+  margin-left: auto;
+}
+
 .homelab-content.align-right .server-status-bar {
   margin-left: auto;
 }
@@ -175,9 +189,20 @@ const props = withDefaults(defineProps<Props>(), {
   font-size: clamp(3rem, 8vw, 5rem);
   color: #ffffff;
   line-height: 0.95;
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 0; 
+  margin-bottom: 0.5rem;
   letter-spacing: -2px;
+  margin-left: -0.3rem;
+}
+
+.homelab-subtitle {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  max-width: 880px;
 }
 
 /* Server Status Bar */
@@ -187,8 +212,8 @@ const props = withDefaults(defineProps<Props>(), {
   gap: 1rem;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  border-radius: 40px;
   padding: 0.75rem 1.25rem;
   max-width: fit-content;
 }
@@ -221,7 +246,7 @@ const props = withDefaults(defineProps<Props>(), {
   font-size: 0.75rem;
   letter-spacing: 1px;
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 40px;
   transition: all 0.3s ease;
 }
 
