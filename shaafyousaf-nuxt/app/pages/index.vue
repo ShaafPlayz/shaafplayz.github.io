@@ -51,10 +51,7 @@ async function pingURL() {
   <div>
     <Hero />
     <SkillsSection />
-    <NuxtLink to="/experience" class="clickable-section">
-      <OPSDotnetDev/>
-      <!-- <UTSJuniorSWE /> -->
-    </NuxtLink> 
+    
     <NuxtLink to="/experience?tab=published" class="clickable-section">
       <FeaturedProject />
     </NuxtLink>
@@ -67,7 +64,10 @@ async function pingURL() {
         :uptime=  uptime
       />
     </NuxtLink>
-   
+    <NuxtLink to="/experience" class="clickable-section">
+      <OPSDotnetDev/>
+      <!-- <UTSJuniorSWE /> -->
+    </NuxtLink> 
     
     
   </div>
