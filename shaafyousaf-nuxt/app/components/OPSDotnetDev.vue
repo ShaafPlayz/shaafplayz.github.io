@@ -13,7 +13,7 @@ const featuredJob = {
   location: 'Toronto, ON',
   date: 'May 2026 - Present',
   current: true,
-  image: '/optimized/images/ops_small.webp',
+  image: '/optimized/images/ops.webp',
   type: 'SWE Internships',
   duration: '8 months',
   employmentType: 'Full-Time',
