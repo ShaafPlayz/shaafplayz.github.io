@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Motion } from 'motion-v'
 
-const backgroundImage = '/optimized/images/_DSC4379_compressed_Small.webp'
+const backgroundImage = '/optimized/images/_DSC4379.webp'
 const overlayImage = '/optimized/resources/blackSideOverlayGradient.webp'
 </script>
 
