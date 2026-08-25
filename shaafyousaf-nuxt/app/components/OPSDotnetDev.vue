@@ -17,13 +17,13 @@ const featuredJob = {
   type: 'SWE Internships',
   duration: '8 months',
   employmentType: 'Full-Time',
-  description: 'A .NET + Angular developer.',
+  description: 'As a .NET Developer at the Ontario Public Service, I built an end to end test automation framework for Picasso, an internal platform that hosts several education applications, including the Ontario School Year Calendar (OSYC). The goal was to help QA analysts who are not developers write reliable automated tests without writing code. I designed the framework using Playwright, TypeScript, and playwright-bdd with a strict separation of responsibilities — QA authors only write plain English Gherkin feature files, while I implemented the underlying step definitions and reusable action helpers that operate Picasso shared UI widgets. A core design decision was abstracting element selection behind a selectorType parameter, keeping the shared step library small while making it flexible across every application. For execution, I wrote a PowerShell orchestration script that retrieves credentials from Azure Key Vault, saves the authenticated browser session, and decodes the JWT expiry claim to reuse valid sessions and skip unnecessary logins. The framework is now actively used by QA to write regression and smoke suites independently.',
   responsibilities: [],
-  technologies: ['.NET', 'Angular'],
+  technologies: ['.NET', 'Angular', 'Playwright', 'TypeScript', 'BDD / Gherkin', 'PowerShell', 'Azure Key Vault', 'JWT'],
   achievements: [],
-  // buttons: [
-  //   { label: 'GitHub', url: 'https://github.com/ShaafPlayz' }
-  // ]
+  buttons: [
+    { label: 'My Work — Artifact 1', url: 'https://utsccoopshaaf.vercel.app/' }
+  ]
 }
 
 const overlayImage = '/optimized/resources/blackSideOverlayGradient.webp'
