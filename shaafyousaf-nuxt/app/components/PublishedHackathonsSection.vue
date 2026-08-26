@@ -76,7 +76,7 @@ const emit = defineEmits<{
       :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.1 }"
     >
-      <h2 class="section-title">Published Software</h2>
+      <h2 class="cs-section-title">Published Software</h2>
       <div class="featured-project-wrapper">
         <FeaturedProject @click="emit('item-click', $event)" />
       </div>
@@ -88,7 +88,7 @@ const emit = defineEmits<{
       :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.2 }"
     >
-      <h2 class="section-title">Hackathons</h2>
+      <h2 class="cs-section-title section-title-spaced">Hackathons</h2>
       <div class="hackathons-grid">
         <Motion
           v-for="(hack, index) in sortedHackathons"
@@ -106,13 +106,17 @@ const emit = defineEmits<{
             />
             <span class="prize-text">{{ hack.prize }}</span>
           </div>
-          <div class="card-content">
-            <h3 class="card-title">{{ hack.title }}</h3>
-            <p class="event-name">{{ hack.event }}</p>
-            <p class="card-subtitle">{{ hack.subtitle }}</p>
-            <div class="tech-preview">
-              <span v-for="(tech, i) in hack.tech.slice(0, 3)" :key="i" class="tech-tag">{{ tech }}</span>
-              <span v-if="hack.tech.length > 3" class="more-tag">+{{ hack.tech.length - 3 }}</span>
+          <div v-if="hack.image" class="hack-image">
+            <img :src="hack.image" :alt="hack.title" loading="lazy" />
+            <div class="hack-image-fade"></div>
+          </div>
+          <div class="hack-content">
+            <h3 class="hack-title">{{ hack.title }}</h3>
+            <p class="hack-event">{{ hack.event }}</p>
+            <p class="hack-subtitle">{{ hack.subtitle }}</p>
+            <div class="hack-tech-list">
+              <span v-for="(tech, i) in hack.tech.slice(0, 3)" :key="i" class="hack-tech-tag">{{ tech }}</span>
+              <span v-if="hack.tech.length > 3" class="hack-more-tag">+{{ hack.tech.length - 3 }}</span>
             </div>
           </div>
         </Motion>
@@ -122,31 +126,16 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-.published-hackathons-section {
-  padding: 0;
-}
+.published-hackathons-section { padding: 0; }
 
-.section-title {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: #000000;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.3px;
-}
+.section-title-spaced { margin-top: 3.5rem; }
 
-.section-title:not(:first-child) {
-  margin-top: 4rem;
-}
-
-/* Featured Project Wrapper - Border radius applied here */
 .featured-project-wrapper {
   border-radius: 30px;
   overflow: hidden;
   margin-bottom: 3rem;
 }
 
-/* Hackathon Styles */
 .hackathons-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -155,35 +144,39 @@ const emit = defineEmits<{
 }
 
 .hackathon-card {
-  background: #ffffff;
-  border: 2px solid #d0d0d0;
-  border-radius: 12px;
+  background: linear-gradient(145deg, #161616 0%, #0d0d0d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .hackathon-card.is-win {
-  border-color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.35);
 }
 
 .hackathon-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: #999999;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .hackathon-card.is-win:hover {
-  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
-  border-color: #ff8c00;
+  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.12);
+  border-color: rgba(255, 215, 0, 0.6);
 }
 
+/* Prize strip */
 .prize-header {
-  background: #f0f0f0;
-  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.65rem 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .hackathon-card.is-win .prize-header {
@@ -191,108 +184,119 @@ const emit = defineEmits<{
 }
 
 .trophy-icon {
-  width: 18px;
-  height: 18px;
-  color: #000000;
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
+}
+
+.hackathon-card.is-win .trophy-icon {
+  color: #000000;
 }
 
 .prize-text {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
-  font-size: 0.85rem;
-  color: #000000;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
   letter-spacing: -0.2px;
 }
 
-.card-content {
-  padding: 0.875rem;
+.hackathon-card.is-win .prize-text {
+  color: #000000;
 }
 
-.card-title {
+/* Image below prize strip */
+.hack-image {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hack-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hackathon-card:hover .hack-image img { transform: scale(1.04); }
+
+.hack-image-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(13, 13, 13, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* Card body */
+.hack-content {
+  padding: 1rem 1.1rem 1.1rem;
+  flex: 1;
+}
+
+.hack-title {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: #000000;
-  margin-bottom: 0.25rem;
-  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+  line-height: 1.25;
 }
 
-.card-subtitle {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: #666666;
-  margin-bottom: 0.6rem;
-  line-height: 1.4;
-}
-
-.event-name {
+.hack-event {
   font-family: 'Nexa', sans-serif;
   font-weight: 500;
-  font-size: 0.7rem;
-  color: #888888;
-  margin-bottom: 0.5rem;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.4rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.hackathon-card .card-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
-}
-
-.hackathon-card .card-subtitle {
+.hack-subtitle {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 400;
   font-size: 0.8rem;
-  margin-bottom: 0.6rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
 }
 
-/* Tech Tags */
-.tech-preview {
+.hack-tech-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
 }
 
-.tech-tag {
-  background: #f5f5f5;
-  color: #333333;
+.hack-tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.65);
   font-family: 'Nexa', sans-serif;
   font-weight: 400;
   font-size: 0.68rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.22rem 0.5rem;
   border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.more-tag {
-  background: #e8e8e8;
-  color: #333333;
+.hack-more-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.45);
   font-family: 'Nexa', sans-serif;
   font-weight: 600;
   font-size: 0.68rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.22rem 0.5rem;
   border-radius: 5px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .section-title:not(:first-child) {
-    margin-top: 3rem;
-  }
-
-  .featured-project-wrapper {
-    border-radius: 30px;
-  }
-
-  .hackathons-grid {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-    margin-bottom: 2.5rem;
-  }
+  .section-title-spaced { margin-top: 2.75rem; }
+  .hackathons-grid { grid-template-columns: 1fr; gap: 0.875rem; margin-bottom: 2.5rem; }
 }
 </style>

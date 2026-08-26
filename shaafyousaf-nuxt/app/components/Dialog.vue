@@ -153,18 +153,21 @@ const goToImage = (index: number) => {
   currentImageIndex.value = index
 }
 
+// Whether the right column has any content to show
+const hasRightContent = computed(() => {
+  return !!(
+    props.tagline ||
+    props.description ||
+    (props.type === 'experience' && (props.responsibilities.length > 0 || props.achievements.length > 0))
+  )
+})
+
 // Function to close the dialog
 const closeDialog = () => {
   emit('close')
   currentImageIndex.value = 0
 }
 
-// Close dialog when clicking outside content area
-const handleBackdropClick = (event: MouseEvent) => {
-  if (event.target === event.currentTarget) {
-    closeDialog()
-  }
-}
 </script>
 
 <template>
@@ -173,168 +176,114 @@ const handleBackdropClick = (event: MouseEvent) => {
       <div 
         v-if="isOpen" 
         class="dialog-backdrop"
-        @click="handleBackdropClick"
+        @click="closeDialog"
       >
-        <div class="dialog-content" @click.stop>
-          <!-- Close Button - Floating -->
+        <!-- Bento Wrapper (Transparent Grid on Desktop) -->
+        <div class="bento-wrapper" @click.stop>
+          
+          <!-- Close Button -->
           <button class="close-button" @click="closeDialog">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
 
-            <!-- Single Column Layout with Scrolling Content -->
-            <div class="dialog-scroll" ref="scrollContainer">
-              <!-- Image Carousel at Top -->
-              <div v-if="imageArray.length > 0" class="content-section carousel-section">
-              <!-- Image Carousel at Top -->
-              <div v-if="imageArray.length > 0" class="content-section carousel-section">
-                <div class="carousel-wrapper">
-                  <!-- Image Display -->
-                  <div class="carousel-display">
-                    <div 
-                      v-for="(img, index) in imageArray" 
-                      :key="index"
-                      class="carousel-slide"
-                      :class="{ active: index === currentImageIndex }"
-                    >
-                      <img 
-                        :src="img" 
-                        :alt="`${title} - Image ${index + 1}`"
-                      />
-                    </div>
-                  </div>
-
-                  <!-- Floating Navigation -->
-                  <div v-if="imageArray.length > 1" class="carousel-controls">
-                    <button class="carousel-btn" @click="prevImage">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                    </button>
-                    
-                    <div class="carousel-dots">
-                      <button
-                        v-for="(img, index) in imageArray"
-                        :key="index"
-                        class="dot"
-                        :class="{ active: index === currentImageIndex }"
-                        @click="goToImage(index)"
-                      ></button>
-                    </div>
-
-                    <button class="carousel-btn" @click="nextImage">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Image Counter Badge -->
-                  <div v-if="imageArray.length > 1" class="image-badge">
-                    {{ currentImageIndex + 1 }} / {{ imageArray.length }}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Header Section -->
-              <div class="content-section">
-                <h2 class="title">{{ title }}</h2>
-                <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
-
-                <!-- Primary Info as Plain Text -->
-                <div v-if="prize || award || company || position || event" class="meta-info">
-                  <span v-if="prize" class="meta-item meta-prize">{{ won ? '🏆 ' : '' }}{{ prize }}</span>
-                  <span v-if="award && award !== prize" class="meta-item meta-award">{{ award }}</span>
-                  <span v-if="company" class="meta-item">{{ company }}</span>
-                  <!-- <span v-if="position" class="meta-item">{{ position }}</span> -->
-                  <span v-if="event" class="meta-item">{{ event }}</span>
-                </div>
-
-                <!-- Secondary Info as Plain Text -->
-                <div 
-                  v-if="category || date || (type === 'experience' && (location || duration || employmentType)) || prizeAmount || status || demoType"
-                  class="meta-info meta-secondary"
-                >
-                  <span v-if="category" class="meta-item">{{ category }}</span>
-                  <span v-if="date" class="meta-item">{{ date }}</span>
-                  <span v-if="prizeAmount" class="meta-item meta-prize">{{ prizeAmount }}</span>
-                  <span v-if="demoType" class="meta-item">{{ demoType }}</span>
-                  <span v-if="status" class="meta-item meta-prize">{{ status }}</span>
-                  <span v-if="type === 'experience' && employmentType" class="meta-item">{{ employmentType }}</span>
-                  <span v-if="type === 'experience' && duration" class="meta-item">{{ duration }}</span>
-                  <span v-if="type === 'experience' && location" class="meta-item">{{ location }}</span>
-                </div>
-              </div>
-
-              <!-- Stats Showcase -->
-              <div 
-                v-if="stats && (stats.users || stats.installs || stats.productHuntRank)"
-                class="content-section"
-              >
-                <div class="stats-grid">
-                  <div v-if="stats.users" class="stat-item">
-                    <div class="stat-value">{{ stats.users }}</div>
-                    <div class="stat-label">Active Users</div>
-                  </div>
-                  <div v-if="stats.installs" class="stat-item">
-                    <div class="stat-value">{{ stats.installs }}</div>
-                    <div class="stat-label">Total Installs</div>
-                  </div>
-                  <div v-if="stats.productHuntRank" class="stat-item">
-                    <div class="stat-value">#{{ stats.productHuntRank }}</div>
-                    <div class="stat-label">Product Hunt Rank</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Tagline -->
-              <div v-if="tagline" class="content-section">
-                <p class="tagline">{{ tagline }}</p>
-              </div>
-
-              <!-- Description -->
-              <div v-if="description" class="content-section">
-                <p class="description">{{ description }}</p>
-              </div>
-
-              <!-- Experience Sections -->
-              <div v-if="type === 'experience' && responsibilities.length > 0" class="content-section">
-                <h4 class="section-heading">RESPONSIBILITIES</h4>
-                <ul class="info-list">
-                  <li v-for="(item, index) in responsibilities" :key="index">{{ item }}</li>
-                </ul>
-              </div>
-
-              <div v-if="type === 'experience' && achievements.length > 0" class="content-section">
-                <h4 class="section-heading">ACHIEVEMENTS</h4>
-                <ul class="info-list">
-                  <li v-for="(item, index) in achievements" :key="index">{{ item }}</li>
-                </ul>
-              </div>
-
-              <!-- Tech Stack -->
-              <div v-if="tech.length > 0" class="content-section">
-                <h4 class="section-heading">TECHNOLOGIES</h4>
-                <div class="tech-list">
-                  <span 
-                    v-for="(techItem, index) in tech" 
-                    :key="index" 
-                    class="tech-item"
+          <!-- ================= LEFT COLUMN ================= -->
+          <div class="bento-col bento-left">
+            
+            <!-- Module: Image Carousel -->
+            <div v-if="imageArray.length > 0" class="bento-module module-image">
+              <div class="carousel-wrapper">
+                <div class="carousel-display">
+                  <div 
+                    v-for="(img, index) in imageArray" 
+                    :key="index"
+                    class="carousel-slide"
+                    :class="{ active: index === currentImageIndex }"
                   >
-                    {{ techItem }}<span v-if="index < tech.length - 1" class="tech-separator"> · </span>
-                  </span>
+                    <img :src="img" :alt="`${title} - Image ${index + 1}`" />
+                  </div>
+                </div>
+
+                <div v-if="imageArray.length > 1" class="carousel-controls">
+                  <button class="carousel-btn" @click="prevImage">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </button>
+                  <div class="carousel-dots">
+                    <button
+                      v-for="(img, index) in imageArray"
+                      :key="index"
+                      class="dot"
+                      :class="{ active: index === currentImageIndex }"
+                      @click="goToImage(index)"
+                    ></button>
+                  </div>
+                  <button class="carousel-btn" @click="nextImage">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </button>
+                </div>
+                <div v-if="imageArray.length > 1" class="image-badge">
+                  {{ currentImageIndex + 1 }} / {{ imageArray.length }}
                 </div>
               </div>
-
-              <!-- Spacer for footer -->
-              <div class="footer-spacer"></div>
             </div>
 
-            <!-- Floating Footer with Buttons -->
-            <div v-if="buttons.length > 0 || link" class="dialog-footer-floating">
-              <!-- New buttons array (if provided) -->
+            <!-- Module: Header & Meta -->
+            <div class="bento-module module-header">
+              <h2 class="title">{{ title }}</h2>
+              <!-- Gold subtitle: project subtitle text, or company name for work entries -->
+              <p v-if="subtitle || company" class="subtitle">{{ subtitle || company }}</p>
+
+              <!-- Primary Info chips: company excluded (shown as subtitle above) -->
+              <div v-if="prize || award || event" class="meta-info">
+                <span v-if="prize" class="meta-item meta-prize">{{ won ? '🏆 ' : '' }}{{ prize }}</span>
+                <span v-if="award && award !== prize" class="meta-item meta-award">{{ award }}</span>
+                <span v-if="event" class="meta-item">{{ event }}</span>
+              </div>
+
+              <!-- Secondary Info -->
+              <div 
+                v-if="category || date || (type === 'experience' && (location || duration || employmentType)) || prizeAmount || status || demoType"
+                class="meta-info meta-secondary"
+              >
+                <span v-if="category" class="meta-item">{{ category }}</span>
+                <span v-if="date" class="meta-item">{{ date }}</span>
+                <span v-if="prizeAmount" class="meta-item meta-prize">{{ prizeAmount }}</span>
+                <span v-if="demoType" class="meta-item">{{ demoType }}</span>
+                <span v-if="status" class="meta-item meta-prize">{{ status }}</span>
+                <span v-if="type === 'experience' && employmentType" class="meta-item">{{ employmentType }}</span>
+                <span v-if="type === 'experience' && duration" class="meta-item">{{ duration }}</span>
+                <span v-if="type === 'experience' && location" class="meta-item">{{ location }}</span>
+              </div>
+            </div>
+
+            <!-- Module: Stats (only in left when description is present) -->
+            <div v-if="hasRightContent && stats && (stats.users || stats.installs || stats.productHuntRank)" class="bento-module">
+              <div class="stats-grid">
+                <div v-if="stats.users" class="stat-item">
+                  <div class="stat-value">{{ stats.users }}</div>
+                  <div class="stat-label">Active Users</div>
+                </div>
+                <div v-if="stats.installs" class="stat-item">
+                  <div class="stat-value">{{ stats.installs }}</div>
+                  <div class="stat-label">Installs</div>
+                </div>
+                <div v-if="stats.productHuntRank" class="stat-item">
+                  <div class="stat-value">#{{ stats.productHuntRank }}</div>
+                  <div class="stat-label">Product Hunt</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech always lives in the right column — never rendered here -->
+
+            <!-- Module: Footer Actions (always in left column) -->
+            <div v-if="buttons.length > 0 || link" class="bento-module module-footer">
               <div v-if="buttons.length > 0" class="action-buttons-container">
                 <a 
                   v-for="(button, index) in buttons"
@@ -352,7 +301,6 @@ const handleBackdropClick = (event: MouseEvent) => {
                   </svg>
                 </a>
               </div>
-              <!-- Fallback to single link (for backwards compatibility) -->
               <a 
                 v-else-if="link"
                 :href="link" 
@@ -368,6 +316,80 @@ const handleBackdropClick = (event: MouseEvent) => {
                 </svg>
               </a>
             </div>
+
+          </div>
+
+          <!-- ================= RIGHT COLUMN ================= -->
+          <!-- Always rendered; stats/tech shift here when no description -->
+          <div class="bento-col bento-right">
+
+            <!-- Stats shifted right when no description -->
+            <div v-if="!hasRightContent && stats && (stats.users || stats.installs || stats.productHuntRank)" class="bento-module">
+              <div class="stats-grid">
+                <div v-if="stats.users" class="stat-item">
+                  <div class="stat-value">{{ stats.users }}</div>
+                  <div class="stat-label">Active Users</div>
+                </div>
+                <div v-if="stats.installs" class="stat-item">
+                  <div class="stat-value">{{ stats.installs }}</div>
+                  <div class="stat-label">Installs</div>
+                </div>
+                <div v-if="stats.productHuntRank" class="stat-item">
+                  <div class="stat-value">#{{ stats.productHuntRank }}</div>
+                  <div class="stat-label">Product Hunt</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech Stack shifted right when no description -->
+            <div v-if="!hasRightContent && tech.length > 0" class="bento-module">
+              <h4 class="section-heading">Technologies</h4>
+              <div class="cs-tech-list">
+                <span v-for="(techItem, index) in tech" :key="index" class="cs-tech-tag">
+                  {{ techItem }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Scrollable Description Area (only when description/responsibilities exist) -->
+            <div v-if="hasRightContent" class="bento-module module-scrollable">
+
+              <!-- Tech always first -->
+              <div v-if="tech.length > 0" class="content-section">
+                <h4 class="section-heading">Technologies</h4>
+                <div class="cs-tech-list">
+                  <span v-for="(techItem, index) in tech" :key="index" class="cs-tech-tag">
+                    {{ techItem }}
+                  </span>
+                </div>
+              </div>
+
+              <div v-if="tagline" class="content-section">
+                <p class="tagline">{{ tagline }}</p>
+              </div>
+
+              <div v-if="description" class="content-section">
+                <h4 v-if="tagline" class="section-heading">Overview</h4>
+                <p class="description">{{ description }}</p>
+              </div>
+
+              <div v-if="type === 'experience' && responsibilities.length > 0" class="content-section">
+                <h4 class="section-heading">Responsibilities</h4>
+                <ul class="info-list">
+                  <li v-for="(item, index) in responsibilities" :key="index">{{ item }}</li>
+                </ul>
+              </div>
+
+              <div v-if="type === 'experience' && achievements.length > 0" class="content-section">
+                <h4 class="section-heading">Achievements</h4>
+                <ul class="info-list">
+                  <li v-for="(item, index) in achievements" :key="index">{{ item }}</li>
+                </ul>
+              </div>
+              
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -375,13 +397,18 @@ const handleBackdropClick = (event: MouseEvent) => {
   </Teleport>
 </template>
 
-
 <style scoped>
+/* ===== GLOBAL RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
 /* ===== BACKDROP ===== */
 .dialog-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -389,103 +416,142 @@ const handleBackdropClick = (event: MouseEvent) => {
   padding: 2rem;
 }
 
-/* ===== DIALOG CONTAINER ===== */
-.dialog-content {
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  width: 800px;
-  max-width: 95vw;
-  height: 90vh;
-  max-height: 90vh;
-  overflow: hidden;
+/* ===== BENTO WRAPPER (Desktop Grid) ===== */
+.bento-wrapper {
+  font-family: 'Nexa', sans-serif;
+  display: grid;
+  grid-template-columns: 580px 1fr;
+  gap: 1rem;
+  width: 1120px;
+  max-width: 100%;
+  height: 80vh;
   position: relative;
+  background: transparent;
+}
+
+/* ===== COLUMNS ===== */
+.bento-col {
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Prevent left-column modules from being squished by flexbox */
+.bento-left .bento-module {
+  flex-shrink: 0;
+}
+
+/* Left Column - stacks modules, rarely needs scrolling */
+.bento-left {
+  overflow-y: auto;
+  /* Hide scrollbar for clean aesthetic */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.bento-left::-webkit-scrollbar {
+  display: none;
+}
+
+/* Right Column - strict height */
+.bento-right {
+  position: relative;
+}
+
+/* ===== MODULES (The individual cards) ===== */
+.bento-module {
+  background: #000000;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.module-image {
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Compact padding for the header/meta block */
+.module-header {
+  padding: 1rem 1.25rem;
+}
+
+/* Scrollable module on the right */
+.module-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+/* Custom subtle scrollbar for the description */
+.module-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.module-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.module-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.module-scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold, #FFD700);
+}
+
+/* Footer module on the right */
+.module-footer {
+  flex-shrink: 0;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* ===== CLOSE BUTTON ===== */
 .close-button {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 44px;
-  height: 44px;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.8);
-  color: #ffffff;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 200;
+  transition: all 0.2s ease;
+  z-index: 20;
+  backdrop-filter: blur(4px);
 }
 
 .close-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-/* ===== SCROLLING CONTENT ===== */
-.dialog-scroll {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 2.5rem;
-  scroll-behavior: smooth;
-}
-
-/* Custom Scrollbar */
-.dialog-scroll::-webkit-scrollbar {
-  width: 8px;
-}
-
-.dialog-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.dialog-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
-.dialog-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* ===== CAROUSEL SECTION ===== */
-.carousel-section {
-  margin-bottom: 2rem;
-}
-
-/* ===== CAROUSEL SECTION ===== */
-.carousel-section {
-  margin-bottom: 2rem;
-}
-
+/* ===== CAROUSEL ===== */
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
+  padding-bottom: 75%;
+  background: #000000;
 }
 
 .carousel-display {
   position: absolute;
   inset: 0;
-  overflow: hidden;
 }
 
 .carousel-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -501,428 +567,358 @@ const handleBackdropClick = (event: MouseEvent) => {
   object-fit: cover;
 }
 
-/* Carousel Controls */
 .carousel-controls {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.75rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px;
-  z-index: 10;
+  gap: 0.75rem;
+  padding: 0.35rem 0.6rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
 }
 
 .carousel-btn {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: none;
   background: transparent;
-  color: #ffffff;
+  color: #e4e4e7;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  padding: 0;
 }
 
 .carousel-btn:hover {
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .carousel-dots {
   display: flex;
-  gap: 0.4rem;
-  align-items: center;
+  gap: 0.35rem;
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   padding: 0;
 }
 
-.dot:hover {
-  background: rgba(255, 255, 255, 0.7);
-}
-
 .dot.active {
-  width: 20px;
+  width: 14px;
   border-radius: 10px;
   background: #ffffff;
 }
 
-/* Image Counter Badge */
 .image-badge {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.4rem 0.8rem;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  font-family: 'Nexa', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
   color: #ffffff;
-  z-index: 10;
 }
 
-/* Content Sections */
+/* ===== TYPOGRAPHY & CONTENT ===== */
 .content-section {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
-
 .content-section:last-child {
   margin-bottom: 0;
 }
 
-/* ===== TYPOGRAPHY ===== */
 .title {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
-  font-size: 2rem;
-  line-height: 1.2;
+  font-size: 1.4rem;
+  line-height: 1.25;
   color: #ffffff;
-  margin: 0 0 0.5rem 0;
-  letter-spacing: -0.02em;
+  margin: 0 0 0 0;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .subtitle {
   font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 1.5rem 0;
+  font-weight: 200;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 1);
+  margin: 0 0 0 0;
 }
 
 .description {
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
   font-size: 0.95rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
 }
 
 .section-heading {
   font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
+  font-weight: 500;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 0 0 1rem 0;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 0.6rem 0;
 }
 
 .tagline {
   font-family: 'Nexa', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1rem;
   font-style: italic;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.5);
+  padding-left: 0;
   margin: 0;
 }
 
-/* ===== META INFO (Simple Text) ===== */
+/* ===== META CHIPS ===== */
 .meta-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  font-family: 'Nexa', sans-serif;
+  gap: 0.35rem;
 }
 
 .meta-item {
-  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-family: 'Nexa', sans-serif;
+  font-size: 0.7rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
 }
 
 .meta-prize {
-  color: rgba(255, 215, 0, 0.9);
-  font-weight: 500;
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
 }
 
-.meta-secondary {
-  font-size: 0.85rem;
+.meta-award {
+  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
 }
 
 .meta-secondary .meta-item {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.85rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
 }
 
-/* ===== STATS SHOWCASE ===== */
+/* ===== STATS ===== */
 .stats-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
 }
 
 .stat-item {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.75rem;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.15rem;
 }
 
 .stat-value {
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
-  font-size: 1.75rem;
-  line-height: 1;
+  font-size: 1.15rem;
   color: #ffffff;
-  letter-spacing: -0.02em;
 }
 
 .stat-label {
   font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.75rem;
+  font-weight: 300;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
 }
 
-/* ===== INFO LISTS (Experience) ===== */
+/* ===== LISTS ===== */
 .info-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .info-list li {
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.7);
-  padding-left: 1.25rem;
+  padding-left: 1.1rem;
   position: relative;
 }
 
 .info-list li::before {
-  content: '•';
+  content: '';
   position: absolute;
   left: 0;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 400;
+  top: 0.5rem;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
 }
 
-/* ===== TECH STACK ===== */
-.tech-list {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.7);
-}
+/* Tech stack uses global cs- classes; no local overrides needed */
 
-.tech-item {
-  display: inline;
-}
-
-.tech-separator {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-/* ===== FOOTER ===== */
-.footer-spacer {
-  height: 90px;
-}
-
-.dialog-footer-floating {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem 2.5rem;
-  background: linear-gradient(to top, rgba(10, 10, 10, 0.98), rgba(10, 10, 10, 0.95), transparent);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 20;
-}
-
+/* ===== BUTTONS ===== */
 .action-buttons-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .action-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
   background: #ffffff;
-  border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #000000;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .action-button:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: translateY(-2px);
+  background: #e4e4e7;
+  transform: translateY(-1px);
 }
 
 .action-button svg {
-  opacity: 0.8;
+  width: 14px;
+  height: 14px;
+  opacity: 0.9;
 }
 
 /* ===== TRANSITIONS ===== */
 .dialog-enter-active,
 .dialog-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
 }
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1024px) {
-  .dialog-content {
-    width: 90vw;
-    height: 80vh;
-  }
-
-  .dialog-grid {
-    grid-template-columns: 40% 60%;
-  }
-
-  .dialog-scroll {
-    padding: 2rem 2rem 1rem;
-  }
-
-  .dialog-footer-floating {
-    padding: 1.25rem 2rem;
-  }
-
-  .title {
-    font-size: 1.85rem;
-  }
+.dialog-enter-from .bento-wrapper,
+.dialog-leave-to .bento-wrapper {
+  transform: scale(0.97);
 }
 
-@media (max-width: 768px) {
+/* ===== MOBILE RESPONSIVE (Collapse into single scrollable dialog) ===== */
+@media (max-width: 800px) {
   .dialog-backdrop {
+    padding: 1rem;
+  }
+  
+  .bento-wrapper {
+    /* Transform grid into a single column, standard dialog */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 90vh;
+    width: 100%;
+    background: #000000;
+    border-radius: 16px;
+    overflow-y: auto;
+  }
+
+  .bento-col {
+    /* Remove strict heights on mobile columns */
+    height: auto;
+    overflow: visible;
+    gap: 0;
+  }
+
+  .bento-module {
+    /* Strip individual module styling to blend into one card */
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.5rem;
+  }
+
+  .module-image {
     padding: 0;
   }
 
-  .dialog-content {
-    width: 100%;
-    height: 80vh;
-    max-height: 100vh;
-    border-radius: 0;
+  .module-scrollable {
+    overflow-y: visible; /* Let the parent wrapper handle scrolling */
+    padding-right: 1.5rem;
   }
 
-  .dialog-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: 300px 1fr;
-  }
-
-  .dialog-left {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-  }
-
-  .carousel-controls {
-    bottom: 1.5rem;
-    padding: 0.65rem 1.25rem;
-  }
-
-  .carousel-btn {
-    width: 34px;
-    height: 34px;
-  }
-
-  .image-badge {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.4rem 0.85rem;
-    font-size: 0.8rem;
+  .module-footer {
+    position: static;
   }
 
   .close-button {
+    position: fixed;
     top: 1rem;
     right: 1rem;
-    width: 40px;
-    height: 40px;
-  }
-
-  .dialog-scroll {
-    padding: 1.5rem 1.5rem 1rem;
-  }
-
-  .dialog-footer-floating {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .title {
-    font-size: 1.65rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.7);
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .info-list {
-    grid-template-columns: 1fr;
-  }
-
-  .badges-primary {
-    gap: 0.5rem;
-  }
-
-  .badge {
-    font-size: 0.85rem;
-    padding: 0.55rem 0.95rem;
-  }
-
-  .footer-spacer {
-    height: 75px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .dialog-grid {
-    grid-template-rows: 250px 1fr;
+  .dialog-backdrop {
+    padding: 0.5rem;
+  }
+  
+  .bento-wrapper {
+    height: 95vh;
+  }
+  
+  .bento-module {
+    padding: 1.25rem;
   }
 
-  .title {
-    font-size: 1.5rem;
+  .action-buttons-container {
+    flex-direction: column;
   }
-
+  
   .action-button {
     width: 100%;
-    justify-content: center;
-    padding: 0.9rem 1.5rem;
   }
 }
 </style>

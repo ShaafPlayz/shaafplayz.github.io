@@ -52,7 +52,7 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
 <template>
   <div class="internships-section">
     <!-- Featured Internship -->
-    <h2 class="section-title">SWE</h2>
+    <h2 class="cs-section-title">Software Engineering</h2>
     <OPSDotnetDev @click="emit('item-click', $event)" />
     <UTSJuniorSWE @click="emit('item-click', $event)" />
 
@@ -63,7 +63,7 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
       :while-in-view="{ opacity: 1, y: 0 }"
       :transition="{ duration: 0.3, delay: 0.15 }"
     >
-      <h2 class="section-title">Design & Media</h2>
+      <h2 class="cs-section-title section-title-spaced">Design & Media</h2>
       <div class="internships-grid">
         <Motion
           v-for="(job, index) in artsJobs"
@@ -71,44 +71,43 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
           :initial="{ opacity: 0, y: 15 }"
           :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.3, delay: 0.2 + index * 0.1 }"
-          class="internship-card"
+          class="cs-card"
           @click="emit('item-click', job)"
         >
-          <div class="card-header">
-            <h3 class="job-position">{{ job.position }}</h3>
+          <div v-if="job.image" class="cs-card-image">
+            <img :src="job.image" :alt="job.company" loading="lazy" />
+            <div class="cs-card-image-fade"></div>
           </div>
-          <p class="company-name">{{ job.company }}</p>
-          <div class="job-meta">
-            <span class="meta-item"><Icon name="heroicons:map-pin-20-solid" class="meta-icon" /> {{ job.location }}</span>
-            <span class="meta-item"><Icon name="heroicons:calendar-20-solid" class="meta-icon" /> {{ job.date }}</span>
-          </div>
-          <div class="tech-preview">
-            <span v-for="(tech, i) in job.technologies.slice(0, 3)" :key="i" class="tech-tag">{{ tech }}</span>
-            <span v-if="job.technologies.length > 3" class="more-tag">+{{ job.technologies.length - 3 }}</span>
+          <div class="cs-card-content">
+            <span class="cs-category-label">{{ job.type }}</span>
+            <h3 class="cs-card-title">{{ job.position }}</h3>
+            <p class="cs-card-subtitle">{{ job.company }}</p>
+            <div class="job-meta">
+              <span class="job-meta-item"><Icon name="heroicons:map-pin-20-solid" class="meta-icon" /> {{ job.location }}</span>
+              <span class="job-meta-item"><Icon name="heroicons:calendar-20-solid" class="meta-icon" /> {{ job.date }}</span>
+            </div>
+            <div class="cs-tech-list">
+              <span v-for="(tech, i) in job.technologies.slice(0, 3)" :key="i" class="cs-tech-tag">{{ tech }}</span>
+              <span v-if="job.technologies.length > 3" class="cs-more-tag">+{{ job.technologies.length - 3 }}</span>
+            </div>
           </div>
         </Motion>
       </div>
     </Motion>
+
+    <!-- Certifications -->
+    <div class="certs-wrapper">
+      <h2 class="cs-section-title section-title-spaced">Certifications</h2>
+      <SkillsCertsSection />
+    </div>
   </div>
 </template>
 
 <style scoped>
-.internships-section {
-  padding: 0;
-}
+.internships-section { padding: 0; }
+.certs-wrapper { margin-top: 3.5rem; }
 
-.section-title {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: #000000;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.3px;
-}
-
-.section-title:not(:first-child) {
-  margin-top: 4rem;
-}
+.section-title-spaced { margin-top: 3.5rem; }
 
 .internships-grid {
   display: grid;
@@ -117,125 +116,32 @@ const artsJobs = jobs.filter(job => job.type === 'Arts Internship')
   margin-bottom: 3rem;
 }
 
-.internship-card {
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 1rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-
-.internship-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: #d0d0d0;
-}
-
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.job-position {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: #000000;
-  line-height: 1.25;
-  flex: 1;
-}
-
-.current-badge {
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
-  color: #000000;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.7rem;
-  padding: 0.25rem 0.6rem;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-.company-name {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #666666;
-  margin-bottom: 0.6rem;
-}
-
+/* Location / date meta row inside card */
 .job-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.meta-item {
+.job-meta-item {
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
-  font-size: 0.8rem;
-  color: #888888;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   gap: 0.3rem;
 }
 
 .meta-icon {
-  width: 14px;
-  height: 14px;
-  color: #666666;
-}
-
-.tech-preview {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
-.tech-tag {
-  background: #f5f5f5;
-  color: #333333;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 5px;
-}
-
-.more-tag {
-  background: #e8e8e8;
-  color: #333333;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.7rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 5px;
+  width: 13px;
+  height: 13px;
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {
-  .internships-grid {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .section-title {
-    font-size: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .section-title:not(:first-child) {
-    margin-top: 3rem;
-  }
-
-  .job-position {
-    font-size: 1rem;
-  }
+  .internships-grid { grid-template-columns: 1fr; gap: 0.875rem; margin-bottom: 2.5rem; }
+  .section-title-spaced { margin-top: 2.75rem; }
 }
 </style>

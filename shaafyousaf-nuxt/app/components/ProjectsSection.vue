@@ -227,37 +227,37 @@ const emit = defineEmits<{
         :key="project.title"
         :initial="{ opacity: 1, y: 20 }"
         :transition="{ duration: 0.35, delay: 0.05 + index * 0.06 }"
-        class="project-row"
+        class="cs-card"
         @click="emit('item-click', project)"
       >
-        <div class="row-image">
+        <div class="cs-card-image">
           <img :src="project.image" :alt="project.title" loading="lazy" />
-          <div class="image-fade"></div>
+          <div class="cs-card-image-fade"></div>
           <div class="image-overlay">
             <span :class="['category-badge', project.badgeClass]">{{ project.badge }}</span>
             <span class="date-label">{{ formatDate(project.date) }}</span>
           </div>
         </div>
 
-        <div class="row-content">
-          <span class="category-label">{{ project.category }}</span>
-          <h3 class="row-title">{{ project.title }}</h3>
-          <p class="row-subtitle">{{ project.subtitle }}</p>
-          <p class="row-description">{{ project.description }}</p>
+        <div class="cs-card-content">
+          <span class="cs-category-label">{{ project.category }}</span>
+          <h3 class="cs-card-title">{{ project.title }}</h3>
+          <p class="cs-card-subtitle">{{ project.subtitle }}</p>
+          <p class="cs-card-description">{{ project.description }}</p>
 
-          <div class="tech-list">
-            <span v-for="(tech, i) in project.tech.slice(0, 4)" :key="i" class="tech-tag">{{ tech }}</span>
-            <span v-if="project.tech.length > 4" class="more-tag">+{{ project.tech.length - 4 }}</span>
+          <div class="cs-tech-list">
+            <span v-for="(tech, i) in project.tech.slice(0, 4)" :key="i" class="cs-tech-tag">{{ tech }}</span>
+            <span v-if="project.tech.length > 4" class="cs-more-tag">+{{ project.tech.length - 4 }}</span>
           </div>
 
-          <div class="row-actions">
+          <div class="cs-action-list">
             <a
               v-for="(btn, i) in project.buttons"
               :key="i"
               :href="btn.url"
               target="_blank"
               rel="noopener noreferrer"
-              :class="['action-link', { primary: i === 0 }]"
+              :class="['cs-action-link', { primary: i === 0 }]"
               @click.stop
             >
               {{ btn.label }}
@@ -330,7 +330,6 @@ const emit = defineEmits<{
 }
 
 .sort-group {
-  position: relative;
   padding-left: 1rem;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -341,48 +340,7 @@ const emit = defineEmits<{
   gap: 1.5rem;
 }
 
-/* Stacked card — dark theme */
-.project-row {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(145deg, #161616 0%, #0d0d0d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Subtle gold glow sweep on hover */
-.project-row::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(600px circle at 0% 0%, rgba(255, 215, 0, 0.06), transparent 45%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-}
-
-.project-row:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.18);
-}
-
-.project-row:hover::after {
-  opacity: 1;
-}
-
-.row-image {
-  position: relative;
-  background: #0a0a0a;
-  overflow: hidden;
-  height: 200px;
-  flex-shrink: 0;
-}
-
+/* Badge + date overlay on image */
 .image-overlay {
   position: absolute;
   top: 0.85rem;
@@ -396,60 +354,17 @@ const emit = defineEmits<{
   pointer-events: none;
 }
 
-.row-image img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Fade image into the dark card */
-.image-fade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(13, 13, 13, 0.9) 100%);
-  pointer-events: none;
-}
-
-.project-row:hover .row-image img {
-  transform: scale(1.04);
-}
-
-.row-content {
-  padding: 1.35rem 1.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-  flex: 1;
-  position: relative;
-  z-index: 1;
-}
-
 .category-badge {
   padding: 0.3rem 0.75rem;
   border-radius: 20px;
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
   font-size: 0.7rem;
-  letter-spacing: 0.3px;
   color: #ffffff;
   background: rgba(10, 10, 10, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-}
-
-.category-label {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.35);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 0.5rem;
 }
 
 .date-label {
@@ -465,156 +380,17 @@ const emit = defineEmits<{
   -webkit-backdrop-filter: blur(6px);
 }
 
-.row-title {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: #ffffff;
-  margin-bottom: 0.25rem;
-  line-height: 1.2;
-  letter-spacing: -0.3px;
-}
-
-.row-subtitle {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.88rem;
-  color: rgba(255, 215, 0, 0.85);
-  margin-bottom: 0.65rem;
-  line-height: 1.4;
-}
-
-.row-description {
-  font-family: 'Nexa', sans-serif;
-  font-weight: 400;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.25rem;
-}
-
-.tech-tag {
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.75);
-  font-family: 'Nexa', sans-serif;
-  font-weight: 500;
-  font-size: 0.72rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.25s ease;
-}
-
-.project-row:hover .tech-tag {
-  border-color: rgba(255, 255, 255, 0.18);
-}
-
-.more-tag {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.6);
-  font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.72rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.row-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: auto;
-}
-
-.action-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.5rem 1.1rem;
-  border-radius: 50px;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.75);
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.25s ease;
-}
-
-.action-link:hover {
-  border-color: rgba(255, 255, 255, 0.6);
-  color: #ffffff;
-}
-
-.action-link.primary {
-  background: #ffd700;
-  border-color: #ffd700;
-  color: #000000;
-}
-
-.action-link.primary:hover {
-  background: #ffe44d;
-  border-color: #ffe44d;
-}
+/* Spacing between tech list and action buttons */
+.cs-tech-list { margin-bottom: 1.25rem; }
 
 @media (max-width: 900px) {
-  .projects-list {
-    grid-template-columns: 1fr;
-  }
+  .projects-list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-  .filter-bar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .sort-group {
-    padding-left: 0;
-    border-left: none;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    width: 100%;
-  }
-
-  .projects-list {
-    gap: 1.25rem;
-  }
-
-  .row-image {
-    height: 180px;
-  }
-
-  .image-overlay {
-    top: 0.65rem;
-    left: 0.65rem;
-    right: 0.65rem;
-  }
-
-  .row-content {
-    padding: 1.1rem 1.25rem 1.5rem;
-  }
-
-  .row-title {
-    font-size: 1.2rem;
-  }
-
-  .row-description {
-    font-size: 0.85rem;
-  }
+  .filter-bar { flex-direction: column; align-items: flex-start; }
+  .sort-group { padding-left: 0; border-left: none; padding-top: 0.75rem; border-top: 1px solid rgba(0,0,0,0.1); width: 100%; }
+  .projects-list { gap: 1.25rem; }
+  .image-overlay { top: 0.65rem; left: 0.65rem; right: 0.65rem; }
 }
 </style>

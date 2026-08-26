@@ -20,8 +20,7 @@ onMounted(() => {
 const sections = [
   { id: 'professional-work', label: 'Professional Work' },
   { id: 'published', label: 'Published & Hackathons' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Certifications' }
+  { id: 'projects', label: 'Projects' }
 ]
 
 const setActiveSection = (sectionId: string) => {
@@ -143,7 +142,6 @@ const slideVariants = computed(() => ({
         <InternshipsSection v-if="activeSection === 'professional-work'" @item-click="openDialog" />
         <PublishedHackathonsSection v-if="activeSection === 'published'" @item-click="openDialog" />
         <ProjectsSection v-if="activeSection === 'projects'" @item-click="openDialog" />
-        <SkillsCertsSection v-if="activeSection === 'skills'" />
       </Motion>
     </div>
     </div>
@@ -155,21 +153,6 @@ const slideVariants = computed(() => ({
   min-height: 100vh;
   background: #ffffff;
   position: relative;
-}
-
-/* Dots Background */
-.experience-page-wrapper::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
 }
 
 .experience-page {
@@ -184,7 +167,7 @@ const slideVariants = computed(() => ({
 /* Hero Section */
 .hero-section {
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 50;
 }
@@ -192,79 +175,59 @@ const slideVariants = computed(() => ({
 .hero-title {
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
   color: #000000;
-  margin-bottom: 0.5rem;
-  letter-spacing: -1.5px;
-  padding-top: 20px;
+  margin-bottom: 0.6rem;
+  letter-spacing: -2px;
+  line-height: 1.05;
 }
 
 .hero-description {
   font-family: 'Nexa', sans-serif;
   font-weight: 300;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: #666666;
-  margin: 0 auto 2rem;
-  line-height: 1.5;
+  font-size: clamp(0.875rem, 1.6vw, 1rem);
+  color: #888888;
+  margin-bottom: 2rem;
+  line-height: 1.6;
   text-align: left;
-  width: 100%;
 }
 
 /* Tab Pills Container */
 .tab-container {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: #f5f5f5;
+  gap: 0.35rem;
+  background: #f0f0f0;
   border-radius: 50px;
+  padding: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 /* Tab Pills */
 .tab-pill {
-  padding: 0.65rem 1.5rem;
+  padding: 0.6rem 1.35rem;
   background: transparent;
   border: none;
   border-radius: 50px;
   font-family: 'Nexa', sans-serif;
-  font-weight: 900;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.875rem;
   color: #666666;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
   white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-}
-
-.tab-pill::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ffd700;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 50px;
-  z-index: -1;
 }
 
 .tab-pill:hover:not(.active) {
-  color: #333333;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.06);
+  color: #222222;
 }
 
 .tab-pill.active {
-  color: #000000;
-  transform: scale(1.02);
-}
-
-.tab-pill.active::before {
-  opacity: 1;
+  background: #000000;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /* Content Wrapper */
@@ -315,7 +278,7 @@ const slideVariants = computed(() => ({
   }
 
   .hero-section {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .experience-logo {
@@ -324,13 +287,13 @@ const slideVariants = computed(() => ({
   }
 
   .hero-title {
-    font-size: 2rem;
-    letter-spacing: -1px;
+    font-size: 1.9rem;
+    letter-spacing: -1.5px;
   }
 
   .hero-description {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
   }
 
   .tab-container {
@@ -340,14 +303,15 @@ const slideVariants = computed(() => ({
     right: 0;
     z-index: 90;
     margin: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 0;
-    padding: 0.75rem 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 0.5rem;
+    gap: 0.4rem;
     flex-wrap: nowrap;
     justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
@@ -359,8 +323,8 @@ const slideVariants = computed(() => ({
   }
 
   .tab-pill {
-    padding: 0.55rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.8rem;
     flex-shrink: 0;
   }
 
@@ -380,13 +344,13 @@ const slideVariants = computed(() => ({
   }
 
   .tab-container {
-    padding: 0.75rem 1rem;
-    gap: 0.4rem;
+    padding: 0.6rem 0.875rem;
+    gap: 0.35rem;
   }
 
   .tab-pill {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.78rem;
   }
 }
 </style>

@@ -8,6 +8,8 @@ interface Props {
   serverConnected?: boolean
   uptime?: string
   alignRight?: boolean
+  secondsUntilNextPing?: number
+  pingInterval?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -16,7 +18,15 @@ const props = withDefaults(defineProps<Props>(), {
   hostname: 'the-great-library',
   serverConnected: false,
   uptime: '--',
-  alignRight: false
+  alignRight: false,
+  secondsUntilNextPing: 60,
+  pingInterval: 60
+})
+
+// 0% = just pinged (empty bar), 100% = next ping imminent (full bar)
+const progressPercent = computed(() => {
+  const elapsed = props.pingInterval - props.secondsUntilNextPing
+  return Math.max(0, Math.min(100, (elapsed / props.pingInterval) * 100))
 })
 </script>
 
@@ -65,40 +75,63 @@ const props = withDefaults(defineProps<Props>(), {
         </ClientOnly>
 
         <ClientOnly>
+          <!-- Motion wrapper handles the scroll-entrance animation only -->
           <Motion
             tag="div"
-            class="server-status-bar"
+            class="server-status-motion-wrapper"
             :initial="{ opacity: 0, filter: 'blur(8px)', y: 20 }"
             :while-in-view="{ opacity: 1, filter: 'blur(0px)', y: 0 }"
             :transition="{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }"
           >
+            <!-- Inner pill handles online/offline dimming via CSS -->
+            <div :class="['server-status-bar', { 'status-bar-offline': !serverConnected }]">
+              <div class="status-bar-row">
+                <div class="status-bar-name-status">
+                  <div class="status-bar-item">
+                    <Icon name="heroicons:server-stack" class="tab-icon" />
+                    <span class="status-bar-value">{{ hostname }}</span>
+                  </div>
+                  <div class="status-bar-item">
+                    <span :class="['status-indicator', serverConnected ? 'online' : 'offline']">
+                      {{ serverConnected ? 'ONLINE' : 'LINK-DOWN' }}
+                    </span>
+                  </div>
+                </div>
 
-        <div class="status-bar-name-status">
-          <div class="status-bar-item">
-            <!-- <span class="status-bar-label">Server:</span> -->
-            <Icon name="heroicons:server-stack" class="tab-icon" />
-            <span class="status-bar-value">{{ hostname }}</span>
-          </div>
-          <!-- <div class="status-bar-divider"></div> -->
-          <div class="status-bar-item">
-            <!-- <span class="status-bar-label">Status:</span> -->
-            <span :class="['status-indicator', serverConnected ? 'online' : 'offline']">
-              {{ serverConnected ? 'ONLINE' : 'LINK-DOWN' }}
-            </span>
-          </div>
-        </div>
+                <template v-if="serverConnected">
+                  <div class="status-bar-divider"></div>
+                  <div class="status-bar-item">
+                    <span class="status-bar-value">{{ uptime }}</span>
+                  </div>
+                </template>
 
-          <div v-if="serverConnected" class="status-bar-divider"></div>
-          <div v-if="serverConnected" class="status-bar-item">
-            <!-- <span class="status-bar-label">Uptime:</span> -->
-            <span class="status-bar-value">{{ uptime }}</span>
-          </div>
+                <template v-else>
+                  <div class="status-bar-divider"></div>
+                  <div class="status-bar-item">
+                    <span class="status-bar-value">Next ping in {{ secondsUntilNextPing }}s</span>
+                  </div>
+                </template>
+              </div>
+
+              <!-- Progress bar fills 0→100% over ping interval, only when online -->
+              <div v-if="serverConnected" class="ping-progress-track">
+                <div 
+                  class="ping-progress-fill" 
+                  :style="{ width: progressPercent + '%' }"
+                ></div>
+              </div>
+            </div>
           </Motion>
+
           <template #fallback>
-            <div class="server-status-bar">
-              <div class="status-bar-name-status">
-                <div class="status-bar-item">
-                  <span class="status-bar-value">{{ hostname }}</span>
+            <div class="server-status-motion-wrapper">
+              <div class="server-status-bar">
+                <div class="status-bar-row">
+                  <div class="status-bar-name-status">
+                    <div class="status-bar-item">
+                      <span class="status-bar-value">{{ hostname }}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,7 +212,7 @@ const props = withDefaults(defineProps<Props>(), {
   margin-left: auto;
 }
 
-.homelab-content.align-right .server-status-bar {
+.homelab-content.align-right .server-status-motion-wrapper {
   margin-left: auto;
 }
 
@@ -205,17 +238,41 @@ const props = withDefaults(defineProps<Props>(), {
   max-width: 880px;
 }
 
+/* Motion entrance wrapper — just controls sizing */
+.server-status-motion-wrapper {
+  max-width: fit-content;
+}
+
 /* Server Status Bar */
 .server-status-bar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  padding: 0.75rem 1.25rem;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.server-status-bar.status-bar-offline {
+  opacity: 0.3;
+}
+
+/* Row inside the pill */
+.status-bar-row {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  /* border: 1px solid rgba(255, 255, 255, 0.1); */
-  border-radius: 40px;
-  padding: 0.75rem 1.25rem;
-  max-width: fit-content;
+}
+
+.status-bar-name-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .status-bar-item {
@@ -266,19 +323,24 @@ const props = withDefaults(defineProps<Props>(), {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.status-bar-name-status{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+/* Progress bar — fills 0→100% as time elapses since last ping */
+.ping-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
 
+.ping-progress-fill {
+  height: 100%;
+  background: rgba(0, 248, 58, 0.75);
+  transition: width 1.05s linear;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-
-
   .homelab-section {
     height: 45vh;
     min-height: 350px;
@@ -304,6 +366,9 @@ const props = withDefaults(defineProps<Props>(), {
 
   .server-status-bar {
     padding: 0.6rem 1rem;
+  }
+
+  .status-bar-row {
     gap: 0.75rem;
   }
 
@@ -341,12 +406,15 @@ const props = withDefaults(defineProps<Props>(), {
   }
 
   .server-status-bar {
+    padding: 1rem;
+  }
+
+  .status-bar-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
-    padding: 1rem;
   }
-  
+
   .status-bar-divider {
     display: none;
   }

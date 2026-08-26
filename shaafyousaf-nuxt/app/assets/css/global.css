@@ -372,6 +372,210 @@ a:hover {
 }
 
 /* ===================================
+   SHARED CARD COMPONENT SYSTEM (cs-)
+   Used by: ProjectsSection, InternshipsSection,
+            PublishedHackathonsSection, Dialog
+   =================================== */
+
+/* Section title above grids */
+.cs-section-title {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #111111;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.2px;
+}
+
+/* Base card */
+.cs-card {
+  background: linear-gradient(145deg, #161616 0%, #0d0d0d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cs-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at 0% 0%, rgba(255, 215, 0, 0.06), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.cs-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.cs-card:hover::after { opacity: 1; }
+
+/* Card image block */
+.cs-card-image {
+  position: relative;
+  background: #0a0a0a;
+  overflow: hidden;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.cs-card-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cs-card:hover .cs-card-image img { transform: scale(1.04); }
+
+.cs-card-image-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(13, 13, 13, 0.9) 100%);
+  pointer-events: none;
+}
+
+/* Card body */
+.cs-card-content {
+  padding: 1.35rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Typography */
+.cs-category-label {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
+.cs-card-title {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.cs-card-subtitle {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: rgba(255, 215, 0, 0.85);
+  margin-bottom: 0.65rem;
+  line-height: 1.4;
+}
+
+.cs-card-description {
+  font-family: 'Nexa', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tech pills */
+.cs-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.cs-tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Nexa', sans-serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.25s ease;
+}
+
+.cs-card:hover .cs-tech-tag { border-color: rgba(255, 255, 255, 0.2); }
+
+.cs-more-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Nexa', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Action links */
+.cs-action-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+
+.cs-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.75);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+}
+
+.cs-action-link:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+}
+
+.cs-action-link.primary {
+  background: #ffd700;
+  border-color: #ffd700;
+  color: #000000;
+}
+
+.cs-action-link.primary:hover {
+  background: #ffe44d;
+  border-color: #ffe44d;
+  color: #000000;
+}
+
+/* ===================================
    SELECTION
    =================================== */
 

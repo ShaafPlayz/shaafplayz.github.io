@@ -12,6 +12,10 @@ const serverConnected = ref(false) // Will be set to true when API responds succ
 const hostname = ref('the-great-library')
 const uptime = ref('--')
 
+// Countdown to next ping
+const PING_INTERVAL_SECS = 30
+const secondsUntilNextPing = ref(PING_INTERVAL_SECS)
+
 // API Configuration - Update these with your actual endpoints
 const API_CONFIG = {
   baseUrl: '', // e.g., 'http://your-server-ip:port' or 'https://api.yourdomain.com'
@@ -126,6 +130,7 @@ const saveCurrentState = () => {
 
 // Function to fetch server status and live data
 const fetchServerStatus = async () => {
+  secondsUntilNextPing.value = PING_INTERVAL_SECS
   // If no API base URL is configured, stay offline and show last known state
   // if (!API_CONFIG.baseUrl) {
   //   console.warn('API base URL not configured. Showing last known state.')
@@ -300,6 +305,7 @@ const formatUptime = (seconds: number): string => {
 }
 
 let pollingTimer: ReturnType<typeof setInterval> | null = null
+let countdownTimer: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
 
@@ -312,12 +318,18 @@ onMounted(() => {
   
   // Set up polling at configured interval
   pollingTimer = setInterval(fetchServerStatus, API_CONFIG.pollingInterval)
+
+  // Per-second countdown to next ping
+  countdownTimer = setInterval(() => {
+    if (secondsUntilNextPing.value > 0) secondsUntilNextPing.value--
+  }, 1000)
   }, 400)
   
 })
 
 onUnmounted(() => {
   if (pollingTimer) clearInterval(pollingTimer)
+  if (countdownTimer) clearInterval(countdownTimer)
 })
 </script>
 
@@ -330,6 +342,8 @@ onUnmounted(() => {
       :hostname="hostname"
       :server-connected="serverConnected"
       :uptime="uptime"
+      :seconds-until-next-ping="secondsUntilNextPing"
+      :ping-interval="PING_INTERVAL_SECS"
     />
 
     <!-- Tab Navigation -->
