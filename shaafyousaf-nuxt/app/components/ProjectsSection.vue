@@ -234,7 +234,6 @@ const emit = defineEmits<{
           <img :src="project.image" :alt="project.title" loading="lazy" />
           <div class="cs-card-image-fade"></div>
           <div class="image-overlay">
-            <span :class="['category-badge', project.badgeClass]">{{ project.badge }}</span>
             <span class="date-label">{{ formatDate(project.date) }}</span>
           </div>
         </div>
@@ -246,8 +245,8 @@ const emit = defineEmits<{
           <p class="cs-card-description">{{ project.description }}</p>
 
           <div class="cs-tech-list">
-            <span v-for="(tech, i) in project.tech.slice(0, 4)" :key="i" class="cs-tech-tag">{{ tech }}</span>
-            <span v-if="project.tech.length > 4" class="cs-more-tag">+{{ project.tech.length - 4 }}</span>
+            <span v-for="(tech, i) in project.tech.slice(0, 3)" :key="i" class="cs-tech-tag">{{ tech }}</span>
+            <span v-if="project.tech.length > 3" class="cs-more-tag">+{{ project.tech.length - 3 }}</span>
           </div>
 
           <div class="cs-action-list">
@@ -309,7 +308,7 @@ const emit = defineEmits<{
   border-radius: 50px;
   padding: 0.45rem 1rem;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
@@ -334,63 +333,144 @@ const emit = defineEmits<{
   border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* Grid */
 .projects-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
-/* Badge + date overlay on image */
+/* ─── Professional / understated card overrides ─── */
+
+/* Kill the flashy gold glow pseudo-element */
+.projects-list :deep(.cs-card::after) { display: none; }
+
+/* Flat hover — border brightens, no lift, no shadow drama */
+.projects-list :deep(.cs-card) {
+  transition: border-color 0.2s ease, background 0.2s ease;
+  border-radius: 14px;
+}
+.projects-list :deep(.cs-card:hover) {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(145deg, #1c1c1c 0%, #111111 100%);
+}
+
+/* Shorter image, no zoom on hover */
+.projects-list :deep(.cs-card-image) { height: 150px; }
+.projects-list :deep(.cs-card:hover .cs-card-image img) { transform: none; }
+
+/* Tighter body */
+.projects-list :deep(.cs-card-content) {
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+/* Category label — smaller, quieter */
+.projects-list :deep(.cs-category-label) {
+  font-size: 0.63rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+/* Title — tighter */
+.projects-list :deep(.cs-card-title) {
+  font-size: 1.05rem;
+  letter-spacing: -0.2px;
+  margin-bottom: 0.4rem;
+}
+
+/* Subtitle — no gold, just a muted secondary tone */
+.projects-list :deep(.cs-card-subtitle) {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.75rem;
+}
+
+/* Description — 2-line clamp, small and readable */
+.projects-list :deep(.cs-card-description) {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Tech tags — flatter, no border change on hover */
+.projects-list :deep(.cs-tech-list) { margin-bottom: 1rem; gap: 0.3rem; }
+.projects-list :deep(.cs-tech-tag) {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.5);
+}
+.projects-list :deep(.cs-card:hover .cs-tech-tag) { border-color: rgba(255, 255, 255, 0.09); }
+.projects-list :deep(.cs-more-tag) {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Action links — plain text style, no pill */
+.projects-list :deep(.cs-action-link) {
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.2);
+}
+.projects-list :deep(.cs-action-link:hover) {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+.projects-list :deep(.cs-action-link.primary) {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+}
+.projects-list :deep(.cs-action-link.primary:hover) {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Image overlay labels */
 .image-overlay {
   position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
-  right: 0.85rem;
+  top: 0.7rem;
+  right: 0.7rem;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
   pointer-events: none;
 }
 
-.category-badge {
-  padding: 0.3rem 0.75rem;
-  border-radius: 20px;
-  font-family: 'Nexa', sans-serif;
-  font-weight: 700;
-  font-size: 0.7rem;
-  color: #ffffff;
-  background: rgba(10, 10, 10, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
 
 .date-label {
   font-family: 'Nexa', sans-serif;
-  font-weight: 600;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.75);
-  background: rgba(10, 10, 10, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 0.3rem 0.65rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  font-weight: 500;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 0.22rem 0.55rem;
 }
 
-/* Spacing between tech list and action buttons */
-.cs-tech-list { margin-bottom: 1.25rem; }
-
-@media (max-width: 900px) {
-  .projects-list { grid-template-columns: 1fr; }
+/* Responsive */
+@media (max-width: 1100px) {
+  .projects-list { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
+  .projects-list { grid-template-columns: 1fr; gap: 0.85rem; }
   .filter-bar { flex-direction: column; align-items: flex-start; }
   .sort-group { padding-left: 0; border-left: none; padding-top: 0.75rem; border-top: 1px solid rgba(0,0,0,0.1); width: 100%; }
-  .projects-list { gap: 1.25rem; }
-  .image-overlay { top: 0.65rem; left: 0.65rem; right: 0.65rem; }
+  .image-overlay { top: 0.55rem; right: 0.55rem; }
 }
 </style>

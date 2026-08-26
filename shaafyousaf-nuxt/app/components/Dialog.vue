@@ -179,10 +179,11 @@ const closeDialog = () => {
         @click="closeDialog"
       >
         <!-- Bento Wrapper (Transparent Grid on Desktop) -->
-        <div class="bento-wrapper" @click.stop>
+        <!-- Clicking the gaps/empty areas in the wrapper also closes -->
+        <div class="bento-wrapper" @click="closeDialog">
           
           <!-- Close Button -->
-          <button class="close-button" @click="closeDialog">
+          <button class="close-button" @click.stop="closeDialog">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -193,7 +194,7 @@ const closeDialog = () => {
           <div class="bento-col bento-left">
             
             <!-- Module: Image Carousel -->
-            <div v-if="imageArray.length > 0" class="bento-module module-image">
+            <div v-if="imageArray.length > 0" class="bento-module module-image" @click.stop>
               <div class="carousel-wrapper">
                 <div class="carousel-display">
                   <div 
@@ -234,7 +235,7 @@ const closeDialog = () => {
             </div>
 
             <!-- Module: Header & Meta -->
-            <div class="bento-module module-header">
+            <div class="bento-module module-header" @click.stop>
               <h2 class="title">{{ title }}</h2>
               <!-- Gold subtitle: project subtitle text, or company name for work entries -->
               <p v-if="subtitle || company" class="subtitle">{{ subtitle || company }}</p>
@@ -263,7 +264,7 @@ const closeDialog = () => {
             </div>
 
             <!-- Module: Stats (only in left when description is present) -->
-            <div v-if="hasRightContent && stats && (stats.users || stats.installs || stats.productHuntRank)" class="bento-module">
+            <div v-if="hasRightContent && stats && (stats.users || stats.installs || stats.productHuntRank)" class="bento-module" @click.stop>
               <div class="stats-grid">
                 <div v-if="stats.users" class="stat-item">
                   <div class="stat-value">{{ stats.users }}</div>
@@ -283,7 +284,7 @@ const closeDialog = () => {
             <!-- Tech always lives in the right column — never rendered here -->
 
             <!-- Module: Footer Actions (always in left column) -->
-            <div v-if="buttons.length > 0 || link" class="bento-module module-footer">
+            <div v-if="buttons.length > 0 || link" class="bento-module module-footer" @click.stop>
               <div v-if="buttons.length > 0" class="action-buttons-container">
                 <a 
                   v-for="(button, index) in buttons"
@@ -324,7 +325,7 @@ const closeDialog = () => {
           <div class="bento-col bento-right">
 
             <!-- Stats shifted right when no description -->
-            <div v-if="!hasRightContent && stats && (stats.users || stats.installs || stats.productHuntRank)" class="bento-module">
+            <div v-if="!hasRightContent && stats && (stats.users || stats.installs || stats.productHuntRank)" class="bento-module" @click.stop>
               <div class="stats-grid">
                 <div v-if="stats.users" class="stat-item">
                   <div class="stat-value">{{ stats.users }}</div>
@@ -342,7 +343,7 @@ const closeDialog = () => {
             </div>
 
             <!-- Tech Stack shifted right when no description -->
-            <div v-if="!hasRightContent && tech.length > 0" class="bento-module">
+            <div v-if="!hasRightContent && tech.length > 0" class="bento-module" @click.stop>
               <h4 class="section-heading">Technologies</h4>
               <div class="cs-tech-list">
                 <span v-for="(techItem, index) in tech" :key="index" class="cs-tech-tag">
@@ -352,7 +353,7 @@ const closeDialog = () => {
             </div>
 
             <!-- Scrollable Description Area (only when description/responsibilities exist) -->
-            <div v-if="hasRightContent" class="bento-module module-scrollable">
+            <div v-if="hasRightContent" class="bento-module module-scrollable" @click.stop>
 
               <!-- Tech always first -->
               <div v-if="tech.length > 0" class="content-section">
@@ -459,6 +460,60 @@ const closeDialog = () => {
   position: relative;
 }
 
+/* ===== RIGHT COLUMN WHITE THEME ===== */
+@media (min-width: 801px) {
+  .bento-right .bento-module {
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .bento-right .section-heading {
+    color: rgba(0, 0, 0, 0.38);
+  }
+
+  .bento-right .description {
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  .bento-right .tagline {
+    color: rgba(0, 0, 0, 0.42);
+  }
+
+  .bento-right .info-list li {
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  .bento-right .info-list li::before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .bento-right :deep(.cs-tech-tag) {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.65);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .bento-right .stat-item {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .bento-right .stat-value {
+    color: #000000;
+  }
+
+  .bento-right .stat-label {
+    color: rgba(0, 0, 0, 0.42);
+  }
+
+  .bento-right .module-scrollable::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .bento-right .module-scrollable::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.28);
+  }
+}
+
 /* ===== MODULES (The individual cards) ===== */
 .bento-module {
   background: #000000;
@@ -516,22 +571,26 @@ const closeDialog = () => {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
   z-index: 20;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .close-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
 
 /* ===== CAROUSEL ===== */
@@ -892,7 +951,10 @@ const closeDialog = () => {
     position: fixed;
     top: 1rem;
     right: 1rem;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(30, 30, 30, 0.85);
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
   }
 
   .stats-grid {

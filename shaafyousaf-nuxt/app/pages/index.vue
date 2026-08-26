@@ -14,7 +14,11 @@ let countdownTimer: ReturnType<typeof setInterval> | null = null;
 
 async function CheckServer() {
   secondsUntilNextPing.value = PING_INTERVAL_SECS;
-  serverConnected.value = await pingURL();
+  try {
+    serverConnected.value = await pingURL();
+  } catch {
+    serverConnected.value = false;
+  }
   if(serverConnected.value){
     uptime.value = "Connected to Server-Observer-Utility";
   }
@@ -23,6 +27,7 @@ async function CheckServer() {
 onMounted(async () => {
   setTimeout(async () => {
     await CheckServer();
+    // Timers start regardless of whether the initial ping succeeded or failed
     pollingTimer = setInterval(CheckServer, PING_INTERVAL_SECS * 1000);
     countdownTimer = setInterval(() => {
       if (secondsUntilNextPing.value > 0) secondsUntilNextPing.value--;

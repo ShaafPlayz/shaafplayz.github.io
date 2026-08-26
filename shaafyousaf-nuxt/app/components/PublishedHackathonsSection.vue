@@ -106,17 +106,17 @@ const emit = defineEmits<{
             />
             <span class="prize-text">{{ hack.prize }}</span>
           </div>
-          <div v-if="hack.image" class="hack-image">
-            <img :src="hack.image" :alt="hack.title" loading="lazy" />
-            <div class="hack-image-fade"></div>
-          </div>
-          <div class="hack-content">
-            <h3 class="hack-title">{{ hack.title }}</h3>
-            <p class="hack-event">{{ hack.event }}</p>
-            <p class="hack-subtitle">{{ hack.subtitle }}</p>
-            <div class="hack-tech-list">
-              <span v-for="(tech, i) in hack.tech.slice(0, 3)" :key="i" class="hack-tech-tag">{{ tech }}</span>
-              <span v-if="hack.tech.length > 3" class="hack-more-tag">+{{ hack.tech.length - 3 }}</span>
+          <div class="hack-body">
+            <img v-if="hack.image" :src="hack.image" :alt="hack.title" loading="lazy" class="hack-bg-img" />
+            <div class="hack-overlay"></div>
+            <div class="hack-content">
+              <h3 class="hack-title">{{ hack.title }}</h3>
+              <p class="hack-event">{{ hack.event }}</p>
+              <p class="hack-subtitle">{{ hack.subtitle }}</p>
+              <div class="hack-tech-list">
+                <span v-for="(tech, i) in hack.tech.slice(0, 3)" :key="i" class="hack-tech-tag">{{ tech }}</span>
+                <span v-if="hack.tech.length > 3" class="hack-more-tag">+{{ hack.tech.length - 3 }}</span>
+              </div>
             </div>
           </div>
         </Motion>
@@ -206,15 +206,15 @@ const emit = defineEmits<{
   color: #000000;
 }
 
-/* Image below prize strip */
-.hack-image {
+/* Image + content overlay body */
+.hack-body {
   position: relative;
-  height: 160px;
+  flex: 1;
+  min-height: 200px;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
-.hack-image img {
+.hack-bg-img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -225,19 +225,22 @@ const emit = defineEmits<{
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hackathon-card:hover .hack-image img { transform: scale(1.04); }
+.hackathon-card:hover .hack-bg-img { transform: scale(1.04); }
 
-.hack-image-fade {
+.hack-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(13, 13, 13, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.92) 100%);
   pointer-events: none;
 }
 
 /* Card body */
 .hack-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: 1rem 1.1rem 1.1rem;
-  flex: 1;
 }
 
 .hack-title {

@@ -257,7 +257,7 @@ const progressPercent = computed(() => {
 }
 
 .server-status-bar.status-bar-offline {
-  opacity: 0.3;
+  opacity: 0.6;
 }
 
 /* Row inside the pill */
